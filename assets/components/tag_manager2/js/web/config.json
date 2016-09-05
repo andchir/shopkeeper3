@@ -1,0 +1,9 @@
+{
+    "filters_cont": "#filters",//Селектор оберточного элемента блоков с фильтрами
+    "sortby": "pagetitle",//Имя поля сортировки по умолчанию
+    "sortdir": "asc",//Направление сортировки по умолчанию
+    "limit": 10, //Число товаров на странице по умолчанию
+    "filter_mode": "get", //hash | get (пока доступно только get)
+    "multitags": ["tags", "param1"],
+    "numeric": ["price", "weight"]
+}

@@ -1,0 +1,475 @@
+// Global Variables
+//------------------------------------------------------
+$modules:                     () !global;
+
+$experimental:                true !default;
+
+// prefix elements
+$prefix-webkit:               true !global;
+$prefix-moz:                  true !global;
+$prefix-spec:                 true !global;
+
+// color elements
+
+$global-white:                rgba(255, 255, 255, 1) !default;
+
+$global-black:                rgba(0, 0, 0, 1) !default;
+
+$global-gray:                 rgba(150, 150, 150, 1) !default;
+
+$global-blue:                 rgba(0, 122, 255, 1) !default;
+
+$global-green:                rgba(76, 217, 100, 1) !default;
+
+$global-red:                  rgba(255, 59, 48, 1) !default;
+
+// font elements
+
+$custom-font-family:          false !default;
+
+$global-font-family:          "Microsoft YaHei", Helvetica, Arial, 'Lucida Grande', sans-serif !default;
+
+$global-font-size:            14px !default;
+
+$global-line-height:          1.428571429 !default;
+
+$global-font-weight:          700 !default;
+
+// radius elements
+
+$global-full-width:           100% !default;
+$global-full-height:          100% !default;
+
+// radius elements
+
+$global-radius:               5px !default;
+
+// Global Mixins
+//------------------------------------------------------
+
+// We use this to loading scss files
+@mixin exports($name) {
+  @if (index($modules, $name) == false) {
+    $modules: append($modules, $name);
+    @content;
+  }
+}
+
+//elements get appended with "__" and the $name
+@mixin elements($name) {
+	@if type-of($name) != list {
+	  #{&}__#{$name} {
+	    @content;
+	  }		
+	} @else {
+	  $items: ();
+	  @each $item in $name {
+	  	$items: $items, unquote("#{&}__#{$item}");
+	  }
+	  #{$items} {
+	    @content;	  	
+	  }
+	} 
+}
+
+//modifiers get appended with "--" and the $name
+@mixin modifiers($name) {
+	@if type-of($name) != list {
+	  @at-root #{&}--#{$name} {
+	    @content;
+	  }	
+	} @else {
+	  $items: ();
+	  @each $item in $name {
+	  	$items: $items, unquote("#{&}--#{$item}");
+	  }
+	  @at-root #{$items} {
+	    @content;	  	
+	  }
+	}
+}
+
+// We use this to set fonts
+@mixin font-family($font-weight: false) {
+	@if $font-weight {
+	    @if $custom-font-family {
+	       font: $font-weight #{$global-font-size}/#{$global-line-height} $custom-font-family, $global-font-family;
+	    } @else {
+	       font: $font-weight #{$global-font-size}/#{$global-line-height} $global-font-family;
+	    }
+	} @else {
+	    @if $custom-font-family {
+	       font: #{$global-font-size}/#{$global-line-height} $custom-font-family, $global-font-family;
+	    } @else {
+	       font: #{$global-font-size}/#{$global-line-height} $global-font-family;
+	    }
+	}
+}
+
+// We use this to do clear floats
+@mixin clearfix() {
+	*zoom: 1;
+	&:before, &:after { 
+		content: " "; 
+		display: table; 
+	}
+	&:after { 
+		clear: both; 
+	}
+}
+
+// We use this to do set opacity
+@mixin opacity($opacity:50, $filter: true) {
+	opacity: $opacity / 100;
+	@if $filter {
+		filter: alpha(opacity=$opacity);
+	}
+}
+
+// We use this to set flexible box layout module 
+@mixin display($value) {
+	@if $value == flex {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -moz-flex;
+		display: -ms-flexbox;
+		display: flex;		
+	}@else{
+		display: $value;
+	}
+}
+
+// We use this to set position 
+@mixin position($position: absolute, $top: false, $right: false, $bottom: false, $left: false) {
+  @if $position {
+    position: $position; 
+  }
+  @if $position != static {
+    @if $top {
+      top: $top;
+    }
+    @if $right {
+      right: $right;
+    }
+    @if $bottom {
+      bottom: $bottom;
+    }
+    @if $left {
+      left: $left;
+    }
+  }
+}
+
+// We use this to set border
+@mixin border($width: 1px, $style: solid, $color: $global-gray, $type: null) {
+	@if $width and $style and $color {
+		@if type-of($width) != list and type-of($style) != list and type-of($color) != list {
+			@if $type == all {
+				border: $width $style $color;
+			}
+			@if $type == top or $type == right or $type == bottom or $type == left {
+				border-#{$type}: $width $style $color; 
+			}
+		} @else if length($width) <= 4 or length($style) <= 4 or length($color) <= 4 {
+			border-width: $width; 
+			border-style: $style;
+			border-color: $color;
+		}
+	}
+	@if $width and $style == false and $color == false {
+		@if type-of($width) != list {
+			@if $type == all {
+				border-width: $width;
+			}
+			@if $type == top or $type == right or $type == bottom or $type == left {
+				border-#{$type}-width: $width; 
+			}
+		} @else if length($width) <= 4 {
+			border-width: $width; 
+		}		
+	}
+	@if $width == false and $style and $color == false {
+		@if type-of($style) != list {
+			@if $type == all {
+				border-style: $style;
+			}
+			@if $type == top or $type == right or $type == bottom or $type == left {
+				border-#{$type}-style: $style; 
+			}
+		} @else if length($style) <= 4 {
+			border-style: $style; 
+		}		
+	}
+	@if $width == false and $style == false and $color {
+		@if type-of($color) != list {
+			@if $type == all {
+				border-color: $color;
+			}
+			@if $type == top or $type == right or $type == bottom or $type == left {
+				border-#{$type}-color: $color; 
+			}
+		} @else if length($color) <= 4 {
+			border-style: $color; 
+		}		
+	}
+} 
+
+// We use this to ellipsis text
+@mixin ellipsis($width: 100%) {
+  display: inline-block;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// We use this to add across browser prefixes
+@mixin prefixer($property, $value, $prefixes: webkit moz spec) {
+	@if $experimental {
+		@each $prefix in $prefixes {
+			@if $prefix != spec {
+				@if $property == border-top-left-radius and $prefix == moz {
+					@if $prefix-moz {
+						-moz-border-radius-topleft: $value;
+					}
+				} @else if $property == border-top-right-radius and $prefix == moz {
+					@if $prefix-moz {
+						-moz-border-radius-topright: $value;
+					}
+				} @else if $property == border-bottom-right-radius and $prefix == moz {
+					@if $prefix-moz {
+						-moz-border-radius-bottomright: $value;
+					}
+				} @else if $property == border-bottom-left-radius and $prefix == moz {
+					@if $prefix-moz {
+						-moz-border-radius-bottomleft: $value;
+					}
+				} @else {
+					@if $prefix == webkit {
+					  @if $prefix-webkit {
+					    -webkit-#{$property}: $value;
+					  }
+					}
+					@if $prefix == moz {
+					  @if $prefix-moz {
+					    -moz-#{$property}: $value;
+					  }
+					}
+				}
+			} @else {
+			  @if $prefix-spec {
+			    #{$property}: $value;
+			  }
+			}
+		}
+	}
+}
+@mixin disable-prefix() {
+  $prefix-webkit:    false !global;
+  $prefix-moz:       false !global;
+  $prefix-spec:      false !global;
+}
+
+// We use this to set flexible box layout module 
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+	-webkit-box-flex: $fg;
+	    -webkit-flex: $fg $fs $fb;
+	   -moz-box-flex: $fg;
+	       -moz-flex: $fg $fs $fb;
+	        -ms-flex: $fg $fs $fb;
+	            flex: $fg $fs $fb;
+}
+
+@mixin flex-align($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+       -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+       -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+       -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+     -moz-align-items: $value;
+          align-items: $value;
+}
+
+@mixin align-self($value: auto) {
+  -webkit-align-self: $value;
+  -moz-align-self: $value;
+  @if $value == flex-start {
+    -ms-flex-item-align: start;
+  } @else if $value == flex-end {
+    -ms-flex-item-align: end;
+  } @else {
+    -ms-flex-item-align: $value;
+  }
+  align-self: $value;
+}
+
+// We use this to add box-sizing across browser prefixes
+@mixin box-sizing($value: border-box) {
+	@include prefixer($property: box-sizing, $value: $value, $prefixes: webkit moz spec);
+}
+
+// We use this to control border radius.
+@mixin radius($type: border-radius, $value: $global-radius) {	
+	@include prefixer($property: $type, $value: $value, $prefixes: spec);	
+}
+
+// We use this to control box shadow.
+@mixin box-shadow($value) {
+	@include prefixer($property: box-shadow, $value: $value, $prefixes: spec);		
+}
+
+// We use this to creat animation effect.
+// Examples:
+// @include keyframes(move-the-object) {
+//   0%   { left: 100px; }
+//   100% { left: 200px; }
+// }
+// .object-to-animate {
+//   @include animation(move-the-object .5s 1);
+// } 
+@mixin animation ($value...) {
+	@include prefixer($property: animation, $value: $value, $prefixes: webkit moz spec);
+}
+// Individual Animation Properties
+@mixin animation-name ($value...) {
+  	@include prefixer($property: animation-name, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-duration ($value...) {
+  	@include prefixer($property: animation-duration, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-timing-function ($value...) {
+	// ease | linear | ease-in | ease-out | ease-in-out
+  	@include prefixer($property: animation-timing-function, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-iteration-count ($value...) {
+	// infinite | <number>
+  	@include prefixer($property: animation-iteration-count, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-direction ($value...) {
+  	@include prefixer($property: animation-direction, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-play-state ($value...) {
+	// running | paused
+  	@include prefixer($property: animation-play-state, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-delay ($value...) {
+  	@include prefixer($property: animation-delay, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin animation-fill-mode ($value...) {
+	// none | forwards | backwards | both
+  	@include prefixer($property: animation-fill-mode, $value: $value, $prefixes: webkit moz spec);
+}
+@mixin keyframes($name) {
+	$original-prefix-webkit:    $prefix-webkit;
+	$original-prefix-moz:       $prefix-moz;
+	$original-prefix-spec:      $prefix-spec;
+
+	@if $original-prefix-webkit {
+		@include disable-prefix();
+		$prefix-webkit: true !global;
+	    @-webkit-keyframes #{$name} {
+	      @content;
+	    }
+	}
+	@if $original-prefix-moz {
+		@include disable-prefix();
+		$prefix-moz: true !global;
+	    @-moz-keyframes #{$name} {
+	      @content;
+	    }
+	}
+	@if $original-prefix-spec {
+		@include disable-prefix();
+		$prefix-spec: true !global;
+	    @keyframes #{$name} {
+	      @content;
+	    }
+	}
+
+	$prefix-webkit:       $original-prefix-webkit !global;
+	$prefix-moz:          $original-prefix-moz !global;
+	$prefix-spec:         $original-prefix-spec !global;
+}
+
+// We use this to set transform.
+@mixin transform($value: none) {
+	//  none | <transform-function>
+  	@include prefixer($property: transform, $value: $value, $prefixes: webkit moz spec);
+}
+
+@mixin transform-origin($value: 50%) {
+	// x-axis - left | center | right  | length | %
+	// y-axis - top  | center | bottom | length | %
+	// z-axis -                          length
+  	@include prefixer($property: transform-origin, $value: $value, $prefixes: webkit moz spec);
+}
+
+@mixin transform-style ($value: flat) {
+  	@include prefixer($property: transform-style, $value: $value, $prefixes: webkit moz spec);
+}
+
+// We use this to set transition.
+// example: @include transition (all 2s ease-in-out);
+//          @include transition (opacity 1s ease-in 2s, width 2s ease-out);
+//          @include transition-property (transform, opacity);
+
+@mixin transition ($value...) {
+	@if length($value) >= 1 {
+	@include prefixer($property: transition, $value: $value, $prefixes: webkit moz spec);
+	} @else {
+	$value: all 0.15s ease-out 0s;
+		@include prefixer($property: transition, $value: $value, $prefixes: webkit moz spec);
+	}
+}
+
+@mixin transition-property ($values...) {
+	$property-webkit:        '';
+	$property-moz:           '';
+	$property-spec:          '';
+	$property-spec-only:     '';
+
+   	$properties-webkit:      ();
+   	$properties-moz:         ();
+   	$properties-spec:        ();
+   	$properties-spec-only:   ();
+
+    @each $value in $values {
+		@if $value == transform {
+		   	$property-webkit:        -webkit-#{$value};
+		   	$property-moz:           -moz-#{$value};
+		   	$property-spec-only:     #{$value};
+
+        	$properties-webkit:      append($properties-webkit, $property-webkit, comma);
+        	$properties-moz:         append($properties-moz, $property-moz, comma);
+        	$properties-spec-only:   append($properties-spec-only, $property-spec-only, comma);
+		} @else {
+		    $property-spec:          $value;
+        	$properties-spec-only:   append($properties-spec-only, $property-spec, comma);
+        	$properties-spec:        append($properties-spec, $property-spec, comma);
+		}
+    }
+
+	@include prefixer($property: transition-property, $value: ($properties-webkit, $properties-spec), $prefixes: webkit);
+	@include prefixer($property: transition-property, $value: ($properties-moz, $properties-spec), $prefixes: moz);
+	@include prefixer($property: transition-property, $value: $properties-spec-only, $prefixes: spec);
+}
+
+@mixin transition-duration ($value...) {
+  	@include prefixer($property: transition-duration, $value: $value, $prefixes: webkit moz spec);
+}
+
+@mixin transition-timing-function ($value...) {
+	// ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier()
+  	@include prefixer($property: transition-timing-function, $value: $value, $prefixes: webkit moz spec);
+}
+
+@mixin transition-delay ($value...) {
+  	@include prefixer($property: transition-delay, $value: $value, $prefixes: webkit moz spec);
+}

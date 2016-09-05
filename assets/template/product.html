@@ -1,0 +1,109 @@
+[[$header]]
+
+[[QuickCrumbs@breadcrumbs_product?
+&resourceId=`[[*resource_id]]`
+]]
+
+<div class="row">
+    <div class="col-md-12">
+        
+        <div class="product-page jumbotron">
+            <div class="jumbotron-contents page-content">
+                
+                <div class="pull-right">
+                    <a href="#" class="btn btn-default [[!*id:in_compare=`active`]]" role="button" data-toggle="tooltip" data-placement="top" title="В избранное" onclick="return shkCompare.toCompare( [[*id]], [[*parent]], this );">
+                        <i class="icon" data-icon="&#xe089"></i>
+                    </a>
+                </div>
+                
+                <div class="product-title">
+                    <h1>[[*longtitle:default=`[[*pagetitle]]`]]</h1>
+                </div>
+                
+                <div class="row shk-item">
+                    <div class="column-left col-xs-12 col-sm-offset-2 col-md-offset-0 col-sm-8 col-md-4 col-lg-4">
+                        
+                        <div class="slider-wrapper">
+                            <div class="slick-slider-one">
+                                [[getImageList?
+                                &value=`[[*gallery]]`
+                                &tpl=`gallery_item`
+                                ]]
+                            </div>
+                        </div>
+                        
+                        <form action="[[~[[*resource_id]]? &scheme=`abs`]][[*alias]].html" method="post">
+                            <input type="hidden" name="shk-id" value="[[*id]]" />
+                            <input type="hidden" name="shk-name" value="[[*pagetitle]]" />
+                            <input type="hidden" name="shk-count" value="1" />
+                            
+                            <div class="product-price">
+                                Цена: <span class="shk-price">[[*price:num_format]]</span> руб.
+                            </div>
+                            
+                            <div class="padding-lr-30">
+                                <h5>Дополнительные услуги</h5>
+                                [[*param1]]
+                            </div>
+                            
+                            <div class="product-price">
+                                <button class="btn btn-lg btn-primary" type="submit" class="shk-but">В корзину</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        
+                        <h4>Характеристики</h4>
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Параметр
+                                    </th>
+                                    <th>
+                                        Значение
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Артикул
+                                    </td>
+                                    <td>
+                                        [[*articul]]
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Вес
+                                    </td>
+                                    <td>
+                                        [[*weight]]
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Страна
+                                    </td>
+                                    <td>
+                                        [[*country]]
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h4>Описание</h4>
+                        [[*content]]
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+[[$footer]]

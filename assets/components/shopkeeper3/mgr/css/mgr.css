@@ -1,0 +1,32 @@
+
+/*.shk-panel-home-div {min-height:300px;}*/
+
+
+.color-icn {background-image: url(../img/color-swatch.png) !important;}
+.add-icn {background-image: url(../img/icon-plus.png) !important;}
+.del-icn {background-image: url(../img/icon-minus.png) !important;}
+
+.shk_contacts ul, .shk_orderdata ul {margin:10px 0 10px 20px; padding:0; list-style-type: disc;}
+.shk_contacts li, .shk_orderdata li {margin:5px 0;}
+.shk_contacts td, .shk_orderdata td {padding:5px;}
+
+.x-form  fieldset.x-panel-collapsed {
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.x-window-body .x-panel-mc {padding:0;}
+.x-window-body .x-panel-mc form {padding:0;}
+
+/*.x-form-item {margin-bottom:0; padding-bottom:0;}*/
+
+/* param_edit */
+.param_edit_wrapper .x-layer.x-editor {z-index: auto !important;/* left: 3px !important;*/}
+.param_edit_wrapper .shk-panel-grid-image.x-panel-collapsed {border:0 !important; margin-left:3px;}
+.param_edit_wrapper .shk-panel-grid-image .x-form-text {width: 130px !important;}
+.param_edit_wrapper .shk-panel-grid-image .x-form-field-wrap {width: 170px !important;}
+.param_edit_wrapper .shk-panel-grid-image .x-panel-bwrap {display: block !important;}
+.param_edit_wrapper .x-toolbar { padding: 5px; }
+.param_edit_wrapper .x-panel-body { border: 1px solid #ddd; }
+
+#shk-form-configuration-cmp .x-panel-footer .x-panel-fbar { padding: 15px; }

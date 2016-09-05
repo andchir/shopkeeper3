@@ -1,0 +1,22 @@
+
+/* main */
+#shk_prodHelper { position: absolute; z-index:100; width:150px; padding:5px; background-color:#f5f5f5; border:1px solid #888; display:none; box-shadow: 2px 2px 8px #B2B2B2; border-radius:4px; }
+#shk_prodHelper div { padding:5px 0; text-align: center; }
+.shk_loading { width:30px; height:30px; position: absolute; z-index:100; background:url('ajax-loader.gif') center center no-repeat #fff; border:1px solid #888; display: none; border-radius:4px; }
+
+/* addit */
+#shk_prodHelperName { width: 95%; margin: 0 auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+#shk_prodHelper input[type="text"] { padding: 2px 5px; border: 1px solid #888; box-shadow: 1px 1px 4px #B2B2B2 inset; border-radius: 2px; font-size: 12px; text-align: center; }
+#shk_prodHelperName .msg { width: 100%; text-overflow: clip; white-space: normal; }
+
+.relative { width:100%; position:relative; }
+.error { color:red; }
+.price-add { color:red; padding-left:3px; line-height:0; }
+.shk_count_button { width: 26px; height: 26px; white-space: nowrap; padding: 0; margin:0 4px; /*border-radius: 13px;*/ }
+.shk-but { margin: 0 4px; }
+.shk-count { padding: 2px; text-align: center; }
+
+/* materials */
+.materials { padding:5px 0; }
+.materials img { width:70px; }
+.materials input { cursor: pointer; }

@@ -1,0 +1,46 @@
+/*
+ * Copyright 2013 AngularGap.
+ *
+ * AngularIcons, v1.00
+ * The premium icon font for AngularGap.
+ * http://angulargap.github.io/angularicons.html
+ *
+ * By @AngularGap
+ *
+ * Licensed under the MIT license. Please see LICENSE for more information.
+ *
+ */
+/**
+ * icon_font
+ * --------------------------------------------------
+ */
+@font-face {
+  font-family: "angularicons";
+  src: url("../fonts/angularicons.eot");
+  src: url("../fonts/angularicons.eot?#iefix") format("embedded-opentype"), url("../fonts/angularicons.woff") format("woff"), url("../fonts/angularicons.ttf") format("truetype"), url("../fonts/angularicons.svg") format("svg");
+}
+.icon {
+  display: inline-block;
+  font-family: "angularicons";
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: top;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon--primary {
+  color: #007aff;
+}
+.icon--success {
+  color: #4cd964;
+}
+.icon--important {
+  color: #ff3b30;
+}
+.icon[data-icon]:before {
+  content: attr(data-icon);
+  speak: none;
+}
+
+/*# sourceMappingURL=angularicons.css.map */

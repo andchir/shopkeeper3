@@ -1,0 +1,127 @@
+body {
+  position: relative; /* For scrollyspy */
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /*font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  text-align: center;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-size: 14px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;  
+}
+/* ----------------------------------
+ * icon
+ * ---------------------------------- */
+@font-face {
+  font-family: 'angularicons';
+  src: url('../angulargap/fonts/angularicons.eot');
+  src: url('../angulargap/fonts/angularicons.eot?#iefix') format('embedded-opentype'), 
+       url('../angulargap/fonts/angularicons.woff') format('woff'), 
+       url('../angulargap/fonts/angularicons.ttf') format('truetype'), 
+       url('../angulargap/fonts/angularicons.svg#angularicons') format('svg');
+}
+.icon {
+  display: inline-block;
+  font-family: 'angularicons';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[data-icon]:before {
+  content: attr(data-icon);
+  speak: none;
+}
+/* ----------------------------------
+ * docs
+ * ---------------------------------- */
+.docs {
+    margin: 0 auto;
+    width: 640px;
+    text-align: left;
+}
+@media (max-width: 768px) {
+  .docs { 
+    width: 100% !important;
+  } 
+}
+/* ----------------------------------
+ * header
+ * ---------------------------------- */
+.header {
+    padding-top: 50px;
+    text-align: center;
+}
+.header h1,
+.header h2 {
+    margin-bottom: 0;
+}
+.header h2 {
+    margin-top: 10px;
+}
+.header .download,
+.header .version {
+    margin-top: 20px;
+}
+.header .version {
+    font-size: 12px;
+    color: #ccc;
+}
+.header a {
+    color: #2f9182; 
+}
+.header a:hover,
+.header a:active {
+    color: #31a6a3; 
+}
+/* ----------------------------------
+ * container
+ * ---------------------------------- */ 
+.container {
+    margin: 0 auto;
+    width: 100%;
+}
+@media (max-width: 768px) {
+  .container { 
+    width: 100% !important;
+  } 
+}
+.container ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+.container li {
+    float: left;
+    padding-bottom: 20px;
+    width: 20%;
+    text-align: center;
+} 
+@media (max-width: 767px) {
+    .container li {
+      width: 33.333333333%;
+    }
+}
+.container li:hover,
+.container li:active {
+    color: #2f9182; 
+}
+.container .icon {
+    font-size: 32px;
+}
+/* ----------------------------------
+ * footer
+ * ---------------------------------- */ 
+.footer {
+  margin-top: 40px;
+  padding: 20px 0 40px;
+  border-top: 1px solid #00b086;
+  font-size: 12px;
+}
+.footer a,
+.footer a:hover {
+  color: #00b086;
+}
+.footer a:hover {
+  text-decoration: underline;
+}

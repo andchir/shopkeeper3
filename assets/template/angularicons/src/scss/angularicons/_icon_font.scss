@@ -1,0 +1,90 @@
+// Variables
+//------------------------------------------------------
+$modules:                  () !global;
+
+$global-blue:              rgba(0, 122, 255, 1) !default;
+$global-green:             rgba(76, 217, 100, 1) !default;
+$global-red:               rgba(255, 59, 48, 1) !default;
+
+$icon-font-src:            '../fonts' !default;
+$icon-font-name:           angularicons !default;
+$icon-font-weight:         normal !default; 
+$icon-font-style:          normal !default; 
+$icon-vertical-align:      top !default;
+
+$icon-inline-block:        inline-block !default;
+
+// Mixins
+//------------------------------------------------------
+@mixin exports($name) {
+  @if (index($modules, $name) == false) {
+    $modules: append($modules, $name);
+    @content;
+  }
+}
+
+//modifiers get appended with "--" and the $name
+@mixin modifiers($name) {
+  @if type-of($name) != list {
+    @at-root #{&}--#{$name} {
+      @content;
+    } 
+  } @else {
+    $items: ();
+    @each $item in $name {
+      $items: $items, unquote("#{&}--#{$item}");
+    }
+    @at-root #{$items} {
+      @content;     
+    }
+  }
+}
+
+// Exports
+//------------------------------------------------------
+
+@include exports("icon_font") {
+
+  /**
+   * icon_font
+   * --------------------------------------------------
+   */
+
+  @font-face {
+    font-family: quote($icon-font-name);
+    src: url('#{$icon-font-src}/#{$icon-font-name}.eot');
+    src: url('#{$icon-font-src}/#{$icon-font-name}.eot?#iefix') format('embedded-opentype'), 
+         url('#{$icon-font-src}/#{$icon-font-name}.woff') format('woff'), 
+         url('#{$icon-font-src}/#{$icon-font-name}.ttf') format('truetype'), 
+         url('#{$icon-font-src}/#{$icon-font-name}.svg') format('svg');
+  }
+
+  .icon {
+    display: $icon-inline-block;
+    font-family: quote($icon-font-name);
+    font-weight: $icon-font-weight;
+    font-style: $icon-font-style;
+    text-decoration: none;
+    vertical-align: $icon-vertical-align;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+
+    @include modifiers(primary) {
+      color: $global-blue;
+    }
+    @include modifiers(success) {
+      color: $global-green;
+    }
+    @include modifiers(important) {
+      color: $global-red;
+    }
+
+    &[data-icon]:before {
+      content: attr(data-icon);
+      speak: none;
+    }
+  }
+
+}
+
+

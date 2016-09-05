@@ -1,0 +1,24 @@
+
+coolcaptcha_fihook
+
+==============================
+
+1.3
+
+- captcha.php moved to /assets/.
+
+1.2
+
+- Updated documentation.
+
+1.1
+
+- Make support standart MODX sessions.
+
+- Bug fix in documentation.
+
+==============================
+
+1.0
+
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="shop" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+    <object class="ShopContent" table="shop_content" extends="xPDOSimpleObject">
+	<field key="resource_id" dbtype="int" precision="10" phptype="int" null="false" index="index" />
+	<field key="pagetitle" dbtype="varchar" precision="255" phptype="string" null="false" default="" index="fulltext" indexgrp="shop_content_ft_idx" />
+	<field key="longtitle" dbtype="varchar" precision="255" phptype="string" null="false" default="" index="fulltext" indexgrp="shop_content_ft_idx"  />
+	<field key="alias" dbtype="varchar" precision="255" phptype="string" null="true" default="" index="index" />
+	<field key="deleted" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="deletedon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+	<field key="deletedby" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="introtext" dbtype="text" phptype="string" null="true" index="fulltext" indexgrp="shop_content_ft_idx" />
+	<field key="content" dbtype="mediumtext" phptype="string" null="true" index="fulltext" indexgrp="shop_content_ft_idx" />
+	<field key="template" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="menuindex" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="editedon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+	<field key="editedby" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="createdon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+	<field key="createdby" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="publishedon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+	<field key="unpublishedon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+	<field key="published" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" index="index" />
+	<field key="publishedby" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+	<field key="hidemenu" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" index="index" />
+	
+	<field key="price" dbtype="float" phptype="float" null="true" default="0" />
+	<field key="image" dbtype="varchar" precision="255" null="true" default="" />
+	<field key="gallery" dbtype="mediumtext" phptype="string" null="true" index="fulltext" />
+	<field key="country" dbtype="varchar" precision="255" null="true" default="" />
+	<field key="weight" dbtype="int" precision="255" phptype="integer" null="false" default="" />
+	<field key="inventory" dbtype="int" precision="255" phptype="integer" null="false" default="" />
+	<field key="rating" dbtype="int" precision="255" phptype="integer" null="false" default="" />
+	<field key="articul" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+	<field key="tags" dbtype="varchar" precision="255" null="true" default="" />
+	<field key="param1" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+	
+	<index alias="resource_id" name="resource_id" primary="false" unique="false" type="BTREE">
+            <column key="resource_id" length="" collation="A" null="true" />
+        </index>
+	<index alias="alias" name="alias" primary="false" unique="false" type="BTREE">
+            <column key="alias" length="" collation="A" null="true" />
+        </index>
+        <index alias="published" name="published" primary="false" unique="false" type="BTREE">
+            <column key="published" length="" collation="A" null="false" />
+        </index>
+	<index alias="hidemenu" name="hidemenu" primary="false" unique="false" type="BTREE">
+            <column key="hidemenu" length="" collation="A" null="false" />
+        </index>
+	
+	<index alias="shop_content_ft_idx" name="shop_content_ft_idx" primary="false" unique="false" type="FULLTEXT">
+            <column key="pagetitle" length="" collation="A" null="false" />
+            <column key="longtitle" length="" collation="A" null="false" />
+            <column key="introtext" length="" collation="A" null="true" />
+            <column key="content" length="" collation="A" null="true" />
+        </index>
+	
+    </object>
+</model>

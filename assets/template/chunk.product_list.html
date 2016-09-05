@@ -1,0 +1,30 @@
+<div class="col-sm-12">
+    <div class="thumbnail shk-item">
+        <div class="caption">
+            <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">
+                <div class="pull-right">
+                    <div class="btn-group" role="group">
+                        <a href="[[~[[+resource_id]]?&scheme=`abs`]][[+alias]].html" class="btn btn-success" role="button">Подробнее</a>
+                        <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="В корзину">
+                            <i class="icon" data-icon="&#xe052"></i>
+                        </button>
+                    </div>
+                </div>
+                <input type="hidden" name="shk-id" value="[[+id]]" />
+                <input type="hidden" name="shk-name" value="[[+pagetitle]]" />
+                <input type="hidden" name="shk-count" value="1" />
+                <h3>
+                    <a href="[[~[[+id]]?&scheme=`abs`]]">[[+pagetitle]]</a>
+                    &nbsp;
+                    <span class="buttons-hover-opacity">
+                        <button type="button" class="btn btn-sm btn-default[[+id:in_compare=` active`]]" data-toggle="tooltip" data-placement="bottom" title="В избранное" onclick="return shkCompare.toCompare([[+id]],[[+resource_id]],this)">
+                            <i class="icon" data-icon="&#xe089"></i>
+                        </button>
+                    </span>
+                </h3>
+                <p>[[+introtext]]</p>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>

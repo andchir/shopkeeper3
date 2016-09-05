@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[[++site_name]] / [[*pagetitle]]</title>
+    <meta name="description" content="[[*introtext:htmlent]]">
+
+    <link rel="stylesheet" href="[[++base_url]]assets/template/dist/css/styles_all.min.css">
+    <script type="text/javascript" src="[[++base_url]]assets/template/dist/js/scripts_all.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="">
+                <div class="navbar-header header-image">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Меню</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="header-right">
+                        
+                        [[!compare@compare_options]]
+                        
+                        [[!Shopkeeper3@cart_catalog]]
+                        
+                    </div>
+                    <a class="navbar-brand" href="[[++base_url]]">
+                        [[++site_name]]
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    
+                    [[menuCaching@top_menu]]
+                    
+                    <form action="[[++base_url]]poisk.html" method="get" class="navbar-form-right navbar-right" role="search">
+                        <input type="hidden" name="searchid" value="2249087"/>
+                        <div class="form-search search-only">
+                            <i class="search-icon glyphicon glyphicon-search"></i>
+                            <input type="search" name="text" class="form-control search-query">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>

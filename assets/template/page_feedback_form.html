@@ -1,0 +1,67 @@
+
+<p>Будем рады Вашим вопросам, замечаниям и предложениям. Все поля обязательны для заполнения.</p>
+
+<hr>
+
+[[!FormIt?
+&preHooks=`coolcaptcha_fihook`
+&hooks=`coolcaptcha_fihook,spam,email,FormItSaveForm`
+&submitVar=`action`
+&validate=`fullname:required,email:email:required,text:required:stripTags`
+&emailTpl=`feedbackEmailChunk`
+&emailSubject=`Письмо с сайта`
+&emailReplyTo=`[[+email]]`
+&emailFrom=`[[++emailsender]]`
+&emailTo=`[[++emailsender]]`
+&invalidCaptchaMessage=`<div class="alert alert-danger">Не верный код подтверждения.</div>`
+&validationErrorMessage=`<div class="alert alert-danger">Ошибка заполнения формы. Пожалуйста, проверьте значения, введенные вами.</div>`
+&errTpl=`<p>[[+error]]</p>`
+&successMessage=`<div class="alert alert-success">Спасибо! Ваше письмо отправлено.</div>`
+&formFields=`fullname,email,text`
+]]
+
+<a name="form"></a>
+[[!+fi.validation_error_message]]
+[[!+fi.successMessage]]
+[[!+fi.error.captcha]]
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+        <form class="form-horizontal" id="feedbackForm" action="[[~[[*id]]]]#form" method="post">
+            <input type="hidden" name="action" value="feedback">
+            <div class="form-group">
+                <label for="feedbackFormFieldName" class="col-sm-4 control-label">Ваше имя:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="feedbackFormFieldName" name="fullname" placeholder="Введите Ваше имя" value="[[!+fi.fullname]]" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="feedbackFormFieldEmail" class="col-sm-4 control-label">Ваш адрес эл. почты:</label>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" id="feedbackFormFieldEmail" name="email" placeholder="Введите Ваш Email" value="[[!+fi.email]]" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="feedbackFormFieldText" class="col-sm-4 control-label">Сообщение:</label>
+                <div class="col-sm-8">
+                    <textarea id="feedbackFormFieldText" class="form-control" cols="40" rows="5" name="text" placeholder="Введите текст письма" required>[[!+fi.text]]</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-4">
+                    [[!+fi.coolcaptcha]]
+                    <input type="text" class="form-control" name="captcha" id="feedbackFormFieldCaptcha" placeholder="Код подтверждения" autocomplete="on" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-10">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        Отправить
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

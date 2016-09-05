@@ -1,0 +1,32 @@
+Changelog for QuickCrumbs.
+
+QuickCrumbs 1.0.1-pl (September 11, 2015)
+====================================
+- [#15] Fix behavior of showSelf property
+
+QuickCrumbs 1.0.0-pl (June 18, 2012)
+====================================
+- [#8] Use skipTpl for replacing intermediate crumbs > maxCrumbs
+- [#13] Add excludeHidden for excluding Resources hidden from menu
+- [#12] Add hideIds for excluding Resources by id
+
+QuickCrumbs 1.0.0-beta3 (January 31, 2011)
+====================================
+- [#11] Add ability to skip containers with no content (including WebLinks/SymLinks)
+- [#1] Add support for template variables
+
+QuickCrumbs 1.0.0-beta2 (October 19, 2010)
+====================================
+- [#2] Allow empty separator property
+- [#1] Avoid getting unpublished or deleted Resources in query
+- [#1] Fix bug with showing site_start if showSiteStart is not enabled but siteStartTpl is set
+- [#1] Add toPlaceholder property for setting output in placeholder rather than returning it
+- [#1] Add outerTpl property for defining a chunk to wrap the output
+- [#1] Give selfTpl precedence over siteStartTpl when current page == site_start
+- [#1] Add parentTitles placeholder feature for generating breadcrumb based page titles
+- [#3] Add docs to transport package so license is transported with package
+- [#2] Add missing separator property
+
+QuickCrumbs 1.0.0-beta (October 11, 2010)
+====================================
+- Initial release.
