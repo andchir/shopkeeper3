@@ -12,7 +12,7 @@
 /manager/
 /connectors/
 /assets/cache_image/
-/assets/files/
+/.htaccess
 
 /core/components/formit/
 /core/components/getpage/

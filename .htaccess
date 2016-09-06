@@ -9,7 +9,7 @@
 # to your rule: RewriteRule ^(.*)$ index.php?q=$1 [L,QSA,NC]
 
 RewriteEngine On
-RewriteBase /
+RewriteBase /shk3_pack/
 
 
 
