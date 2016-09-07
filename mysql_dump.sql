@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 05, 2016 at 12:58 PM
--- Server version: 5.5.50-0ubuntu0.14.04.1
--- PHP Version: 7.0.10-2+deb.sury.org~trusty+1
+-- Generation Time: Sep 07, 2016 at 01:05 PM
+-- Server version: 5.5.50-0ubuntu0.14.04.1-log
+-- PHP Version: 5.6.23-1+deprecated+dontuse+deb.sury.org~trusty+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `modx_access_actiondom`
 --
 
+DROP TABLE IF EXISTS `modx_access_actiondom`;
 CREATE TABLE IF NOT EXISTS `modx_access_actiondom` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_actiondom` (
 -- Table structure for table `modx_access_actions`
 --
 
+DROP TABLE IF EXISTS `modx_access_actions`;
 CREATE TABLE IF NOT EXISTS `modx_access_actions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -68,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_actions` (
 -- Table structure for table `modx_access_category`
 --
 
+DROP TABLE IF EXISTS `modx_access_category`;
 CREATE TABLE IF NOT EXISTS `modx_access_category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -91,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_category` (
 -- Table structure for table `modx_access_context`
 --
 
+DROP TABLE IF EXISTS `modx_access_context`;
 CREATE TABLE IF NOT EXISTS `modx_access_context` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -121,6 +125,7 @@ INSERT INTO `modx_access_context` (`id`, `target`, `principal_class`, `principal
 -- Table structure for table `modx_access_elements`
 --
 
+DROP TABLE IF EXISTS `modx_access_elements`;
 CREATE TABLE IF NOT EXISTS `modx_access_elements` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -144,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_elements` (
 -- Table structure for table `modx_access_media_source`
 --
 
+DROP TABLE IF EXISTS `modx_access_media_source`;
 CREATE TABLE IF NOT EXISTS `modx_access_media_source` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -167,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_media_source` (
 -- Table structure for table `modx_access_menus`
 --
 
+DROP TABLE IF EXISTS `modx_access_menus`;
 CREATE TABLE IF NOT EXISTS `modx_access_menus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -188,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_menus` (
 -- Table structure for table `modx_access_namespace`
 --
 
+DROP TABLE IF EXISTS `modx_access_namespace`;
 CREATE TABLE IF NOT EXISTS `modx_access_namespace` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -211,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_namespace` (
 -- Table structure for table `modx_access_permissions`
 --
 
+DROP TABLE IF EXISTS `modx_access_permissions`;
 CREATE TABLE IF NOT EXISTS `modx_access_permissions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `template` int(10) unsigned NOT NULL DEFAULT '0',
@@ -453,6 +462,7 @@ INSERT INTO `modx_access_permissions` (`id`, `template`, `name`, `description`, 
 -- Table structure for table `modx_access_policies`
 --
 
+DROP TABLE IF EXISTS `modx_access_policies`;
 CREATE TABLE IF NOT EXISTS `modx_access_policies` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -483,7 +493,7 @@ INSERT INTO `modx_access_policies` (`id`, `name`, `description`, `parent`, `temp
 (7, 'Content Editor', 'Context administration policy with limited, content-editing related Permissions, but no publishing.', 0, 1, '', '{"change_profile":true,"class_map":true,"countries":true,"edit_document":true,"frames":true,"help":true,"home":true,"load":true,"list":true,"logout":true,"menu_reports":true,"menu_site":true,"menu_support":true,"menu_tools":true,"menu_user":true,"resource_duplicate":true,"resource_tree":true,"save_document":true,"source_view":true,"tree_show_resource_ids":true,"view":true,"view_document":true,"new_document":true,"delete_document":true}', 'permissions'),
 (8, 'Media Source Admin', 'Media Source administration policy.', 0, 5, '', '{"create":true,"copy":true,"load":true,"list":true,"save":true,"remove":true,"view":true}', 'permissions'),
 (9, 'Media Source User', 'Media Source user policy, with basic viewing and using - but no editing - of Media Sources.', 0, 5, '', '{"load":true,"list":true,"view":true}', 'permissions'),
-(10, 'Developer', 'Context administration policy with most Permissions except Administrator and Security functions.', 0, 0, '', '{"about":true,"change_password":true,"change_profile":true,"charsets":true,"class_map":true,"components":true,"content_types":true,"countries":true,"create":true,"credits":true,"customize_forms":true,"dashboards":true,"database":true,"delete_category":true,"delete_chunk":true,"delete_context":true,"delete_document":true,"delete_eventlog":true,"delete_plugin":true,"delete_propertyset":true,"delete_snippet":true,"delete_template":true,"delete_tv":true,"delete_role":true,"delete_user":true,"directory_chmod":true,"directory_create":true,"directory_list":true,"directory_remove":true,"directory_update":true,"edit_category":true,"edit_chunk":true,"edit_context":true,"edit_document":true,"edit_locked":true,"edit_plugin":true,"edit_propertyset":true,"edit_role":true,"edit_snippet":true,"edit_template":true,"edit_tv":true,"edit_user":true,"element_tree":true,"empty_cache":true,"error_log_erase":true,"error_log_view":true,"export_static":true,"file_create":true,"file_list":true,"file_manager":true,"file_remove":true,"file_tree":true,"file_update":true,"file_upload":true,"file_unpack":true,"file_view":true,"frames":true,"help":true,"home":true,"import_static":true,"languages":true,"lexicons":true,"list":true,"load":true,"logout":true,"logs":true,"menu_reports":true,"menu_site":true,"menu_support":true,"menu_system":true,"menu_tools":true,"menu_user":true,"menus":true,"messages":true,"namespaces":true,"new_category":true,"new_chunk":true,"new_context":true,"new_document":true,"new_static_resource":true,"new_symlink":true,"new_weblink":true,"new_document_in_root":true,"new_plugin":true,"new_propertyset":true,"new_role":true,"new_snippet":true,"new_template":true,"new_tv":true,"new_user":true,"packages":true,"property_sets":true,"providers":true,"publish_document":true,"purge_deleted":true,"remove":true,"resource_duplicate":true,"resource_quick_create":true,"resource_quick_update":true,"resource_tree":true,"save":true,"save_category":true,"save_chunk":true,"save_context":true,"save_document":true,"save_plugin":true,"save_propertyset":true,"save_snippet":true,"save_template":true,"save_tv":true,"save_user":true,"search":true,"settings":true,"source_delete":true,"source_edit":true,"source_save":true,"source_view":true,"sources":true,"tree_show_element_ids":true,"tree_show_resource_ids":true,"undelete_document":true,"unpublish_document":true,"unlock_element_properties":true,"view":true,"view_category":true,"view_chunk":true,"view_context":true,"view_document":true,"view_element":true,"view_eventlog":true,"view_offline":true,"view_plugin":true,"view_propertyset":true,"view_role":true,"view_snippet":true,"view_sysinfo":true,"view_template":true,"view_tv":true,"view_user":true,"view_unpublished":true,"workspaces":true}', 'permissions'),
+(10, 'Developer', 'Context administration policy with most Permissions except Administrator and Security functions.', 0, 1, '', '{"about":true,"change_password":true,"change_profile":true,"charsets":true,"class_map":true,"components":true,"content_types":true,"countries":true,"create":true,"credits":true,"customize_forms":true,"dashboards":true,"database":true,"delete_category":true,"delete_chunk":true,"delete_context":true,"delete_document":true,"delete_eventlog":true,"delete_plugin":true,"delete_propertyset":true,"delete_snippet":true,"delete_template":true,"delete_tv":true,"delete_role":true,"delete_user":true,"directory_chmod":true,"directory_create":true,"directory_list":true,"directory_remove":true,"directory_update":true,"edit_category":true,"edit_chunk":true,"edit_context":true,"edit_document":true,"edit_locked":true,"edit_plugin":true,"edit_propertyset":true,"edit_role":true,"edit_snippet":true,"edit_template":true,"edit_tv":true,"edit_user":true,"element_tree":true,"empty_cache":true,"error_log_erase":true,"error_log_view":true,"export_static":true,"file_create":true,"file_list":true,"file_manager":true,"file_remove":true,"file_tree":true,"file_update":true,"file_upload":true,"file_unpack":true,"file_view":true,"frames":true,"help":true,"home":true,"import_static":true,"languages":true,"lexicons":true,"list":true,"load":true,"logout":true,"logs":true,"menu_reports":true,"menu_site":true,"menu_support":true,"menu_system":true,"menu_tools":true,"menu_user":true,"menus":true,"messages":true,"namespaces":true,"new_category":true,"new_chunk":true,"new_context":true,"new_document":true,"new_static_resource":true,"new_symlink":true,"new_weblink":true,"new_document_in_root":true,"new_plugin":true,"new_propertyset":true,"new_role":true,"new_snippet":true,"new_template":true,"new_tv":true,"new_user":true,"packages":true,"property_sets":true,"providers":true,"publish_document":true,"purge_deleted":true,"remove":true,"resource_duplicate":true,"resource_quick_create":true,"resource_quick_update":true,"resource_tree":true,"save":true,"save_category":true,"save_chunk":true,"save_context":true,"save_document":true,"save_plugin":true,"save_propertyset":true,"save_snippet":true,"save_template":true,"save_tv":true,"save_user":true,"search":true,"settings":true,"source_delete":true,"source_edit":true,"source_save":true,"source_view":true,"sources":true,"tree_show_element_ids":true,"tree_show_resource_ids":true,"undelete_document":true,"unpublish_document":true,"unlock_element_properties":true,"view":true,"view_category":true,"view_chunk":true,"view_context":true,"view_document":true,"view_element":true,"view_eventlog":true,"view_offline":true,"view_plugin":true,"view_propertyset":true,"view_role":true,"view_snippet":true,"view_sysinfo":true,"view_template":true,"view_tv":true,"view_user":true,"view_unpublished":true,"workspaces":true}', 'permissions'),
 (11, 'Context', 'A standard Context policy that you can apply when creating Context ACLs for basic read/write and view_unpublished access within a Context.', 0, 6, '', '{"load":true,"list":true,"view":true,"save":true,"remove":true,"copy":true,"view_unpublished":true}', 'permissions'),
 (12, 'Hidden Namespace', 'Hidden Namespace policy, will not show Namespace in lists.', 0, 7, '', '{"load":false,"list":false,"view":true}', 'permissions');
 
@@ -493,6 +503,7 @@ INSERT INTO `modx_access_policies` (`id`, `name`, `description`, `parent`, `temp
 -- Table structure for table `modx_access_policy_templates`
 --
 
+DROP TABLE IF EXISTS `modx_access_policy_templates`;
 CREATE TABLE IF NOT EXISTS `modx_access_policy_templates` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `template_group` int(10) unsigned NOT NULL DEFAULT '0',
@@ -521,6 +532,7 @@ INSERT INTO `modx_access_policy_templates` (`id`, `template_group`, `name`, `des
 -- Table structure for table `modx_access_policy_template_groups`
 --
 
+DROP TABLE IF EXISTS `modx_access_policy_template_groups`;
 CREATE TABLE IF NOT EXISTS `modx_access_policy_template_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -546,6 +558,7 @@ INSERT INTO `modx_access_policy_template_groups` (`id`, `name`, `description`) V
 -- Table structure for table `modx_access_resources`
 --
 
+DROP TABLE IF EXISTS `modx_access_resources`;
 CREATE TABLE IF NOT EXISTS `modx_access_resources` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -569,6 +582,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_resources` (
 -- Table structure for table `modx_access_resource_groups`
 --
 
+DROP TABLE IF EXISTS `modx_access_resource_groups`;
 CREATE TABLE IF NOT EXISTS `modx_access_resource_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -592,6 +606,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_resource_groups` (
 -- Table structure for table `modx_access_templatevars`
 --
 
+DROP TABLE IF EXISTS `modx_access_templatevars`;
 CREATE TABLE IF NOT EXISTS `modx_access_templatevars` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `target` varchar(100) NOT NULL DEFAULT '',
@@ -615,6 +630,7 @@ CREATE TABLE IF NOT EXISTS `modx_access_templatevars` (
 -- Table structure for table `modx_actiondom`
 --
 
+DROP TABLE IF EXISTS `modx_actiondom`;
 CREATE TABLE IF NOT EXISTS `modx_actiondom` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `set` int(11) NOT NULL DEFAULT '0',
@@ -646,6 +662,7 @@ CREATE TABLE IF NOT EXISTS `modx_actiondom` (
 -- Table structure for table `modx_actions`
 --
 
+DROP TABLE IF EXISTS `modx_actions`;
 CREATE TABLE IF NOT EXISTS `modx_actions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `namespace` varchar(100) NOT NULL DEFAULT 'core',
@@ -673,6 +690,7 @@ INSERT INTO `modx_actions` (`id`, `namespace`, `controller`, `haslayout`, `lang_
 -- Table structure for table `modx_actions_fields`
 --
 
+DROP TABLE IF EXISTS `modx_actions_fields`;
 CREATE TABLE IF NOT EXISTS `modx_actions_fields` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `action` varchar(255) NOT NULL DEFAULT '',
@@ -686,89 +704,89 @@ CREATE TABLE IF NOT EXISTS `modx_actions_fields` (
   KEY `action` (`action`),
   KEY `type` (`type`),
   KEY `tab` (`tab`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=229 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=153 ;
 
 --
 -- Dumping data for table `modx_actions_fields`
 --
 
 INSERT INTO `modx_actions_fields` (`id`, `action`, `name`, `type`, `tab`, `form`, `other`, `rank`) VALUES
-(214, 'resource/create', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
-(213, 'resource/create', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
-(212, 'resource/create', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
-(211, 'resource/create', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
-(210, 'resource/create', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
-(209, 'resource/create', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
-(208, 'resource/create', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
-(207, 'resource/create', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
-(206, 'resource/create', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
-(205, 'resource/create', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
-(204, 'resource/create', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
-(203, 'resource/create', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
-(202, 'resource/create', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
-(201, 'resource/create', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
-(200, 'resource/create', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
-(199, 'resource/create', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
-(198, 'resource/create', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
-(197, 'resource/create', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
-(196, 'resource/create', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
-(195, 'resource/create', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
-(194, 'resource/create', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
-(193, 'resource/create', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
-(192, 'resource/create', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
-(191, 'resource/create', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
-(190, 'resource/update', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0),
-(189, 'resource/update', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
-(188, 'resource/update', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
-(187, 'resource/update', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
-(186, 'resource/update', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
-(185, 'resource/update', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
-(184, 'resource/update', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
-(183, 'resource/update', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
-(182, 'resource/update', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
-(181, 'resource/update', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
-(180, 'resource/update', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
-(179, 'resource/update', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
-(178, 'resource/update', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
-(177, 'resource/update', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
-(176, 'resource/update', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
-(175, 'resource/update', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
-(174, 'resource/update', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
-(173, 'resource/update', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
-(172, 'resource/update', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
-(171, 'resource/update', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
-(170, 'resource/update', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
-(169, 'resource/update', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
-(168, 'resource/update', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
-(167, 'resource/update', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
-(166, 'resource/update', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
-(165, 'resource/update', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
-(164, 'resource/update', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
-(163, 'resource/update', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
-(162, 'resource/update', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
-(161, 'resource/update', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
-(160, 'resource/update', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
-(159, 'resource/update', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
-(158, 'resource/update', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
-(157, 'resource/update', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
-(156, 'resource/update', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
-(155, 'resource/update', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
-(154, 'resource/update', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
-(153, 'resource/update', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
-(215, 'resource/create', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
-(216, 'resource/create', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
-(217, 'resource/create', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
-(218, 'resource/create', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
-(219, 'resource/create', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
-(220, 'resource/create', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
-(221, 'resource/create', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
-(222, 'resource/create', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
-(223, 'resource/create', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
-(224, 'resource/create', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
-(225, 'resource/create', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
-(226, 'resource/create', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
-(227, 'resource/create', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
-(228, 'resource/create', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0);
+(138, 'resource/create', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
+(137, 'resource/create', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
+(136, 'resource/create', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
+(135, 'resource/create', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
+(134, 'resource/create', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
+(133, 'resource/create', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
+(132, 'resource/create', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
+(131, 'resource/create', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
+(130, 'resource/create', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
+(129, 'resource/create', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
+(128, 'resource/create', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
+(127, 'resource/create', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
+(126, 'resource/create', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
+(125, 'resource/create', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
+(124, 'resource/create', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
+(123, 'resource/create', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
+(122, 'resource/create', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
+(121, 'resource/create', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
+(120, 'resource/create', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
+(119, 'resource/create', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
+(118, 'resource/create', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
+(117, 'resource/create', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
+(116, 'resource/create', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
+(115, 'resource/create', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
+(114, 'resource/update', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0),
+(113, 'resource/update', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
+(112, 'resource/update', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
+(111, 'resource/update', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
+(110, 'resource/update', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
+(109, 'resource/update', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
+(108, 'resource/update', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
+(107, 'resource/update', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
+(106, 'resource/update', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
+(105, 'resource/update', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
+(104, 'resource/update', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
+(103, 'resource/update', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
+(102, 'resource/update', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
+(101, 'resource/update', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
+(100, 'resource/update', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
+(99, 'resource/update', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
+(98, 'resource/update', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
+(97, 'resource/update', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
+(96, 'resource/update', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
+(95, 'resource/update', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
+(94, 'resource/update', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
+(93, 'resource/update', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
+(92, 'resource/update', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
+(91, 'resource/update', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
+(90, 'resource/update', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
+(89, 'resource/update', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
+(88, 'resource/update', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
+(87, 'resource/update', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
+(86, 'resource/update', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
+(85, 'resource/update', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
+(84, 'resource/update', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
+(83, 'resource/update', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
+(82, 'resource/update', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
+(81, 'resource/update', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
+(80, 'resource/update', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
+(79, 'resource/update', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
+(78, 'resource/update', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
+(77, 'resource/update', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
+(139, 'resource/create', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
+(140, 'resource/create', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
+(141, 'resource/create', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
+(142, 'resource/create', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
+(143, 'resource/create', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
+(144, 'resource/create', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
+(145, 'resource/create', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
+(146, 'resource/create', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
+(147, 'resource/create', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
+(148, 'resource/create', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
+(149, 'resource/create', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
+(150, 'resource/create', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
+(151, 'resource/create', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
+(152, 'resource/create', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0);
 
 -- --------------------------------------------------------
 
@@ -776,6 +794,7 @@ INSERT INTO `modx_actions_fields` (`id`, `action`, `name`, `type`, `tab`, `form`
 -- Table structure for table `modx_active_users`
 --
 
+DROP TABLE IF EXISTS `modx_active_users`;
 CREATE TABLE IF NOT EXISTS `modx_active_users` (
   `internalKey` int(9) NOT NULL DEFAULT '0',
   `username` varchar(50) NOT NULL DEFAULT '',
@@ -792,6 +811,7 @@ CREATE TABLE IF NOT EXISTS `modx_active_users` (
 -- Table structure for table `modx_categories`
 --
 
+DROP TABLE IF EXISTS `modx_categories`;
 CREATE TABLE IF NOT EXISTS `modx_categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent` int(10) unsigned DEFAULT '0',
@@ -829,6 +849,7 @@ INSERT INTO `modx_categories` (`id`, `parent`, `category`, `rank`) VALUES
 -- Table structure for table `modx_categories_closure`
 --
 
+DROP TABLE IF EXISTS `modx_categories_closure`;
 CREATE TABLE IF NOT EXISTS `modx_categories_closure` (
   `ancestor` int(10) unsigned NOT NULL DEFAULT '0',
   `descendant` int(10) unsigned NOT NULL DEFAULT '0',
@@ -876,6 +897,7 @@ INSERT INTO `modx_categories_closure` (`ancestor`, `descendant`, `depth`) VALUES
 -- Table structure for table `modx_class_map`
 --
 
+DROP TABLE IF EXISTS `modx_class_map`;
 CREATE TABLE IF NOT EXISTS `modx_class_map` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `class` varchar(120) NOT NULL DEFAULT '',
@@ -910,6 +932,7 @@ INSERT INTO `modx_class_map` (`id`, `class`, `parent_class`, `name_field`, `path
 -- Table structure for table `modx_content_type`
 --
 
+DROP TABLE IF EXISTS `modx_content_type`;
 CREATE TABLE IF NOT EXISTS `modx_content_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -942,6 +965,7 @@ INSERT INTO `modx_content_type` (`id`, `name`, `description`, `mime_type`, `file
 -- Table structure for table `modx_context`
 --
 
+DROP TABLE IF EXISTS `modx_context`;
 CREATE TABLE IF NOT EXISTS `modx_context` (
   `key` varchar(100) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -966,6 +990,7 @@ INSERT INTO `modx_context` (`key`, `name`, `description`, `rank`) VALUES
 -- Table structure for table `modx_context_resource`
 --
 
+DROP TABLE IF EXISTS `modx_context_resource`;
 CREATE TABLE IF NOT EXISTS `modx_context_resource` (
   `context_key` varchar(255) NOT NULL,
   `resource` int(11) unsigned NOT NULL,
@@ -978,6 +1003,7 @@ CREATE TABLE IF NOT EXISTS `modx_context_resource` (
 -- Table structure for table `modx_context_setting`
 --
 
+DROP TABLE IF EXISTS `modx_context_setting`;
 CREATE TABLE IF NOT EXISTS `modx_context_setting` (
   `context_key` varchar(255) NOT NULL,
   `key` varchar(50) NOT NULL,
@@ -1003,6 +1029,7 @@ INSERT INTO `modx_context_setting` (`context_key`, `key`, `value`, `xtype`, `nam
 -- Table structure for table `modx_dashboard`
 --
 
+DROP TABLE IF EXISTS `modx_dashboard`;
 CREATE TABLE IF NOT EXISTS `modx_dashboard` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1026,6 +1053,7 @@ INSERT INTO `modx_dashboard` (`id`, `name`, `description`, `hide_trees`) VALUES
 -- Table structure for table `modx_dashboard_widget`
 --
 
+DROP TABLE IF EXISTS `modx_dashboard_widget`;
 CREATE TABLE IF NOT EXISTS `modx_dashboard_widget` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1060,6 +1088,7 @@ INSERT INTO `modx_dashboard_widget` (`id`, `name`, `description`, `type`, `conte
 -- Table structure for table `modx_dashboard_widget_placement`
 --
 
+DROP TABLE IF EXISTS `modx_dashboard_widget_placement`;
 CREATE TABLE IF NOT EXISTS `modx_dashboard_widget_placement` (
   `dashboard` int(10) unsigned NOT NULL DEFAULT '0',
   `widget` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1086,6 +1115,7 @@ INSERT INTO `modx_dashboard_widget_placement` (`dashboard`, `widget`, `rank`) VA
 -- Table structure for table `modx_documentgroup_names`
 --
 
+DROP TABLE IF EXISTS `modx_documentgroup_names`;
 CREATE TABLE IF NOT EXISTS `modx_documentgroup_names` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1101,6 +1131,7 @@ CREATE TABLE IF NOT EXISTS `modx_documentgroup_names` (
 -- Table structure for table `modx_document_groups`
 --
 
+DROP TABLE IF EXISTS `modx_document_groups`;
 CREATE TABLE IF NOT EXISTS `modx_document_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `document_group` int(10) NOT NULL DEFAULT '0',
@@ -1116,6 +1147,7 @@ CREATE TABLE IF NOT EXISTS `modx_document_groups` (
 -- Table structure for table `modx_element_property_sets`
 --
 
+DROP TABLE IF EXISTS `modx_element_property_sets`;
 CREATE TABLE IF NOT EXISTS `modx_element_property_sets` (
   `element` int(10) unsigned NOT NULL DEFAULT '0',
   `element_class` varchar(100) NOT NULL DEFAULT '',
@@ -1147,6 +1179,7 @@ INSERT INTO `modx_element_property_sets` (`element`, `element_class`, `property_
 -- Table structure for table `modx_extension_packages`
 --
 
+DROP TABLE IF EXISTS `modx_extension_packages`;
 CREATE TABLE IF NOT EXISTS `modx_extension_packages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
@@ -1168,6 +1201,7 @@ CREATE TABLE IF NOT EXISTS `modx_extension_packages` (
 -- Table structure for table `modx_fc_profiles`
 --
 
+DROP TABLE IF EXISTS `modx_fc_profiles`;
 CREATE TABLE IF NOT EXISTS `modx_fc_profiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1186,6 +1220,7 @@ CREATE TABLE IF NOT EXISTS `modx_fc_profiles` (
 -- Table structure for table `modx_fc_profiles_usergroups`
 --
 
+DROP TABLE IF EXISTS `modx_fc_profiles_usergroups`;
 CREATE TABLE IF NOT EXISTS `modx_fc_profiles_usergroups` (
   `usergroup` int(11) NOT NULL DEFAULT '0',
   `profile` int(11) NOT NULL DEFAULT '0',
@@ -1198,6 +1233,7 @@ CREATE TABLE IF NOT EXISTS `modx_fc_profiles_usergroups` (
 -- Table structure for table `modx_fc_sets`
 --
 
+DROP TABLE IF EXISTS `modx_fc_sets`;
 CREATE TABLE IF NOT EXISTS `modx_fc_sets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `profile` int(11) NOT NULL DEFAULT '0',
@@ -1221,6 +1257,7 @@ CREATE TABLE IF NOT EXISTS `modx_fc_sets` (
 -- Table structure for table `modx_formit_forms`
 --
 
+DROP TABLE IF EXISTS `modx_formit_forms`;
 CREATE TABLE IF NOT EXISTS `modx_formit_forms` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `form` varchar(255) NOT NULL DEFAULT '',
@@ -1246,6 +1283,7 @@ INSERT INTO `modx_formit_forms` (`id`, `form`, `context_key`, `values`, `ip`, `d
 -- Table structure for table `modx_lexicon_entries`
 --
 
+DROP TABLE IF EXISTS `modx_lexicon_entries`;
 CREATE TABLE IF NOT EXISTS `modx_lexicon_entries` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1268,6 +1306,7 @@ CREATE TABLE IF NOT EXISTS `modx_lexicon_entries` (
 -- Table structure for table `modx_manager_log`
 --
 
+DROP TABLE IF EXISTS `modx_manager_log`;
 CREATE TABLE IF NOT EXISTS `modx_manager_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1277,7 +1316,7 @@ CREATE TABLE IF NOT EXISTS `modx_manager_log` (
   `item` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_occurred` (`user`,`occurred`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=534 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=539 ;
 
 --
 -- Dumping data for table `modx_manager_log`
@@ -1815,8 +1854,13 @@ INSERT INTO `modx_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, 
 (529, 1, '2016-05-07 17:23:27', 'chunk_update', 'modChunk', '45'),
 (530, 1, '2016-05-07 17:23:27', 'propertyset_update_from_element', 'modChunk', '45'),
 (531, 1, '2016-05-07 22:25:04', 'login', 'modContext', 'mgr'),
-(532, 1, '2016-09-05 12:36:55', 'login', 'modContext', 'mgr'),
-(533, 1, '2016-09-05 12:49:54', 'login', 'modContext', 'mgr');
+(532, 1, '2016-09-07 01:26:44', 'login', 'modContext', 'mgr'),
+(533, 1, '2016-09-07 12:50:37', 'login', 'modContext', 'mgr'),
+(534, 1, '2016-09-07 13:00:48', 'snippet_create', 'modSnippet', '47'),
+(535, 1, '2016-09-07 13:01:59', 'chunk_create', 'modChunk', '48'),
+(536, 1, '2016-09-07 13:02:26', 'resource_update', 'modResource', '11'),
+(537, 1, '2016-09-07 13:03:23', 'resource_update', 'modResource', '11'),
+(538, 1, '2016-09-07 13:04:12', 'chunk_update', 'modChunk', '48');
 
 -- --------------------------------------------------------
 
@@ -1824,6 +1868,7 @@ INSERT INTO `modx_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, 
 -- Table structure for table `modx_media_sources`
 --
 
+DROP TABLE IF EXISTS `modx_media_sources`;
 CREATE TABLE IF NOT EXISTS `modx_media_sources` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1852,6 +1897,7 @@ INSERT INTO `modx_media_sources` (`id`, `name`, `description`, `class_key`, `pro
 -- Table structure for table `modx_media_sources_contexts`
 --
 
+DROP TABLE IF EXISTS `modx_media_sources_contexts`;
 CREATE TABLE IF NOT EXISTS `modx_media_sources_contexts` (
   `source` int(11) NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT 'web',
@@ -1864,6 +1910,7 @@ CREATE TABLE IF NOT EXISTS `modx_media_sources_contexts` (
 -- Table structure for table `modx_media_sources_elements`
 --
 
+DROP TABLE IF EXISTS `modx_media_sources_elements`;
 CREATE TABLE IF NOT EXISTS `modx_media_sources_elements` (
   `source` int(11) unsigned NOT NULL DEFAULT '0',
   `object_class` varchar(100) NOT NULL DEFAULT 'modTemplateVar',
@@ -1889,6 +1936,7 @@ INSERT INTO `modx_media_sources_elements` (`source`, `object_class`, `object`, `
 -- Table structure for table `modx_membergroup_names`
 --
 
+DROP TABLE IF EXISTS `modx_membergroup_names`;
 CREATE TABLE IF NOT EXISTS `modx_membergroup_names` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
@@ -1916,6 +1964,7 @@ INSERT INTO `modx_membergroup_names` (`id`, `name`, `description`, `parent`, `ra
 -- Table structure for table `modx_member_groups`
 --
 
+DROP TABLE IF EXISTS `modx_member_groups`;
 CREATE TABLE IF NOT EXISTS `modx_member_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_group` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1940,6 +1989,7 @@ INSERT INTO `modx_member_groups` (`id`, `user_group`, `member`, `role`, `rank`) 
 -- Table structure for table `modx_menus`
 --
 
+DROP TABLE IF EXISTS `modx_menus`;
 CREATE TABLE IF NOT EXISTS `modx_menus` (
   `text` varchar(255) NOT NULL DEFAULT '',
   `parent` varchar(255) NOT NULL DEFAULT '',
@@ -2014,6 +2064,7 @@ INSERT INTO `modx_menus` (`text`, `parent`, `action`, `description`, `icon`, `me
 -- Table structure for table `modx_migx_configs`
 --
 
+DROP TABLE IF EXISTS `modx_migx_configs`;
 CREATE TABLE IF NOT EXISTS `modx_migx_configs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '',
@@ -2051,6 +2102,7 @@ INSERT INTO `modx_migx_configs` (`id`, `name`, `formtabs`, `contextmenus`, `acti
 -- Table structure for table `modx_migx_config_elements`
 --
 
+DROP TABLE IF EXISTS `modx_migx_config_elements`;
 CREATE TABLE IF NOT EXISTS `modx_migx_config_elements` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `config_id` int(10) NOT NULL DEFAULT '0',
@@ -2075,6 +2127,7 @@ CREATE TABLE IF NOT EXISTS `modx_migx_config_elements` (
 -- Table structure for table `modx_migx_elements`
 --
 
+DROP TABLE IF EXISTS `modx_migx_elements`;
 CREATE TABLE IF NOT EXISTS `modx_migx_elements` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(100) NOT NULL DEFAULT '',
@@ -2098,6 +2151,7 @@ CREATE TABLE IF NOT EXISTS `modx_migx_elements` (
 -- Table structure for table `modx_migx_formtabs`
 --
 
+DROP TABLE IF EXISTS `modx_migx_formtabs`;
 CREATE TABLE IF NOT EXISTS `modx_migx_formtabs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `config_id` int(10) NOT NULL DEFAULT '0',
@@ -2125,6 +2179,7 @@ INSERT INTO `modx_migx_formtabs` (`id`, `config_id`, `caption`, `pos`, `print_be
 -- Table structure for table `modx_migx_formtab_fields`
 --
 
+DROP TABLE IF EXISTS `modx_migx_formtab_fields`;
 CREATE TABLE IF NOT EXISTS `modx_migx_formtab_fields` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `config_id` int(10) NOT NULL DEFAULT '0',
@@ -2183,6 +2238,7 @@ INSERT INTO `modx_migx_formtab_fields` (`id`, `config_id`, `formtab_id`, `field`
 -- Table structure for table `modx_namespaces`
 --
 
+DROP TABLE IF EXISTS `modx_namespaces`;
 CREATE TABLE IF NOT EXISTS `modx_namespaces` (
   `name` varchar(40) NOT NULL DEFAULT '',
   `path` text,
@@ -2216,6 +2272,7 @@ INSERT INTO `modx_namespaces` (`name`, `path`, `assets_path`) VALUES
 -- Table structure for table `modx_property_set`
 --
 
+DROP TABLE IF EXISTS `modx_property_set`;
 CREATE TABLE IF NOT EXISTS `modx_property_set` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
@@ -2250,6 +2307,7 @@ INSERT INTO `modx_property_set` (`id`, `name`, `category`, `description`, `prope
 -- Table structure for table `modx_register_messages`
 --
 
+DROP TABLE IF EXISTS `modx_register_messages`;
 CREATE TABLE IF NOT EXISTS `modx_register_messages` (
   `topic` int(10) unsigned NOT NULL,
   `id` varchar(255) NOT NULL,
@@ -2281,6 +2339,7 @@ INSERT INTO `modx_register_messages` (`topic`, `id`, `created`, `valid`, `access
 -- Table structure for table `modx_register_queues`
 --
 
+DROP TABLE IF EXISTS `modx_register_queues`;
 CREATE TABLE IF NOT EXISTS `modx_register_queues` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -2302,6 +2361,7 @@ INSERT INTO `modx_register_queues` (`id`, `name`, `options`) VALUES
 -- Table structure for table `modx_register_topics`
 --
 
+DROP TABLE IF EXISTS `modx_register_topics`;
 CREATE TABLE IF NOT EXISTS `modx_register_topics` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `queue` int(10) unsigned NOT NULL,
@@ -2327,6 +2387,7 @@ INSERT INTO `modx_register_topics` (`id`, `queue`, `name`, `created`, `updated`,
 -- Table structure for table `modx_session`
 --
 
+DROP TABLE IF EXISTS `modx_session`;
 CREATE TABLE IF NOT EXISTS `modx_session` (
   `id` varchar(255) NOT NULL DEFAULT '',
   `access` int(20) unsigned NOT NULL,
@@ -2340,7 +2401,21 @@ CREATE TABLE IF NOT EXISTS `modx_session` (
 --
 
 INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES
-('esnt78b44ne0t4bajknue8obc5', 1473069007, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx57cd3fb8f196d5.70369440_157cd3fc29b3285.10698598";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:0:{}shk_delivery|a:0:{}');
+('p89n1jomiv53q3pbomdc39jbe1', 1461794570, 'modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572126b69fae07.31827239";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:2:{i:0;a:9:{s:2:"id";i:74;s:5:"count";i:1;s:5:"price";d:61507;s:4:"name";s:15:"Acer Totam 8318";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:62:"http://localhost/shk3/katalog/kompyuteryi/acer-totam-8318.html";s:9:"old_price";d:61507;}i:1;a:9:{s:2:"id";i:71;s:5:"count";i:1;s:5:"price";d:71334;s:4:"name";s:10:"HP Et 7719";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:57:"http://localhost/shk3/katalog/kompyuteryi/hp-et-7719.html";s:9:"old_price";d:71334;}}shk_delivery|a:5:{s:5:"label";s:34:"Доставка по городу";s:5:"price";d:300;s:10:"free_start";d:0;s:9:"old_price";d:300;s:14:"old_free_start";d:0;}shk_lastOrder|a:11:{s:2:"id";i:5;s:5:"price";d:175694.79999999999;s:8:"currency";s:7:"руб.";s:4:"date";s:10:"28.04.2016";s:9:"full_date";s:19:"2016-04-28 00:39:00";s:5:"email";s:17:"andchir@gmail.com";s:5:"phone";s:7:"555-555";s:8:"delivery";s:0:"";s:7:"payment";s:0:"";s:6:"status";s:1:"1";s:6:"userid";i:0;}newResourceTokens|a:1:{i:0;s:23:"5721370ab047c8.11278424";}'),
+('lpkku4b68dpm2nic857nc9qrk2', 1461880838, 'modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572279f5af3297.63189767";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:6:{i:0;a:9:{s:2:"id";i:79;s:5:"count";i:2;s:5:"price";d:81679;s:4:"name";s:18:"Apple Maiores 8749";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:65:"http://localhost/shk3/katalog/kompyuteryi/apple-maiores-8749.html";s:9:"old_price";d:81679;}i:1;a:9:{s:2:"id";i:75;s:5:"count";i:1;s:5:"price";d:38028;s:4:"name";s:12:"Asus Ea 3688";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:59:"http://localhost/shk3/katalog/kompyuteryi/asus-ea-3688.html";s:9:"old_price";d:38028;}i:2;a:9:{s:2:"id";i:71;s:5:"count";i:1;s:5:"price";d:71334;s:4:"name";s:10:"HP Et 7719";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:57:"http://localhost/shk3/katalog/kompyuteryi/hp-et-7719.html";s:9:"old_price";d:71334;}i:3;a:9:{s:2:"id";i:70;s:5:"count";i:1;s:5:"price";d:30961;s:4:"name";s:21:"Lenovo Explicabo 8844";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:68:"http://localhost/shk3/katalog/kompyuteryi/lenovo-explicabo-8844.html";s:9:"old_price";d:30961;}i:4;a:9:{s:2:"id";i:72;s:5:"count";i:1;s:5:"price";d:32508.799999999999;s:4:"name";s:17:"MSI Officiis 1843";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:64:"http://localhost/shk3/katalog/kompyuteryi/msi-officiis-1843.html";s:9:"old_price";d:32508.799999999999;}i:5;a:9:{s:2:"id";i:74;s:5:"count";i:1;s:5:"price";d:61507;s:4:"name";s:15:"Acer Totam 8318";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:62:"http://localhost/shk3/katalog/kompyuteryi/acer-totam-8318.html";s:9:"old_price";d:61507;}}shk_delivery|a:0:{}'),
+('gjq222buk6ucef5h2u9fn0ssu2', 1461972974, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:2:{s:3:"web";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}shk_order|a:1:{i:0;a:9:{s:2:"id";i:150;s:5:"count";i:1;s:5:"price";d:14694;s:4:"name";s:13:"HP Velit 5661";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:71:"http://localhost/shk3/katalog/planshetyi-i-telefonyi/hp-velit-5661.html";s:9:"old_price";d:14694;}}shk_delivery|a:0:{}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_15723c8a74c92f4.45066198";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}migxWorkingObjectid|i:126;newResourceTokens|a:2:{i:0;s:23:"5723ed9a659319.79543189";i:1;s:23:"5723ef5db8ac09.34623403";}'),
+('a0cbtjc6s4tkih2g4c6p53aib5', 1461917996, 'modx.user.0.resourceGroups|a:1:{s:3:"web";a:0:{}}modx.user.0.attributes|a:2:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}s:3:"web";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}shk_order|a:0:{}shk_delivery|a:0:{}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_15723192bdc7967.27504724";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
+('6nneaq6i6h20nas1338hh8k5i5', 1462059149, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_15724a40d627416.20130771";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:2:{i:0;a:9:{s:2:"id";i:128;s:5:"count";i:2;s:5:"price";d:15464.5;s:4:"name";s:13:"Acer Est 4247";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:60:"http://localhost/shk3/katalog/kompyuteryi/acer-est-4247.html";s:9:"old_price";d:15464.5;}i:1;a:9:{s:2:"id";i:131;s:5:"count";i:2;s:5:"price";d:84746;s:4:"name";s:12:"Acer Et 7892";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:59:"http://localhost/shk3/katalog/kompyuteryi/acer-et-7892.html";s:9:"old_price";d:84746;}}shk_delivery|a:0:{}newResourceTokens|a:1:{i:0;s:23:"5725408d350d98.49410989";}'),
+('46i8j7pg6r4sdusg67l9tgeqo7', 1462132856, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572603a450ca30.72159844";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:0:{}shk_delivery|a:0:{}newResourceTokens|a:2:{i:0;s:23:"5726152a6e8f94.74003910";i:1;s:23:"57261601678a89.01708146";}migxWorkingObjectid|i:124;captcha|s:7:"rebefeb";'),
+('sfv5t0r83m9msiibi0ghkkjsm7', 1462175072, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572705501ef805.79079472";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:0:{}shk_delivery|a:0:{}'),
+('6sn3k7061nbvk0ktfdc0djj457', 1462316354, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_15729078a83f9b2.35301684";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:2:{i:0;a:9:{s:2:"id";i:134;s:5:"count";i:2;s:5:"price";d:21877;s:4:"name";s:10:"HP Et 2066";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:1:{s:6:"param1";a:4:{i:0;s:74:"Дополнительные параметры Гарантия +1 год";i:1;d:1000;i:2;s:26:"Гарантия +1 год";s:14:"multiplication";b:0;}}s:3:"url";s:57:"http://localhost/shk3/katalog/kompyuteryi/hp-et-2066.html";s:9:"old_price";d:21877;}i:1;a:9:{s:2:"id";i:134;s:5:"count";i:1;s:5:"price";d:21877;s:4:"name";s:10:"HP Et 2066";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:2:{s:6:"param1";a:4:{i:0;s:71:"Дополнительные параметры Установка ПО";i:1;d:500;i:2;s:23:"Установка ПО";s:14:"multiplication";b:0;}s:8:"param1_1";a:4:{i:0;s:74:"Дополнительные параметры Гарантия +1 год";i:1;d:1000;i:2;s:26:"Гарантия +1 год";s:14:"multiplication";b:0;}}s:3:"url";s:57:"http://localhost/shk3/katalog/kompyuteryi/hp-et-2066.html";s:9:"old_price";d:21877;}}shk_delivery|a:5:{s:5:"label";s:34:"Доставка по городу";s:5:"price";d:300;s:10:"free_start";d:0;s:9:"old_price";d:300;s:14:"old_free_start";d:0;}newResourceTokens|a:3:{i:0;s:23:"572922505652d9.04417687";i:1;s:23:"5729229d9c35b2.28629234";i:2;s:23:"57292398749327.05373089";}migxWorkingObjectid|i:134;'),
+('do7iop2mg8383772vciq54pqu5', 1462397588, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572a6a5534bae9.82015733";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:0:{}shk_delivery|a:0:{}shk_lastOrder|a:11:{s:2:"id";i:6;s:5:"price";d:89036.5;s:8:"currency";s:7:"руб.";s:4:"date";s:10:"05.05.2016";s:9:"full_date";s:19:"2016-05-05 00:33:07";s:5:"email";s:17:"andchir@gmail.com";s:5:"phone";s:7:"555-555";s:8:"delivery";s:34:"Доставка по городу";s:7:"payment";s:33:"Наличными курьеру";s:6:"status";s:1:"1";s:6:"userid";i:0;}'),
+('s03obnd44rtnhaul4inbs3dvr3', 1462443434, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572b1da64d3176.03124284";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
+('u2dekko5i1ugv74in3f3ab21b7', 1462529498, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:1:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572c53e5e33ea4.19589006";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:0:{}shk_delivery|a:0:{}shk_lastOrder|a:11:{s:2:"id";i:8;s:5:"price";d:92841;s:8:"currency";s:7:"руб.";s:4:"date";s:10:"06.05.2016";s:9:"full_date";s:19:"2016-05-06 13:11:38";s:5:"email";s:17:"andchir@gmail.com";s:5:"phone";s:7:"555-555";s:8:"delivery";s:0:"";s:7:"payment";s:0:"";s:6:"status";s:1:"1";s:6:"userid";i:0;}'),
+('kljonvl4s1ohaif18gvf9d8ij6', 1462529869, ''),
+('tj6060agdtb3gepb6bvgejidd3', 1462663859, 'modx.user.0.resourceGroups|a:1:{s:3:"web";a:0:{}}modx.user.0.attributes|a:2:{s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}s:3:"web";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}shk_order|a:0:{}shk_delivery|a:0:{}modx.mgr.user.token|s:52:"modx572126a492e407.41065711_1572e4110caf489.71408709";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}newResourceTokens|a:42:{i:0;s:23:"572e69f6250d61.52742879";i:1;s:23:"572e6aec981992.29858219";i:2;s:23:"572e6b11d9c951.14287120";i:3;s:23:"572e6b6cf21f48.53255935";i:4;s:23:"572e6b9829c2c7.90944901";i:5;s:23:"572e6befd45955.69478519";i:6;s:23:"572e6c096e5a77.81054432";i:7;s:23:"572e6c547eb763.85568780";i:8;s:23:"572e6c693b1983.72250992";i:9;s:23:"572e6d7a5923b0.37637658";i:10;s:23:"572e6d9ab39604.71527455";i:11;s:23:"572e6e73dc0ea2.28383681";i:12;s:23:"572e6e8812a0c6.80138112";i:13;s:23:"572e6ecad97c22.20803158";i:14;s:23:"572e6ee2401596.00524562";i:15;s:23:"572e6f1a00bde6.35856354";i:16;s:23:"572e6fb5a651b1.37701394";i:17;s:23:"572e6fd6efdc10.85235241";i:18;s:23:"572e7012618d47.68559814";i:19;s:23:"572e70378ccdf3.42050856";i:20;s:23:"572e70a4be08e6.85520296";i:21;s:23:"572e70becd2f80.54558665";i:22;s:23:"572e710a995cd5.49325377";i:23;s:23:"572e711760f9d7.57330892";i:24;s:23:"572e7130615bf9.16589441";i:25;s:23:"572e713a4c6190.46514717";i:26;s:23:"572e713e5ec5f1.20747712";i:27;s:23:"572e71ee603605.20361260";i:28;s:23:"572e72044cce69.10281168";i:29;s:23:"572e720e455ef4.48191517";i:30;s:23:"572e722eca2825.47156040";i:31;s:23:"572e726dcaf6a0.04828200";i:32;s:23:"572e7753884ce1.69809978";i:33;s:23:"572e77ec9f6bb7.26204383";i:34;s:23:"572e78e01aed04.64647343";i:35;s:23:"572e791e368ce1.56598617";i:36;s:23:"572e79a88f6041.13311201";i:37;s:23:"572e79c70b9884.62742709";i:38;s:23:"572e7a30b13f63.68097685";i:39;s:23:"572e7a6b54b563.81638492";i:40;s:23:"572e7a9eb170c7.01297706";i:41;s:23:"572e7ab2c60bc8.27009099";}migxWorkingObjectid|i:134;'),
+('666febtr79415m2frnjr5p2lu0', 1473202042, 'modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx57cf41776bfca3.58084526_157cf42a48500f2.55995372";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}shk_order|a:2:{i:0;a:9:{s:2:"id";i:147;s:5:"count";i:1;s:5:"price";d:15089.5;s:4:"name";s:15:"Lenovo Fugiat 6";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:78:"http://localhost/shk3_pack/katalog/planshetyi-i-telefonyi/lenovo-fugiat-6.html";s:9:"old_price";d:15089.5;}i:1;a:9:{s:2:"id";i:151;s:5:"count";i:1;s:5:"price";d:73647;s:4:"name";s:13:"Asus Sed 6166";s:9:"className";s:11:"ShopContent";s:11:"packageName";s:4:"shop";s:7:"options";a:0:{}s:3:"url";s:76:"http://localhost/shk3_pack/katalog/planshetyi-i-telefonyi/asus-sed-6166.html";s:9:"old_price";d:73647;}}shk_delivery|a:0:{}'),
+('ph5l04g1ik0lfc5rrufg57cb13', 1473241840, 'modx.user.0.resourceGroups|a:1:{s:3:"mgr";a:0:{}}modx.user.0.attributes|a:2:{s:3:"web";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}s:3:"mgr";a:5:{s:16:"modAccessContext";a:1:{s:3:"web";a:1:{i:0;a:3:{s:9:"principal";i:0;s:9:"authority";s:1:"0";s:6:"policy";a:1:{s:4:"load";b:1;}}}}s:22:"modAccessResourceGroup";a:0:{}s:17:"modAccessCategory";a:0:{}s:28:"sources.modAccessMediaSource";a:0:{}s:18:"modAccessNamespace";a:0:{}}}shk_order|a:0:{}shk_delivery|a:0:{}modx.user.contextTokens|a:1:{s:3:"mgr";i:1;}modx.mgr.user.token|s:52:"modx57cf41776bfca3.58084526_157cfe2ecf2a5e4.05859387";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -2348,6 +2423,7 @@ INSERT INTO `modx_session` (`id`, `access`, `data`) VALUES
 -- Table structure for table `modx_shopkeeper3_config`
 --
 
+DROP TABLE IF EXISTS `modx_shopkeeper3_config`;
 CREATE TABLE IF NOT EXISTS `modx_shopkeeper3_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `setting` varchar(15) DEFAULT '',
@@ -2373,6 +2449,7 @@ INSERT INTO `modx_shopkeeper3_config` (`id`, `setting`, `value`, `xtype`) VALUES
 -- Table structure for table `modx_shopkeeper3_orders`
 --
 
+DROP TABLE IF EXISTS `modx_shopkeeper3_orders`;
 CREATE TABLE IF NOT EXISTS `modx_shopkeeper3_orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contacts` text,
@@ -2407,6 +2484,7 @@ INSERT INTO `modx_shopkeeper3_orders` (`id`, `contacts`, `options`, `price`, `cu
 -- Table structure for table `modx_shopkeeper3_purchases`
 --
 
+DROP TABLE IF EXISTS `modx_shopkeeper3_purchases`;
 CREATE TABLE IF NOT EXISTS `modx_shopkeeper3_purchases` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `p_id` int(10) NOT NULL DEFAULT '0',
@@ -2438,6 +2516,7 @@ INSERT INTO `modx_shopkeeper3_purchases` (`id`, `p_id`, `order_id`, `name`, `pri
 -- Table structure for table `modx_shop_content`
 --
 
+DROP TABLE IF EXISTS `modx_shop_content`;
 CREATE TABLE IF NOT EXISTS `modx_shop_content` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `resource_id` int(10) NOT NULL,
@@ -2527,6 +2606,7 @@ INSERT INTO `modx_shop_content` (`id`, `resource_id`, `pagetitle`, `longtitle`, 
 -- Table structure for table `modx_site_content`
 --
 
+DROP TABLE IF EXISTS `modx_site_content`;
 CREATE TABLE IF NOT EXISTS `modx_site_content` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(20) NOT NULL DEFAULT 'document',
@@ -2608,7 +2688,7 @@ INSERT INTO `modx_site_content` (`id`, `type`, `contentType`, `pagetitle`, `long
 (8, 'document', 'text/html', 'Страница не найдена', '', '', 'stranicza-ne-najdena', '', 1, 0, 0, 0, 0, '', '<p><a href="[[++site_url]]">На главную</a></p>', 1, 6, 7, 1, 1, 1, 1459615044, 1, 1459615169, 0, 0, 0, 1459615020, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'stranicza-ne-najdena.html', 0, 0, 1, NULL),
 (13, 'document', 'text/html', 'Ноутбуки', '', '', 'noutbuki', '', 1, 0, 0, 2, 1, 'Ноутбуки и комплектующие', '', 1, 4, 1, 1, 1, 1, 1460584279, 1, 1462113730, 0, 0, 0, 1460584260, 1, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'katalog/noutbuki/', 0, 0, 1, NULL),
 (10, 'document', 'text/html', 'Моё избранное', '', '', 'moyo-izbrannoe', '', 1, 0, 0, 0, 0, '', '[[$my_favorites]]', 0, 6, 8, 1, 1, 1, 1460327390, 1, 1460504455, 0, 0, 0, 1460327340, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'moyo-izbrannoe.html', 0, 0, 1, NULL),
-(11, 'document', 'text/html', 'Поиск', '', '', 'poisk', '', 1, 0, 0, 0, 0, '', '', 1, 6, 9, 1, 1, 1, 1460327979, 0, 0, 0, 0, 0, 1460327979, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'poisk.html', 0, 0, 1, NULL),
+(11, 'document', 'text/html', 'Поиск', '', '', 'poisk', '', 1, 0, 0, 0, 0, '', '[[$page_search_results]]', 1, 6, 9, 1, 1, 1, 1460327979, 1, 1473242603, 0, 0, 0, 1460327940, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'poisk.html', 0, 0, 1, NULL),
 (12, 'document', 'text/html', 'Спасибо!', '', '', 'spasibo', '', 1, 0, 0, 0, 0, '', '<p>Заказ принят. Наш менеджер свяжется с вами в ближайшее время для подтверждения заказа.</p>', 1, 6, 6, 1, 1, 1, 1460503161, 1, 1460503360, 0, 0, 0, 1460503140, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'spasibo.html', 0, 0, 1, NULL);
 
 -- --------------------------------------------------------
@@ -2617,6 +2697,7 @@ INSERT INTO `modx_site_content` (`id`, `type`, `contentType`, `pagetitle`, `long
 -- Table structure for table `modx_site_htmlsnippets`
 --
 
+DROP TABLE IF EXISTS `modx_site_htmlsnippets`;
 CREATE TABLE IF NOT EXISTS `modx_site_htmlsnippets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `source` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2636,14 +2717,14 @@ CREATE TABLE IF NOT EXISTS `modx_site_htmlsnippets` (
   KEY `category` (`category`),
   KEY `locked` (`locked`),
   KEY `static` (`static`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `modx_site_htmlsnippets`
 --
 
 INSERT INTO `modx_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `static`, `static_file`) VALUES
-(1, 1, 0, 'header', '', 0, 0, 0, '<!doctype html>\n<html>\n<head>\n    <meta http-equiv="X-UA-Compatible" content="IE=edge" />\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <title>[[++site_name]] / [[*pagetitle]]</title>\n    <meta name="description" content="[[*introtext:htmlent]]">\n\n    <link rel="stylesheet" href="[[++base_url]]assets/template/dist/css/styles_all.min.css">\n    <script type="text/javascript" src="[[++base_url]]assets/template/dist/js/scripts_all.min.js"></script>\n</head>\n<body>\n\n<div class="container">\n    \n    <header>\n        <nav class="navbar navbar-default" role="navigation">\n            <div class="">\n                <div class="navbar-header header-image">\n                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n                        <span class="sr-only">Меню</span>\n                        <span class="icon-bar"></span>\n                        <span class="icon-bar"></span>\n                        <span class="icon-bar"></span>\n                    </button>\n                    <div class="header-right">\n                        \n                        [[!compare@compare_options]]\n                        \n                        [[!Shopkeeper3@cart_catalog]]\n                        \n                    </div>\n                    <a class="navbar-brand" href="[[++base_url]]">\n                        [[++site_name]]\n                    </a>\n                </div>\n                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n                    \n                    [[menuCaching@top_menu]]\n                    \n                    <form action="[[++base_url]]poisk.html" method="get" class="navbar-form-right navbar-right" role="search">\n                        <input type="hidden" name="searchid" value="2249087"/>\n                        <div class="form-search search-only">\n                            <i class="search-icon glyphicon glyphicon-search"></i>\n                            <input type="search" name="text" class="form-control search-query">\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </nav>\n    </header>\n', 0, 'a:0:{}', 1, 'assets/template/header.html'),
+(1, 1, 0, 'header', '', 0, 0, 0, '<!doctype html>\n<html>\n<head>\n    <meta http-equiv="X-UA-Compatible" content="IE=edge" />\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <title>[[++site_name]] / [[*pagetitle]]</title>\n    <meta name="description" content="[[*introtext:htmlent]]">\n\n    <link rel="stylesheet" href="[[++base_url]]assets/template/dist/css/styles_all.min.css">\n    <script type="text/javascript" src="[[++base_url]]assets/template/dist/js/scripts_all.min.js"></script>\n</head>\n<body>\n\n<div class="container">\n    \n    <header>\n        <nav class="navbar navbar-default" role="navigation">\n            <div class="">\n                <div class="navbar-header header-image">\n                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\n                        <span class="sr-only">Меню</span>\n                        <span class="icon-bar"></span>\n                        <span class="icon-bar"></span>\n                        <span class="icon-bar"></span>\n                    </button>\n                    <div class="header-right">\n                        \n                        [[!compare@compare_options]]\n                        \n                        [[!Shopkeeper3@cart_catalog]]\n                        \n                    </div>\n                    <a class="navbar-brand" href="[[++base_url]]">\n                        [[++site_name]]\n                    </a>\n                </div>\n                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n                    \n                    [[menuCaching@top_menu]]\n                    \n                    <form action="[[~11]]" method="get" class="navbar-form-right navbar-right" role="search">\n                        <div class="form-search search-only">\n                            <i class="search-icon glyphicon glyphicon-search"></i>\n                            <input type="search" name="f_pagetitle[like]" class="form-control search-query" value="[[!getRequest?paramName=`f_pagetitle.like`]]">\n                        </div>\n                    </form>\n                </div>\n            </div>\n        </nav>\n    </header>\n', 0, 'a:0:{}', 1, 'assets/template/header.html'),
 (45, 1, 0, 'page_feedback_form', '', 0, 13, 0, '\n<p>Будем рады Вашим вопросам, замечаниям и предложениям. Все поля обязательны для заполнения.</p>\n\n<hr>\n\n[[!FormIt?\n&preHooks=`coolcaptcha_fihook`\n&hooks=`coolcaptcha_fihook,spam,email,FormItSaveForm`\n&submitVar=`action`\n&validate=`fullname:required,email:email:required,text:required:stripTags`\n&emailTpl=`feedbackEmailChunk`\n&emailSubject=`Письмо с сайта`\n&emailReplyTo=`[[+email]]`\n&emailFrom=`[[++emailsender]]`\n&emailTo=`[[++emailsender]]`\n&invalidCaptchaMessage=`<div class="alert alert-danger">Не верный код подтверждения.</div>`\n&validationErrorMessage=`<div class="alert alert-danger">Ошибка заполнения формы. Пожалуйста, проверьте значения, введенные вами.</div>`\n&errTpl=`<p>[[+error]]</p>`\n&successMessage=`<div class="alert alert-success">Спасибо! Ваше письмо отправлено.</div>`\n&formFields=`fullname,email,text`\n]]\n\n<a name="form"></a>\n[[!+fi.validation_error_message]]\n[[!+fi.successMessage]]\n[[!+fi.error.captcha]]\n\n<div class="row">\n    <div class="col-md-6 col-md-offset-3">\n\n        <form class="form-horizontal" id="feedbackForm" action="[[~[[*id]]]]#form" method="post">\n            <input type="hidden" name="action" value="feedback">\n            <div class="form-group">\n                <label for="feedbackFormFieldName" class="col-sm-4 control-label">Ваше имя:</label>\n                <div class="col-sm-8">\n                    <input type="text" class="form-control" id="feedbackFormFieldName" name="fullname" placeholder="Введите Ваше имя" value="[[!+fi.fullname]]" required>\n                </div>\n            </div>\n            <div class="form-group">\n                <label for="feedbackFormFieldEmail" class="col-sm-4 control-label">Ваш адрес эл. почты:</label>\n                <div class="col-sm-8">\n                    <input type="email" class="form-control" id="feedbackFormFieldEmail" name="email" placeholder="Введите Ваш Email" value="[[!+fi.email]]" required>\n                </div>\n            </div>\n            <div class="form-group">\n                <label for="feedbackFormFieldText" class="col-sm-4 control-label">Сообщение:</label>\n                <div class="col-sm-8">\n                    <textarea id="feedbackFormFieldText" class="form-control" cols="40" rows="5" name="text" placeholder="Введите текст письма" required>[[!+fi.text]]</textarea>\n                </div>\n            </div>\n            <div class="form-group">\n                <div class="col-sm-8 col-sm-offset-4">\n                    [[!+fi.coolcaptcha]]\n                    <input type="text" class="form-control" name="captcha" id="feedbackFormFieldCaptcha" placeholder="Код подтверждения" autocomplete="on" required>\n                </div>\n            </div>\n            <div class="form-group">\n                <div class="col-sm-offset-4 col-sm-10">\n                    <button type="submit" class="btn btn-primary btn-lg">\n                        Отправить\n                    </button>\n                </div>\n            </div>\n        </form>\n\n    </div>\n</div>', 0, 'a:0:{}', 1, 'assets/template/page_feedback_form.html'),
 (2, 1, 0, 'footer', '', 0, 0, 0, '    <div class="footer">\n        <div class="container">\n            <div class="clearfix">\n                <div class="footer-logo">\n                    <a href="[[++base_url]]">\n                        [[++site_name]]\n                    </a>\n                </div>\n                <dl class="footer-nav">\n                    <dd class="nav-item"><a href="[[~2]]">Каталог товаров</a></dd>\n                    <dd class="nav-item"><a href="[[~3]]">Информация</a></dd>\n                </dl>\n                <dl class="footer-nav">\n                    <dd class="nav-item"><a href="[[~11]]">Поиск</a></dd>\n                    <dd class="nav-item"><a href="[[~7]]">Контакты</a></dd>\n                </dl>\n            </div>\n            <div class="footer-copyright text-center">\n                &copy; 2015\n                &bull;\n                Сайт работает на <a href="http://modx.com/" target="_blank">MODX</a> + <a href="http://modx-shopkeeper.ru/" target="_blank">Shopkeeper</a>.\n            </div>\n        </div>\n    </div>\n    \n</div>\n\n</body>\n</html>', 0, 'a:0:{}', 1, 'assets/template/footer.html'),
 (3, 1, 0, 'shopCartRow', '', 0, 5, 0, '<tr class="cart-order">\n    <td align="left"><b><a href="[[+url]]">[[+name]]</a></b> [[+addit_data]]</td>\n    <td>[[+price]] [[+currency]]</td>\n    <td>\n        <input class="shk-count" type="text" size="2" name="count[]" maxlength="3" title="изменить количество" value="[[+count]]" />\n    </td>\n    <td align="right">\n        <a href="[[+url_del_item]]" title="Удалить" class="shk-del"><img src="assets/components/shopkeeper3/web/css/default/delete.gif" width="17" height="17" alt="Удалить" /></a>\n    </td>\n</tr>', 0, NULL, 0, ''),
@@ -2687,7 +2768,8 @@ INSERT INTO `modx_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `na
 (43, 0, 0, 'my_favorites', '', 0, 13, 0, '<div class="row">\n\n[[!getProducts?\n&resources=`[[!compare?action=`print_id_list`]]`\n&tpl=`product_fav`\n&noResults=`<div class="col-md-12">Вы ничего не выбрали.</div>`\n&className=`ShopContent`\n&packageName=`shop`\n]]\n\n<div class="clearfix"></div>\n</div>', 0, 'a:0:{}', 0, ''),
 (44, 0, 0, 'crumbOuter_product', '', 0, 7, 0, '<ol class="breadcrumb breadcrumb-arrow">\n    <li>\n        <a href="[[++base_url]]">\n            <i class="icon" data-icon="&#xe030"></i>\n        </a>\n    </li>\n    [[+crumbs]]\n    <li class="active">\n        <span>\n            [[*pagetitle]]\n        </span>\n    </li>\n</ol>', 0, NULL, 0, ''),
 (46, 1, 0, 'product_image', '', 0, 8, 0, '<div class="col-xxs-12 col-xs-6 col-sm-6 col-md-4">\n    <div class="thumbnail shk-item">\n        <div class="relative">\n            <div class="thumbnail-top-buttons buttons-hover-opacity">\n                <button type="button" class="btn btn-default[[+id:in_compare=` active`]]" data-toggle="tooltip" data-placement="bottom" title="В избранное" onclick="return shkCompare.toCompare([[+id]],[[+resource_id]],this)">\n                    <i class="icon" data-icon="&#xe089"></i>\n                </button>\n            </div>\n        </div>\n        <a href="[[~[[+resource_id]]?&scheme=`abs`]][[+alias]].html">\n            <img src="[[phpthumbon?input=`assets/files/[[+image]]`&options=`w=200&h=150&bg=ffffff&zs=1`]]" alt="[[+pagetitle]]">\n        </a>\n        <div class="caption text-center">\n            <h3>[[+pagetitle]]</h3>\n            <p>[[+introtext]]</p>\n            <div class="product-price">\n                <span class="shk-price">[[+price]]</span> руб.\n            </div>\n            <div>\n                <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">\n                    <input type="hidden" name="shk-id" value="[[+id]]" />\n                    <input type="hidden" name="shk-name" value="[[+pagetitle]]" />\n                    <input type="hidden" name="shk-count" value="1" />\n                    <div class="btn-group" role="group">\n                        <a href="[[~[[+resource_id]]?&scheme=`abs`]][[+alias]].html" class="btn btn-success" role="button">Подробнее</a>\n                        <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="В корзину">\n                            <i class="icon" data-icon="&#xe052"></i>\n                        </button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n</div>', 0, 'a:0:{}', 1, 'assets/template/chunk.product_image.html'),
-(47, 0, 0, 'feedbackEmailChunk', '', 0, 14, 0, '<!DOCTYPE html>\n<html>\n\n<head>\n<style type="text/css">\nbody{background-color:#fff;}\ntable {width:650px; margin:10px 0; border:1px solid #BCBCBC; border-collapse:collapse;}\ntable td {padding:5px; border:1px solid #BCBCBC;}\n</style>\n</head>\n\n<body>\n\n<p><b>[[++site_name]]</b></p>\n\n<div style="padding:15px 0; margin:15px 0; border-top:3px solid #BCBCBC; border-bottom:3px solid #BCBCBC;">\n\n    <table>\n        <tr>\n            <td>Имя:</td>\n            <td>[[+fullname]]</td>\n        </tr>\n        <tr>\n            <td>Адрес эл. почты:</td>\n            <td>[[+email]]</td>\n        </tr>\n        <tr>\n            <td>Текст письма:</td>\n            <td>[[+text]]</td>\n        </tr>\n    </table>\n\n</div>\n\n<a href="[[++site_url]]" target="_blank">[[++site_url]]</a>\n\n<br /><br />\n\n</body>\n</html>', 0, NULL, 0, '');
+(47, 0, 0, 'feedbackEmailChunk', '', 0, 14, 0, '<!DOCTYPE html>\n<html>\n\n<head>\n<style type="text/css">\nbody{background-color:#fff;}\ntable {width:650px; margin:10px 0; border:1px solid #BCBCBC; border-collapse:collapse;}\ntable td {padding:5px; border:1px solid #BCBCBC;}\n</style>\n</head>\n\n<body>\n\n<p><b>[[++site_name]]</b></p>\n\n<div style="padding:15px 0; margin:15px 0; border-top:3px solid #BCBCBC; border-bottom:3px solid #BCBCBC;">\n\n    <table>\n        <tr>\n            <td>Имя:</td>\n            <td>[[+fullname]]</td>\n        </tr>\n        <tr>\n            <td>Адрес эл. почты:</td>\n            <td>[[+email]]</td>\n        </tr>\n        <tr>\n            <td>Текст письма:</td>\n            <td>[[+text]]</td>\n        </tr>\n    </table>\n\n</div>\n\n<a href="[[++site_url]]" target="_blank">[[++site_url]]</a>\n\n<br /><br />\n\n</body>\n</html>', 0, NULL, 0, ''),
+(48, 0, 0, 'page_search_results', '', 0, 13, 0, '<div class="row">\n    [[!tmCatalog?\n    &tpl_list=``\n    &tpl=`product_list`\n    &guardKey=``\n    &parents=`2`\n    &depth=`2`\n    &noResults=`<div class="col-xs-12">По вашему запросу ничего не найдено.</div>`\n    ]]\n    <div class="clearfix"></div>\n</div>\n\n<ul class="pagination">\n    [[!+page.nav]]\n</ul>', 0, NULL, 0, '');
 
 -- --------------------------------------------------------
 
@@ -2695,6 +2777,7 @@ INSERT INTO `modx_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `na
 -- Table structure for table `modx_site_plugins`
 --
 
+DROP TABLE IF EXISTS `modx_site_plugins`;
 CREATE TABLE IF NOT EXISTS `modx_site_plugins` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `source` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2740,6 +2823,7 @@ INSERT INTO `modx_site_plugins` (`id`, `source`, `property_preprocess`, `name`, 
 -- Table structure for table `modx_site_plugin_events`
 --
 
+DROP TABLE IF EXISTS `modx_site_plugin_events`;
 CREATE TABLE IF NOT EXISTS `modx_site_plugin_events` (
   `pluginid` int(10) NOT NULL DEFAULT '0',
   `event` varchar(255) NOT NULL DEFAULT '',
@@ -2783,6 +2867,7 @@ INSERT INTO `modx_site_plugin_events` (`pluginid`, `event`, `priority`, `propert
 -- Table structure for table `modx_site_snippets`
 --
 
+DROP TABLE IF EXISTS `modx_site_snippets`;
 CREATE TABLE IF NOT EXISTS `modx_site_snippets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `source` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2804,7 +2889,7 @@ CREATE TABLE IF NOT EXISTS `modx_site_snippets` (
   KEY `locked` (`locked`),
   KEY `moduleguid` (`moduleguid`),
   KEY `static` (`static`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- Dumping data for table `modx_site_snippets`
@@ -2858,7 +2943,8 @@ INSERT INTO `modx_site_snippets` (`id`, `source`, `property_preprocess`, `name`,
 (41, 0, 0, 'compare', 'Compare Products in the parameters.', 0, 9, 0, '/*\n\ncompare 1.1\nСравнение товаров и Избранное\n\nAndchir - http://modx-shopkeeper.ru/\n\n*/\n\n$default_toCompareTpl = ''\n    <p>\n        Выбрано <span id="skolko_vibrano">[[+count_current]]</span> из [[+count_max]]\n        / <a href="[[+href_compare]]" onclick="return shkCompare.toCompareLink();">сравнить</a>\n        <span id="sravnenie_otmena" style="display:[[+display_cancel]];"> / <a href="[[+href_cancel]]">отменить</a></span>\n    </p>\n    <br clear="all" />\n'';\n\n$action = isset($action) ? $action : ''to_compare'';\n\nrequire_once MODX_CORE_PATH . ''components/compare/compare.class.php'';\n$compare = new prodCompare( $modx, $scriptProperties );\n\n//действия, переданные по $_GET\n$cmpr_action = isset($_GET[''cmpr_action'']) && !is_array($_GET[''cmpr_action'']) ? $_GET[''cmpr_action''] : '''';\nif($cmpr_action == ''del_product'' && !in_array( $action, array(''print_products'', ''print_id_list'') ) ) return;\nswitch($cmpr_action){\n    //удаление одного товара из списка для сравнения\n    case ''del_product'':\n        if(!empty($_GET[''pid''])) $compare->deleteCompareProduct();\n    break;\n    //очистка списка товаров, выбранных для сравнения\n    case ''empty'':\n        $compare->emptyCompare();\n    break;\n}\n\n//действия для вывода в месте вызова сниппета\nswitch($action){\n    //вывод строки со ссылками на страницу сравнения\n    case ''to_compare'':\n        $output = $compare->toCompareContent();\n    break;\n    //вывод списка ID товаров, выбранных для сравнения\n    case ''print_id_list'':\n        $output = $compare->printIDList();\n    break;\n    //вывод списка товаров, выбранных для сравнения\n    case ''print_products'':\n        $output = $compare->printCompareProducts();\n    break;\n    //вывод ID категории товаров, выбранных для стравнения\n    case ''print_parent_id'':\n        $output = isset($_COOKIE[''shkCompareParent'']) ? $_COOKIE[''shkCompareParent''] : '''';\n    break;\n    default:\n        $output = '''';\n    break;\n}\n\nreturn $output;', 0, NULL, '', 0, ''),
 (42, 0, 0, 'in_compare', 'Check if in compare list.', 0, 9, 0, '/*\n\nПроверка добавлен ли товар к сравнению\n\n[[+id:in_compare=`checked="checked"`]]\n\n*/\n\nif( !isset( $options ) ) $options = ''checked'';\n$opt_arr = explode(''||'', $options);\nif( count( $opt_arr ) < 2 ) $opt_arr[1] = '' '';\n\n$compareIds_arr = !empty( $_COOKIE[''shkCompareIds''] )\n    ? explode( '','', str_replace('' '', '''', $_COOKIE[''shkCompareIds''] ) )\n    : array();\n\nreturn in_array( $input, $compareIds_arr ) ? $opt_arr[0] : $opt_arr[1];', 0, NULL, '', 0, ''),
 (43, 3, 0, 'coolcaptcha_fihook', '', 0, 10, 0, '/*\n\ncoolcaptcha_fihook\n\n[[!FormIt?\n&preHooks=`coolcaptcha_fihook`\n&hooks=`spam,coolcaptcha_fihook,mail`\n&invalidCaptchaMessage=`Invalid captcha!`\n...\n]]\n\n[[!+fi.coolcaptcha]]\n[[!+fi.error.captcha]]\n<br />\n<input type="text" name="captcha" id="captcha" autocomplete="off" />\n\n*/\n\n$output = true;\n\n$invalidCaptchaMessage = $modx->getOption(''invalidCaptchaMessage'', $hook->config,''Invalid captcha.'');\n$submitVar = !empty($hook->config[''submitVar'']) ? $hook->config[''submitVar''] : '''';\n$core_dirname = str_replace($modx->config[''base_path''], '''', $modx->config[''core_path'']);\n$core_url = $modx->config[''base_url''] . $core_dirname;\n$assets_url = $modx->config[''base_url''] . ''assets/'';\n\n$img_captcha = ''<a href="#" onclick="document.getElementById(\\''captcha''.$submitVar.''\\'').src=\\''''.$assets_url.''components/coolcaptcha_fihook/captcha.php?\\''+Math.random();return false;">'';\n$img_captcha .= ''<img id="captcha''.$submitVar.''" src="''.$assets_url.''components/coolcaptcha_fihook/captcha.php" width="200" height="70" alt="captcha" /></a>'';\n\n$modx->setPlaceholder(''fi.coolcaptcha'',$img_captcha);\n\nif(isset($_POST[''captcha''])){\n\n    if (empty($_SESSION[''captcha'']) || trim(strtolower($_POST[''captcha''])) != $_SESSION[''captcha'']) {\n        \n        $hook->addError(''captcha'', $invalidCaptchaMessage);\n        $output = false;\n        \n    }\n    \n}\n\nreturn $output;', 0, 'a:0:{}', '', 1, 'coolcaptcha_fihook/elements/snippets/snippet.coolcaptcha.php'),
-(46, 3, 0, 'shk_render_tv', '', 0, 5, 0, '/*\n\nshk_render_tv\n\n[[*param1:shk_render_tv=`shk_select`]]\n\n[[*param1:shk_render_tv=`shk_checkbox`]]\n\n[[*param1:shk_render_tv=`shk_radio`]]\n\n[[shk_render_tv?input=`[[+tv.param1]]`&options=`shk_select`&resourceId=`[[+id]]`]]\n\n*/\n\n$input = $modx->getOption(''input'',$scriptProperties,'''');\n$options = $modx->getOption(''options'',$scriptProperties,''shk_select'');\n$resourceId = $modx->getOption(''resourceId'',$scriptProperties,$modx->resource->id);\n$tv_name = $modx->getOption(''name'',$scriptProperties,''tv'');\n$wraptag = $modx->getOption(''wraptag'',$scriptProperties,''div'');\n$first_selected = $modx->getOption(''first_selected'',$scriptProperties,true);\n\n$output = '''';\n\nif($input){\n    \n    $tv = $modx->newObject(''modTemplateVar'');\n    $tv->set(''name'', $tv_name);\n    $tv->set(''display'', $options);\n    $tv->set(''value'', $input);\n    \n    $params = array(\n        ''id'' => $resourceId,\n        ''param_name'' => $tv_name,\n        ''wraptag'' => $wraptag,\n        ''first_selected'' => $first_selected,\n        ''function'' => ''SHK.additOpt(this)''\n    );\n    $outputRenderPaths = $tv->getRenderDirectories(''OnTVOutputRenderList'',''output'');\n    \n    $value = $tv->prepareOutput($input);\n    $output = $tv->getRender($params, $value, $outputRenderPaths, ''output'', $resourceId, $options);\n    \n}\n\nreturn $output;', 0, 'a:0:{}', '', 1, 'shopkeeper3/elements/snippets/snippet.shk_render_tv.php');
+(46, 3, 0, 'shk_render_tv', '', 0, 5, 0, '/*\n\nshk_render_tv\n\n[[*param1:shk_render_tv=`shk_select`]]\n\n[[*param1:shk_render_tv=`shk_checkbox`]]\n\n[[*param1:shk_render_tv=`shk_radio`]]\n\n[[shk_render_tv?input=`[[+tv.param1]]`&options=`shk_select`&resourceId=`[[+id]]`]]\n\n*/\n\n$input = $modx->getOption(''input'',$scriptProperties,'''');\n$options = $modx->getOption(''options'',$scriptProperties,''shk_select'');\n$resourceId = $modx->getOption(''resourceId'',$scriptProperties,$modx->resource->id);\n$tv_name = $modx->getOption(''name'',$scriptProperties,''tv'');\n$wraptag = $modx->getOption(''wraptag'',$scriptProperties,''div'');\n$first_selected = $modx->getOption(''first_selected'',$scriptProperties,true);\n\n$output = '''';\n\nif($input){\n    \n    $tv = $modx->newObject(''modTemplateVar'');\n    $tv->set(''name'', $tv_name);\n    $tv->set(''display'', $options);\n    $tv->set(''value'', $input);\n    \n    $params = array(\n        ''id'' => $resourceId,\n        ''param_name'' => $tv_name,\n        ''wraptag'' => $wraptag,\n        ''first_selected'' => $first_selected,\n        ''function'' => ''SHK.additOpt(this)''\n    );\n    $outputRenderPaths = $tv->getRenderDirectories(''OnTVOutputRenderList'',''output'');\n    \n    $value = $tv->prepareOutput($input);\n    $output = $tv->getRender($params, $value, $outputRenderPaths, ''output'', $resourceId, $options);\n    \n}\n\nreturn $output;', 0, 'a:0:{}', '', 1, 'shopkeeper3/elements/snippets/snippet.shk_render_tv.php'),
+(47, 0, 0, 'getRequest', '', 0, 0, 0, '/*\n\nExample:\n\n<input type="search" name="f_pagetitle[like]" value="[[!getRequest?paramName=`f_pagetitle.like`]]">\n\n*/\n\n$output = '''';\n$paramName = $modx->getOption( ''paramName'', $scriptProperties, '''' );\n$requestType = $modx->getOption( ''requestType'', $scriptProperties, ''get'' );\n\n$requestData = $requestType == ''post'' ? $_POST : $_GET;\n\nif( strpos( $paramName, ''.'' ) !== false ){\n    \n    $pn = explode( ''.'', $paramName );\n    if( count( $pn ) >= 2\n       && isset( $requestData[ $pn[0] ] )\n       && isset( $requestData[ $pn[0] ][ $pn[1] ] )\n       && !is_array( $requestData[ $pn[0] ][ $pn[1] ] ) ){\n        \n        $output = trim( $requestData[ $pn[0] ][ $pn[1] ] );\n        \n    }\n    \n}\nelse {\n    \n    if( isset( $requestData[ $paramName ] )\n       && !is_array( $requestData[ $paramName ] ) ){\n        \n        $output = trim( $requestData[ $paramName ] );\n        \n    }\n    \n}\n\n$output = $modx->stripTags( $output );\n$output = $modx->sanitizeString( $output );\n\nreturn $output;', 0, NULL, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -2866,6 +2952,7 @@ INSERT INTO `modx_site_snippets` (`id`, `source`, `property_preprocess`, `name`,
 -- Table structure for table `modx_site_templates`
 --
 
+DROP TABLE IF EXISTS `modx_site_templates`;
 CREATE TABLE IF NOT EXISTS `modx_site_templates` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `source` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2906,6 +2993,7 @@ INSERT INTO `modx_site_templates` (`id`, `source`, `property_preprocess`, `templ
 -- Table structure for table `modx_site_tmplvars`
 --
 
+DROP TABLE IF EXISTS `modx_site_tmplvars`;
 CREATE TABLE IF NOT EXISTS `modx_site_tmplvars` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `source` int(10) unsigned NOT NULL DEFAULT '0',
@@ -2951,6 +3039,7 @@ INSERT INTO `modx_site_tmplvars` (`id`, `source`, `property_preprocess`, `type`,
 -- Table structure for table `modx_site_tmplvar_access`
 --
 
+DROP TABLE IF EXISTS `modx_site_tmplvar_access`;
 CREATE TABLE IF NOT EXISTS `modx_site_tmplvar_access` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tmplvarid` int(10) NOT NULL DEFAULT '0',
@@ -2965,6 +3054,7 @@ CREATE TABLE IF NOT EXISTS `modx_site_tmplvar_access` (
 -- Table structure for table `modx_site_tmplvar_contentvalues`
 --
 
+DROP TABLE IF EXISTS `modx_site_tmplvar_contentvalues`;
 CREATE TABLE IF NOT EXISTS `modx_site_tmplvar_contentvalues` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tmplvarid` int(10) NOT NULL DEFAULT '0',
@@ -2991,6 +3081,7 @@ INSERT INTO `modx_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `
 -- Table structure for table `modx_site_tmplvar_templates`
 --
 
+DROP TABLE IF EXISTS `modx_site_tmplvar_templates`;
 CREATE TABLE IF NOT EXISTS `modx_site_tmplvar_templates` (
   `tmplvarid` int(10) NOT NULL DEFAULT '0',
   `templateid` int(11) NOT NULL DEFAULT '0',
@@ -3012,6 +3103,7 @@ INSERT INTO `modx_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VA
 -- Table structure for table `modx_system_eventnames`
 --
 
+DROP TABLE IF EXISTS `modx_system_eventnames`;
 CREATE TABLE IF NOT EXISTS `modx_system_eventnames` (
   `name` varchar(50) NOT NULL,
   `service` tinyint(4) unsigned NOT NULL DEFAULT '0',
@@ -3228,6 +3320,7 @@ INSERT INTO `modx_system_eventnames` (`name`, `service`, `groupname`) VALUES
 -- Table structure for table `modx_system_settings`
 --
 
+DROP TABLE IF EXISTS `modx_system_settings`;
 CREATE TABLE IF NOT EXISTS `modx_system_settings` (
   `key` varchar(50) NOT NULL DEFAULT '',
   `value` text NOT NULL,
@@ -3467,7 +3560,7 @@ INSERT INTO `modx_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`
 ('auto_isfolder', '1', 'combo-boolean', 'core', 'site', '0000-00-00 00:00:00'),
 ('manager_use_fullname', '', 'combo-boolean', 'core', 'manager', '0000-00-00 00:00:00'),
 ('parser_recurse_uncacheable', '1', 'combo-boolean', 'core', 'system', '0000-00-00 00:00:00'),
-('settings_version', '2.5.1-pl', 'textfield', 'core', 'system', '2016-09-05 09:49:45'),
+('settings_version', '2.5.0-pl', 'textfield', 'core', 'system', '2016-04-27 20:52:55'),
 ('settings_distro', 'traditional', 'textfield', 'core', 'system', '0000-00-00 00:00:00'),
 ('formit.recaptcha_public_key', '', 'textfield', 'formit', 'reCaptcha', '0000-00-00 00:00:00'),
 ('formit.recaptcha_private_key', '', 'textfield', 'formit', 'reCaptcha', '0000-00-00 00:00:00'),
@@ -3531,6 +3624,7 @@ INSERT INTO `modx_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`
 -- Table structure for table `modx_tag_manager2_tags`
 --
 
+DROP TABLE IF EXISTS `modx_tag_manager2_tags`;
 CREATE TABLE IF NOT EXISTS `modx_tag_manager2_tags` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `category` int(24) NOT NULL DEFAULT '0',
@@ -3566,6 +3660,7 @@ INSERT INTO `modx_tag_manager2_tags` (`id`, `category`, `tvid`, `tvname`, `tvcap
 -- Table structure for table `modx_thumb_images`
 --
 
+DROP TABLE IF EXISTS `modx_thumb_images`;
 CREATE TABLE IF NOT EXISTS `modx_thumb_images` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL,
@@ -3582,6 +3677,7 @@ CREATE TABLE IF NOT EXISTS `modx_thumb_images` (
 -- Table structure for table `modx_transport_packages`
 --
 
+DROP TABLE IF EXISTS `modx_transport_packages`;
 CREATE TABLE IF NOT EXISTS `modx_transport_packages` (
   `signature` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
@@ -3650,6 +3746,7 @@ INSERT INTO `modx_transport_packages` (`signature`, `created`, `updated`, `insta
 -- Table structure for table `modx_transport_providers`
 --
 
+DROP TABLE IF EXISTS `modx_transport_providers`;
 CREATE TABLE IF NOT EXISTS `modx_transport_providers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3675,7 +3772,7 @@ CREATE TABLE IF NOT EXISTS `modx_transport_providers` (
 --
 
 INSERT INTO `modx_transport_providers` (`id`, `name`, `description`, `service_url`, `username`, `api_key`, `created`, `updated`, `active`, `priority`, `properties`) VALUES
-(1, 'modx.com', 'The official MODX transport facility for 3rd party components.', 'http://rest.modx.com/extras/', '', '', '2016-07-21 08:14:45', '2016-09-05 09:49:45', 1, 10, '');
+(1, 'modx.com', 'The official MODX transport facility for 3rd party components.', 'http://rest.modx.com/extras/', '', '', '2016-04-21 09:06:18', '2016-04-27 20:52:52', 1, 10, '');
 
 -- --------------------------------------------------------
 
@@ -3683,6 +3780,7 @@ INSERT INTO `modx_transport_providers` (`id`, `name`, `description`, `service_ur
 -- Table structure for table `modx_user_group_roles`
 --
 
+DROP TABLE IF EXISTS `modx_user_group_roles`;
 CREATE TABLE IF NOT EXISTS `modx_user_group_roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -3707,6 +3805,7 @@ INSERT INTO `modx_user_group_roles` (`id`, `name`, `description`, `authority`) V
 -- Table structure for table `modx_user_group_settings`
 --
 
+DROP TABLE IF EXISTS `modx_user_group_settings`;
 CREATE TABLE IF NOT EXISTS `modx_user_group_settings` (
   `group` int(10) unsigned NOT NULL DEFAULT '0',
   `key` varchar(50) NOT NULL,
@@ -3724,6 +3823,7 @@ CREATE TABLE IF NOT EXISTS `modx_user_group_settings` (
 -- Table structure for table `modx_user_messages`
 --
 
+DROP TABLE IF EXISTS `modx_user_messages`;
 CREATE TABLE IF NOT EXISTS `modx_user_messages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(15) NOT NULL DEFAULT '',
@@ -3743,6 +3843,7 @@ CREATE TABLE IF NOT EXISTS `modx_user_messages` (
 -- Table structure for table `modx_user_settings`
 --
 
+DROP TABLE IF EXISTS `modx_user_settings`;
 CREATE TABLE IF NOT EXISTS `modx_user_settings` (
   `user` int(11) NOT NULL DEFAULT '0',
   `key` varchar(50) NOT NULL DEFAULT '',
@@ -3760,6 +3861,7 @@ CREATE TABLE IF NOT EXISTS `modx_user_settings` (
 -- Table structure for table `modx_workspaces`
 --
 
+DROP TABLE IF EXISTS `modx_workspaces`;
 CREATE TABLE IF NOT EXISTS `modx_workspaces` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
