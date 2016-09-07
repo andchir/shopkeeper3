@@ -299,12 +299,12 @@ var SHK = {
                 
                 SHK.showLoading( false, shopCart );
                 
-                if(typeof(data.price_total)!='undefined') SHK.data.price_total = data.price_total;
-                if(typeof(data.items_total)!='undefined') SHK.data.items_total = data.items_total;
-                if(typeof(data.items_unique_total)!='undefined') SHK.data.items_unique_total = data.items_unique_total;
-                if(typeof(data.ids)!='undefined') SHK.data.ids = data.ids;
-                if(typeof(data.delivery_price)!='undefined') SHK.data.delivery_price = data.delivery_price;
-                if(typeof(data.delivery_name)!='undefined') SHK.data.delivery_name = data.delivery_name;
+                if(typeof(data.price_total) != 'undefined') SHK.data.price_total = data.price_total;
+                if(typeof(data.items_total) != 'undefined') SHK.data.items_total = data.items_total;
+                if(typeof(data.items_unique_total) != 'undefined') SHK.data.items_unique_total = data.items_unique_total;
+                if(typeof(data.ids) != 'undefined') SHK.data.ids = data.ids;
+                if(typeof(data.delivery_price) != 'undefined') SHK.data.delivery_price = data.delivery_price;
+                if(typeof(data.delivery_name) != 'undefined') SHK.data.delivery_name = data.delivery_name;
                 SHK.options.propertySetNum = 0;
                 
                 if(SHK.options.goToOrderFormPage && window.location.href.indexOf(SHK.options.orderFormPageUrl)==-1 && data.items_total>0){

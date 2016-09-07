@@ -71,7 +71,7 @@ if( $SHK_callCount === 1 ){
             'items_unique_total' => Shopkeeper::$items_unique_total,
             'delivery_price' => $delivery_price,
             'delivery_name' => $delivery_name,
-            'ids:' => $shopCart->getProdIds()
+            'ids' => $shopCart->getProdIds()
         );
 
         $shk_data_str = json_encode($shk_data);
