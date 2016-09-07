@@ -7,7 +7,7 @@
  *
  * @author Andchir <andchir@gmail.com>
  * @package tag_manager2
- * @version 2.2rc1
+ * @version 2.3
  */
 
 require_once dirname(__FILE__)."/tm_base.class.php";
@@ -78,7 +78,11 @@ class tmCatalog extends tagManagerBase {
         $filter_arr = $_GET;
         $flt_arr = array();
         $parents = array();
-        $guard_key = $this->modx->getOption('tag_mgr2.guard_key',null,'');
+        
+        $guard_key = '';
+        if( $this->config['guardKey'] === false ){
+            $guard_key = $this->modx->getOption('tag_mgr2.guard_key', null, '');
+        }
         
         if($this->config['className']=='modResource'){
             $fields_map = $this->getTVMap();

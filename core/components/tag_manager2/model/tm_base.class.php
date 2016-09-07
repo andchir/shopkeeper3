@@ -7,7 +7,7 @@
  *
  * @author Andchir <andchir@gmail.com>
  * @package tag_manager2
- * @version 2.2rc1
+ * @version 2.3
  */
 
 class tagManagerBase {
@@ -37,6 +37,7 @@ class tagManagerBase {
             "className" => $this->modx->getOption('tag_mgr2.className',null,'modResource'),
             "packageName" => $this->modx->getOption('tag_mgr2.packageName',null,'modResource'),
             "jsMap" => false,
+            "guardKey" => false,
             
             "filterTpl" => "tm2_filterTpl",
             "filterNumericTpl" => "tm2_filterNumericTpl",

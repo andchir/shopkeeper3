@@ -2,7 +2,7 @@
 /**
  * tmFilters
  *
- * tagManager 2.3beta2
+ * tagManager 2.3
  * Andchir
  * http://modx-shopkeeper.ru/
  * 
@@ -30,7 +30,11 @@ var tmFilters = {
         pages_cont1: '#pages',//Селектор контейнера с постраничной навигацией
         pages_cont2: '#pages2',//Селектор второго контейнера с постраничной навигацией. Если нет, оставить пустым.
         active_page_selector: '.current',//селектор номера текущей страницы внутри контейнера (pages_cont)
-        filters_type: 'default',//Тип фильтрации. Возможные значения: default (показ числа товаров по каждому фильтру и блокирование пустых вариантов), only_block (только блокирование пустых париантов), none (не показывать цифры и не блокировать)
+        filters_type: 'default',//Тип фильтрации. Возможные значения:
+            // default (показ числа товаров по каждому фильтру и блокирование пустых вариантов),
+            // only_block (только блокирование пустых париантов),
+            // none (не показывать цифры и не блокировать)
+        filter_delay: 700,//Задержка до отправления запроса на сервер (сбрасывается после каждой отметки фильтра)
         price_field: 'price',//Название поля или TV цены товара
         multi_currency: true,//Мультивалютность включить / выключить (true/false)
         base_url: '/',
@@ -59,10 +63,14 @@ var tmFilters = {
 	    this.filterSelected();
         
         $( 'input,select', this.config.filters_cont )
-        .bind('change', function(){
+        .bind('change', function( event ){
+            
+            tmFilters.filtersPreSubmit( event );
 
             clearTimeout(tmFilters.timer);
-            tmFilters.timer = setTimeout( tmFilters.filtersSubmit, 700 );
+            tmFilters.timer = setTimeout( function(){
+                tmFilters.filtersSubmit();
+            }, tmFilters.config.filter_delay );
 
         });
         
@@ -121,9 +129,13 @@ var tmFilters = {
 
                         minField.val(this_slider.slider("values",0));
                         maxField.val(this_slider.slider("values",1));
+                        
+                        tmFilters.filtersPreSubmit( event );
 
                         clearTimeout(tmFilters.timer);
-                        tmFilters.timer = setTimeout( function(){ tmFilters.filtersSubmit(event); }, 700 );
+                        tmFilters.timer = setTimeout( function(){
+                            tmFilters.filtersSubmit();
+                        }, tmFilters.config.filter_delay );
 
                     },
                     slide: function(event, ui){
@@ -156,7 +168,7 @@ var tmFilters = {
                         this_slider.slider( 'values', 0, curMinValue );
                         this_slider.slider( 'values', 1, curMaxValue );
                         this_slider.slider('option', 'stop').call(this_slider);
-                    }, 700);
+                    }, tmFilters.config.filter_delay);
                 });
                 
             });
@@ -166,24 +178,19 @@ var tmFilters = {
     },
     
     
-    /**
-     * filtersSubmit
-     *
-     */
-    filtersSubmit: function(event, update){
+    filtersPreSubmit: function( event ){
         
-        if (typeof update == 'undefined') var update = true;
         var filters = tmFilters.getFilters();
 	    var is_select = typeof event != 'undefined' && $(event.target).is('select');
 	
         tmFilters.filtered = !$.isEmptyObject( filters );
         
-        if ( typeof flt_data != 'undefined' ) {
+        if ( typeof window.flt_data != 'undefined' ) {
             
             tmFilters.result_ids = [];
             
-            for (var i in flt_data.products) {
-                tmFilters.result_ids.push( parseInt( flt_data.products[i].id ) );
+            for (var i in window.flt_data.products) {
+                tmFilters.result_ids.push( parseInt( window.flt_data.products[i].id ) );
             }
             
             tmFilters.search( filters );
@@ -197,7 +204,7 @@ var tmFilters = {
             var result_ids = [];
             
         }
-	
+        
         if ( !is_select && tmFilters.config['filters_type'] != 'none' && result_ids.length == 0 ) {
             
             //если товаров не найдено, изменяем значение на ближайшее
@@ -207,12 +214,18 @@ var tmFilters = {
                 
             }
             
-        }else if(update){
-            
-            tmFilters.switchPage(1, false);
-            tmFilters.pushState();
-            
         }
+        
+    },
+    
+    /**
+     * filtersSubmit
+     *
+     */
+    filtersSubmit: function(){
+        
+        tmFilters.switchPage(1, false);
+        tmFilters.pushState();
         
     },
     
@@ -345,7 +358,7 @@ var tmFilters = {
      */
     currRate: function( flt_name, value, type ){
 
-        if ( typeof type == 'undefined' ) var type = 'min';
+        if ( typeof type == 'undefined' ) type = 'min';
         if ( flt_name == this.config['price_field'] && typeof tmFiltersOptions != 'undefined' && tmFiltersOptions.currency_rate ) {
 
             var curr_default = !!tmFiltersOptions.currency_default ? parseInt( tmFiltersOptions.currency_default ) : 1;
@@ -435,20 +448,20 @@ var tmFilters = {
         var flt = flt_name.split(':');
         
         //filter
-        for (var i in flt_data.products) {
+        for (var i in window.flt_data.products) {
             
-            if ( $.inArray( parseInt( flt_data.products[i].id ), tmFilters.result_ids ) == -1 ) {
+            if ( $.inArray( parseInt( window.flt_data.products[i].id ), tmFilters.result_ids ) == -1 ) {
                 continue;
             }
             
             var remove = true;
             
-            if (!!flt_data.products[i][flt[0]]) {
+            if (!!window.flt_data.products[i][flt[0]]) {
                 
                 switch (flt[1]) {
                     case 'between':
                         
-                        var p_value = parseFloat( flt_data.products[i][flt[0]].replace(',','.') );
+                        var p_value = parseFloat( window.flt_data.products[i][flt[0]].replace(',','.') );
 
                         //если включена мультивалютность, пересчитываем цену по курсу
                         if ( tmFilters.config.multi_currency ) {
@@ -464,7 +477,7 @@ var tmFilters = {
                         
                         for( var ii in flt_value ){
                             
-                            if ( flt_data.products[i][flt[0]].indexOf( tmFilters.config.guard_key+flt_value[ii]+tmFilters.config.guard_key ) > -1 ) {
+                            if ( window.flt_data.products[i][flt[0]].indexOf( tmFilters.config.guard_key+flt_value[ii]+tmFilters.config.guard_key ) > -1 ) {
                                 remove = false;
                                 break;
                             }
@@ -473,7 +486,7 @@ var tmFilters = {
                     break;
                     case 'eq':
                         
-                        if ( $.inArray( flt_data.products[i][flt[0]],  flt_value) > -1 ) {
+                        if ( $.inArray( window.flt_data.products[i][flt[0]],  flt_value) > -1 ) {
                             remove = false;
                         }
                         
@@ -484,7 +497,7 @@ var tmFilters = {
             
             if ( remove ) {
                 
-                var index = $.inArray( parseInt( flt_data.products[i].id ), tmFilters.result_ids );
+                var index = $.inArray( parseInt( window.flt_data.products[i].id ), tmFilters.result_ids );
                 tmFilters.result_ids.splice( index, 1 );
                 
             }
@@ -499,11 +512,11 @@ var tmFilters = {
      */
     countAllFIlters: function( filters ){
         
-        if ( typeof flt_data == 'undefined' ) return;
+        if ( typeof window.flt_data == 'undefined' ) return;
         
         var temp_ids = [];
-        for (var i in flt_data.products) {
-            temp_ids.push( parseInt( flt_data.products[i].id ) );
+        for (var i in window.flt_data.products) {
+            temp_ids.push( parseInt( window.flt_data.products[i].id ) );
         }
         
         $( 'input:checkbox', tmFilters.config.filters_cont ).each(function(){
@@ -607,7 +620,7 @@ var tmFilters = {
             this_slider.slider( "values", order, prevValue );
             $('#'+flt_name+( order == 0 ? 'Min' : 'Max' )).val( prevValue );
             
-            tmFilters.filtersSubmit( event, false );
+            tmFilters.filtersPreSubmit( event );
             
         }
         
@@ -790,7 +803,7 @@ var tmFilters = {
         
         if ( typeof state_data == 'undefined' ) {
             $('input[name="page_id"]',tmFilters.config.filters_cont).removeAttr('disabled');
-            var state_data = $('form',tmFilters.config.filters_cont).serializeArray();
+            state_data = $('form',tmFilters.config.filters_cont).serializeArray();
         }
         
         tmFilters.ajaxPreload( $(tmFilters.config.products_cont), true );
@@ -867,6 +880,8 @@ var tmFilters = {
                 this_slider.slider("values",1,this_slider.slider("option",'max'));
             });
         }
+        
+        tmFilters.filtersPreSubmit();
         
         tmFilters.switchPage(1, false);
         tmFilters.filtersSubmit();
@@ -958,7 +973,7 @@ var tmFilters = {
      */
     switchPage: function(page, go){
         
-        if (typeof go == 'undefined') var go = true;
+        if (typeof go == 'undefined') go = true;
         
         if (!!page && !isNaN(page)) {
 
