@@ -2,7 +2,7 @@
 /**
  * Shopkeeper English language file
  *
- * @package shopkeeper
+ * @package shopkeeper3
  * @subpackage lexicon
  */
 

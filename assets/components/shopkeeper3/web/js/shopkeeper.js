@@ -2,7 +2,7 @@
 /**************************
 * 
 * http://modx-shopkeeper.ru/
-* Shopkeeper 3.2.4
+* Shopkeeper 3.2.5
 * shopping cart for MODX 2.x Revolution
 * 
 **************************/
@@ -41,6 +41,8 @@ var SHK = {
     },
     
     init: function( opts ){
+
+        var self = this;
         
         $.fn.reverse = function() {
             return this.pushStack(this.get().reverse(), arguments);
@@ -58,15 +60,15 @@ var SHK = {
         if( typeof SHKbeforeInitCallback == 'function') SHKbeforeInitCallback();
         
         if ( typeof opts != 'undefined' ) {
-            $.extend( SHK.options, opts );
+            $.extend( self.options, opts );
         }
-        if( SHK.options.changePrice === '0' ){ SHK.options.changePrice = false; }
+        if( this.options.changePrice === '0' ){ this.options.changePrice = false; }
         
-        SHK.options.helperHtml = SHK.options.helperHtml.replace( /\{buttons_class\}/g, SHK.options.buttons_class );
+        this.options.helperHtml = this.options.helperHtml.replace( /\{buttons_class\}/g, this.options.buttons_class );
         
         //функция на событие отправки (submit) формы товара
-        $(document).on( 'submit', SHK.options.prodCont + ' form', function(){
-            SHK.toCart(this);
+        $(document).on( 'submit', this.options.prodCont + ' form', function(){
+            self.toCart(this);
             return false;
         });
         
@@ -82,24 +84,26 @@ var SHK = {
                 var results = regex.exec( href );
                 var index = ( results && results.length > 1 ) ? parseInt( results[1] ) : 0;
             }
-            SHK.deleteItem( index, this );
+            self.deleteItem( index, this );
             
             return false;
         });
         
         //функция на событие клик по ссылке "Очистить корзину"
         $(document).on('click', '#shk_butEmptyCart', function(){
-            SHK.deleteItem( 'all', this );
+            self.deleteItem( 'all', this );
             return false;
         });
         
         //Кнопки "больше" и "меньше" для всех полей с именем "shk-count"
-        if( SHK.options.counterField ){
-            SHK.setCounterToField( $('input[name="shk-count"]') );
+        if( this.options.counterField ){
+            this.setCounterToField( $('input[name="shk-count"]') );
         }
         
         //вызов инициализации добавления кнопок "больше" и "меньше" к полям кол-ва в корзине
-        if( SHK.options.counterFieldCart ) SHK.counterFieldCartInit();
+        if( this.options.counterFieldCart ) this.counterFieldCartInit();
+
+        this.additOpt();
         
         if( typeof( SHKafterInitCallback )=='function' ) SHKafterInitCallback();
         if( typeof( SHKloadCartCallback )=='function' ) SHKloadCartCallback(true);
@@ -877,10 +881,3 @@ jQuery.fn.serializeObject = function() {
     });
     return objectData;
 };
-
-jQuery(document).bind('ready',function(){
-    
-    //Инициализация дополнителных параметров
-    SHK.additOpt();
-    
-});
