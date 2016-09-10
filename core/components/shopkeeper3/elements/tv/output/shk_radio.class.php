@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package shopkeeper
+ * @package shopkeeper3
  * @subpackage processors.element.tv.renders.mgr.output
  */
 

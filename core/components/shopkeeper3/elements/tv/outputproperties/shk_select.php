@@ -1,7 +1,7 @@
 <?php
 
 $modx->getService('lexicon','modLexicon');
-$modx->lexicon->load($modx->config['manager_language'].':shopkeeper:default');
+$modx->lexicon->load($modx->config['manager_language'].':shopkeeper3:default');
 $modx->smarty->assign('_lang', $modx->lexicon->fetch());
 
 $tv = $modx->getObject('modTemplateVar',array('id'=>$_GET['tv']));
