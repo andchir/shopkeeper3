@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="tag_manager2" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+    <object class="tagManager" table="tag_manager2_tags" extends="xPDOSimpleObject">
+        <field key="category" dbtype="int" precision="24" phptype="int" null="false" default="" />
+        <field key="tvid" dbtype="int" precision="24" phptype="int" null="false" default="" />
+        <field key="tvname" dbtype="varchar" precision="128" phptype="string" null="false" default="" />
+        <field key="tvcaption" dbtype="varchar" precision="128" phptype="string" null="false" default="" />
+        <field key="tags" dbtype="mediumtext" phptype="string" null="false" default="" />
+        <field key="index" dbtype="int" precision="10" phptype="int" null="false" default="" />
+    </object>
+</model>

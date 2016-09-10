@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="shopkeeper3" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+    <object class="shk_order" table="shopkeeper3_orders" extends="xPDOSimpleObject">
+        <field key="id" dbtype="int" precision="11" phptype="integer" null="false" index="pk"  generated="native" />
+        <field key="contacts" dbtype="text" phptype="string" null="true" default="" />
+        <field key="options" dbtype="text" phptype="string" null="true" default="" />
+        <field key="price" dbtype="float" precision="15" phptype="float" null="true" default="0" />
+        <field key="currency" dbtype="varchar" precision="10" phptype="string" null="true" default="" />
+        <field key="date" dbtype="datetime" phptype="string" null="true" default="0000-00-00 00:00" />
+        <field key="sentdate" dbtype="datetime" phptype="string" null="true" default="0000-00-00 00:00" />
+        <field key="note" dbtype="text" phptype="string" null="true" default="" />
+        <field key="email" dbtype="varchar" precision="40" phptype="string" null="true" default="" />
+        <field key="delivery" dbtype="varchar" precision="40" phptype="string" null="true" default="" />
+        <field key="delivery_price" dbtype="float" precision="15" phptype="float" null="true" default="0" />
+        <field key="payment" dbtype="varchar" precision="40" phptype="string" null="true" default="" />
+        <field key="tracking_num" dbtype="varchar" precision="40" phptype="string" null="true" default="" />
+        <field key="status" dbtype="varchar" precision="40" phptype="string" null="true" default="" />
+        <field key="userid" dbtype="int" precision="10" phptype="integer" null="true" />
+        <index alias="PRIMARY" name="PRIMARY" primary="true" unique="true">
+            <column key="id" collation="A" null="false" />
+        </index>
+        <aggregate alias="Users" class="modUsers" local="userid" foreign="id" cardinality="one" owner="foreign" />
+        <composite alias="shk_purchases" class="shk_purchases" local="id" foreign="order_id" cardinality="many" owner="local" />
+    </object>
+    <object class="shk_config" table="shopkeeper3_config" extends="xPDOSimpleObject">
+        <field key="setting" dbtype="varchar" precision="15" phptype="string" null="true" default="" />
+        <field key="value" dbtype="text" phptype="string" null="true" default="" />
+        <field key="xtype" dbtype="varchar" precision="15" phptype="string" null="true" default="" />        
+    </object>
+    <object class="shk_purchases" table="shopkeeper3_purchases" extends="xPDOSimpleObject">
+        <field key="p_id" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+        <field key="order_id" dbtype="int" precision="10" phptype="integer" null="true" default="0" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
+        <field key="price" dbtype="float" precision="15" phptype="float" null="true" default="0" />
+        <field key="count" dbtype="float" precision="15" phptype="float" null="true" default="0" />
+        <field key="data" dbtype="mediumtext" phptype="string" null="true" default="" />
+        <field key="options" dbtype="text" phptype="string" null="true" default="" />
+        <field key="class_name" dbtype="varchar" precision="30" phptype="string" null="true" default="" />
+        <field key="package_name" dbtype="varchar" precision="30" phptype="string" null="true" default="" />
+        <aggregate alias="shk_order" class="shk_order" local="order_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+</model>
