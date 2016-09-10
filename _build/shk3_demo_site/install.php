@@ -25,10 +25,10 @@ if( !empty($_GET['import_bd']) ){
     
     foreach($all_lines as $q) {
         $q = trim($q);
-        if( substr($q, 0, 2) == "--" || empty($q)) {
+        if( substr($q, 0, 2) == '--' || empty($q)) {
             continue;
         }
-        $query .= trim( $q ) . " ";
+        $query .= $q . ' ';
         if( !preg_match( "/;$/", $q ) ){
             continue;
         }
