@@ -63,7 +63,7 @@ if( $SHK_callCount === 1 ){
         );
 
         $delivery_price = !empty($shopCart->delivery['price']) ? number_format($shopCart->delivery['price'], 2, '.', '') : 0;
-        $delivery_name = !empty($shopCart->delivery['label']) ? number_format($shopCart->delivery['label'], 2, '.', '') : 0;
+        $delivery_name = !empty($shopCart->delivery['label']) ? $shopCart->delivery['label'] : '';
 
         $shk_data = array(
             'price_total' => number_format(Shopkeeper::$price_total, 2, '.', ''),
