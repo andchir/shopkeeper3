@@ -9,9 +9,10 @@ Changelog
 
 - Исправлена проблема с обработкой shk_config.php на некоторых хостингах.
 - Исправлена проблема со словарями для параметров (https://bitbucket.org/andchir/shopkeeper-3/issues/35/).
-- Исправлена проблма с очередностью иницивлизации и обработки доп.параметров (https://bitbucket.org/andchir/shopkeeper-3/issues/46/).
+- Исправлена проблема с очередностью иницивлизации и обработки доп.параметров (https://bitbucket.org/andchir/shopkeeper-3/issues/46/).
 - Исправлена ошибка "Не сохраняется SHK.data.delivery_name" (https://bitbucket.org/andchir/shopkeeper-3/issues/37/).
 - Исправлена ошибка "При экспорте в CSV из таблицы заказов теряется первая строчка" (https://bitbucket.org/andchir/shopkeeper-3/issues/34)
+- Исправлена ошибка с неверным подсчетом общей цены заказа при добавлении товара в админке.
 -
 
 3.2.4
