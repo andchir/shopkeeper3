@@ -11,6 +11,7 @@ Changelog
 - Исправлена проблема со словарями для параметров (https://bitbucket.org/andchir/shopkeeper-3/issues/35/).
 - Исправлена проблма с очередностью иницивлизации и обработки доп.параметров (https://bitbucket.org/andchir/shopkeeper-3/issues/46/).
 - Исправлена ошибка "Не сохраняется SHK.data.delivery_name" (https://bitbucket.org/andchir/shopkeeper-3/issues/37/).
+- Исправлена ошибка "При экспорте в CSV из таблицы заказов теряется первая строчка" (https://bitbucket.org/andchir/shopkeeper-3/issues/34)
 -
 
 3.2.4

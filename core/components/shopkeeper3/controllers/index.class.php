@@ -38,7 +38,7 @@ abstract class shkBaseManagerController extends modExtraManagerController {
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/bootstrap-multiselect.js' );
         
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ng-table/ng-table.min.js' );
-        $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ng-table/ng-table-export.js' );
+        $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ng-table/ng-table-export.src.js' );
         $this->addCss( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ng-table/ng-table.min.css' );
         
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/jquery-minicolors/jquery.minicolors.min.js' );
