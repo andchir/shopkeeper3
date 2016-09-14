@@ -321,7 +321,7 @@ class prodCompare {
                 'targetActiveClass' => $this->config['targetActiveClass'],
                 'onlyThisParentId' => (
                         !empty($this->config['onlyThisParentId']) && is_numeric($this->config['onlyThisParentId'])
-                        ? $this->config['onlyThisParentId'] : 'false'
+                        ? $this->config['onlyThisParentId'] : false
                     )
             );
             $scriptCode = '
