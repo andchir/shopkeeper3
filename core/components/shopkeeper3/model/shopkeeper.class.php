@@ -581,6 +581,15 @@ class Shopkeeper {
         }else{
             
             $price = $this->purchase->get( $this->config['fieldPrice'] );
+            //Default value
+            if( empty( $price ) ){
+                $migx_config = $this->getMigxConfig();
+                if( !empty( $migx_config[ $this->config['fieldPrice'] ] )
+                    && isset( $migx_config[ $this->config['fieldPrice'] ]['default'] )
+                    && !empty( $migx_config[ $this->config['fieldPrice'] ]['useDefaultIfEmpty'] ) ){
+                        $price = $migx_config[ $this->config['fieldPrice'] ]['default'];
+                }
+            }
             
         }
         
