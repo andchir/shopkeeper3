@@ -38,6 +38,14 @@ class shkSaveOrderProcessor extends modProcessor {
             $purchases_data = $order_data['purchases'];
             unset( $order_data['purchases'] );
             if( isset( $order_data['date'] ) ) unset( $order_data['date'] );
+
+            //Update rank index
+            foreach ( $order_data['contacts'] as $index => &$contact ){
+                if( empty( $contact['name'] ) ){
+                    $contact['name'] = 'field' . ( $index + 1 );
+                }
+                $contact['rank'] = $index;
+            }
             
             //contacts
             $order_data['contacts'] = json_encode( $order_data['contacts'] );

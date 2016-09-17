@@ -13,6 +13,7 @@ Changelog
 - Исправлена ошибка "Не сохраняется SHK.data.delivery_name" (https://bitbucket.org/andchir/shopkeeper-3/issues/37/).
 - Исправлена ошибка "При экспорте в CSV из таблицы заказов теряется первая строчка" (https://bitbucket.org/andchir/shopkeeper-3/issues/34)
 - Исправлена ошибка с неверным подсчетом общей цены заказа при добавлении товара в админке.
+- Изменена логика присвоения порядкового номера полям контактных данных в админке (https://bitbucket.org/andchir/shopkeeper-3/issues/38/).
 -
 
 3.2.4

@@ -40,12 +40,12 @@ class shkGetOrderProcessor extends modProcessor {
                     $order_data = array_merge( $tmp_arr, $order_data );
                     
                     $order_data['contacts'] = array();
-                    foreach( $contacts as $val ){
+                    foreach( $contacts as $index => $val ){
                         
-                        $rank = 0;
+                        $rank = !empty( $val['rank'] ) ? $val['rank'] : $index;
                         $name = !empty($val['name']) ? $val['name'] : '';
                         if( $name && !empty( $contacts_fields[$name] ) ){
-                            $rank = $contacts_fields[$name]['rank'];
+                            //$rank = $contacts_fields[$name]['rank'];
                         }
                         
                         $temp_arr = array(
