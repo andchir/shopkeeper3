@@ -1,20 +1,13 @@
 <div class="col-xxs-12 col-xs-6 col-sm-6 col-md-4">
     <div class="thumbnail shk-item">
-        <div class="relative">
-            <div class="thumbnail-top-buttons buttons-hover-opacity">
-                <button type="button" class="btn btn-default[[+id:in_compare=` active`]]" data-toggle="tooltip" data-placement="bottom" title="В избранное" onclick="return shkCompare.toCompare([[+id]],[[+resource_id]],this)">
-                    <i class="icon" data-icon="&#xe089"></i>
-                </button>
-            </div>
-        </div>
         <a href="[[~[[+id]]?&scheme=`abs`]]">
-            <img src="[[phpthumbon?input=`assets/files/[[+tv.image]]`&options=`w=200&h=150&bg=ffffff&zs=1`]]" alt="[[+pagetitle]]">
+            <img class="shk-image" src="[[phpthumbon?input=`assets/files/[[+tv.image]]`&options=`w=200&h=150&bg=ffffff&zs=1`]]" alt="[[+pagetitle]]">
         </a>
         <div class="caption text-center">
             <h3>[[+pagetitle]]</h3>
             <p>[[+introtext]]</p>
-            <div class="product-price">
-                <span class="shk-price">[[+tv.price]]</span> руб.
+            <div class="product-price no-margin-top">
+                <span class="shk-price">[[+tv.price:num_format]]</span> руб.
             </div>
             <div>
                 <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">

@@ -3,6 +3,9 @@
         <div class="caption">
             <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">
                 <div class="pull-right">
+                    <div class="product-price no-margin-top">
+                        <span class="shk-price">[[+tv.price:num_format]]</span> руб.
+                    </div>
                     <div class="btn-group" role="group">
                         <a href="[[~[[+resource_id]]?&scheme=`abs`]][[+alias]].html" class="btn btn-success" role="button">Подробнее</a>
                         <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="В корзину">
@@ -15,12 +18,6 @@
                 <input type="hidden" name="shk-count" value="1" />
                 <h3>
                     <a href="[[~[[+id]]?&scheme=`abs`]]">[[+pagetitle]]</a>
-                    &nbsp;
-                    <span class="buttons-hover-opacity">
-                        <button type="button" class="btn btn-sm btn-default[[+id:in_compare=` active`]]" data-toggle="tooltip" data-placement="bottom" title="В избранное" onclick="return shkCompare.toCompare([[+id]],[[+resource_id]],this)">
-                            <i class="icon" data-icon="&#xe089"></i>
-                        </button>
-                    </span>
                 </h3>
                 <p>[[+introtext]]</p>
                 <div class="clearfix"></div>

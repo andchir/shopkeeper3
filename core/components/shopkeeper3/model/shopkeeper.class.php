@@ -574,9 +574,13 @@ class Shopkeeper {
             
             $price_tv = $this->modx->getObject( 'modTemplateVar', array( 'name' => $this->config['fieldPrice'] ) );
             if( $price_tv ){
-                $price = $this->config['processParams'] ? $price_tv->renderOutput( $this->purchase->id ) : $price_tv->getValue( $this->purchase->id );
+                $price = $this->config['processParams']
+                    ? $price_tv->renderOutput( $this->purchase->id )
+                    : $price_tv->getValue( $this->purchase->id );
             }
-            if( !$price ) $price = 0;
+            if( !$price ){
+                $price = $price_tv->get('default_text');
+            }
             
         }else{
             
@@ -1096,12 +1100,24 @@ class Shopkeeper {
             
             //get TVs
             if( !empty( $tv_names ) ){
-                
+
+                //Get default values
+                $default_values = array();
+                $query = $this->modx->newQuery( 'modTemplateVar' );
+                $query->select( $this->modx->getSelectColumns( 'modTemplateVar', 'modTemplateVar', '', array( 'id', 'name', 'caption', 'default_text' ) ) );
+                $query->where( array( 'modTemplateVar.name:IN' => $tv_names ) );
+
+                $tvs = $this->modx->getIterator( 'modTemplateVar', $query );
+
+                foreach ( $tvs as $key => $tv ) {
+                    $default_values[] = $tv->toArray();
+                }
+
                 $query = $this->modx->newQuery( 'modTemplateVarResource' );
                 $query->leftJoin( 'modTemplateVar', 'modTemplateVar', array( "modTemplateVar.id = tmplvarid" ) );
-                $query->where( array( 'contentid:IN' => $ids ) );
                 $query->select( $this->modx->getSelectColumns( 'modTemplateVarResource', 'modTemplateVarResource', '', array( 'id', 'tmplvarid', 'contentid', 'value' ) ) );
-                $query->select( $this->modx->getSelectColumns( 'modTemplateVar', 'modTemplateVar', '', array( 'name' ) ) );
+                $query->select( $this->modx->getSelectColumns( 'modTemplateVar', 'modTemplateVar', '', array( 'name', 'default_text' ) ) );
+                $query->where( array( 'contentid:IN' => $ids ) );
                 $query->where( array( 'modTemplateVar.name:IN' => $tv_names ) );
                 
                 $tvars = $this->modx->getIterator( 'modTemplateVarResource', $query );
@@ -1115,9 +1131,24 @@ class Shopkeeper {
                             $data[$catalogClass][$tv_data['contentid']] = array();
                         }
                         
-                        $data[$catalogClass][$tv_data['contentid']][$tv_data['name']] = $tv_data['value'];
+                        $data[$catalogClass][$tv_data['contentid']][$tv_data['name']] = $tv_data['value']
+                            ? $tv_data['value']
+                            : $tv_data['default_text'];
                         
                     }
+                }
+
+                //set default values
+                if( count( $data[$catalogClass] ) != count( $ids ) ){
+
+                    foreach ( $ids as $id ){
+                        if( !isset(  $data[$catalogClass][ $id ] ) ){
+                            foreach ( $default_values as $default ){
+                                $data[$catalogClass][$id][$default['name']] = $default['default_text'];
+                            }
+                        }
+                    }
+
                 }
             }
             

@@ -8,13 +8,13 @@
             </div>
         </div>
         <a href="[[~[[+resource_id]]?&scheme=`abs`]][[+alias]].html">
-            <img src="[[phpthumbon?input=`assets/files/[[+image]]`&options=`w=200&h=150&bg=ffffff&zs=1`]]" alt="[[+pagetitle]]">
+            <img class="shk-image" src="[[phpthumbon?input=`assets/files/[[+image]]`&options=`w=200&h=150&bg=ffffff&zs=1`]]" alt="[[+pagetitle]]">
         </a>
         <div class="caption text-center">
             <h3>[[+pagetitle]]</h3>
             <p>[[+introtext]]</p>
             <div class="product-price">
-                <span class="shk-price">[[+price]]</span> руб.
+                <span class="shk-price">[[+price:num_format]]</span> руб.
             </div>
             <div>
                 <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">
