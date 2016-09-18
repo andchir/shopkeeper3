@@ -1,7 +1,7 @@
 
 {literal}
 
-<div class="amod-wrapper" ng-app="shkManagerApp">
+<div class="amod-wrapper app-container" ng-app="shkManagerApp">
     
     <div class="amod-container" ng-controller="statsController" ng-init="toppanel_fixed = false" ng-class="{'container-overflow-a':!toppanel_fixed,'container-overflow-b':toppanel_fixed}">
         <div class="amod-container-b">

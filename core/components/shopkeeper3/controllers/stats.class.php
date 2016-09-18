@@ -19,12 +19,12 @@ abstract class shkBaseManagerController extends modExtraManagerController {
     }
     
     public function loadCustomCssJs() {
-        
+
         $this->addHtml( '<script src="' . $this->modx->config['assets_url'] . 'components/shopkeeper3/shk_config.php"  type="text/javascript"></script>' );
-        $this->addHtml( '<link rel="stylesheet" type="text/css" href="' . $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/css/bootstrap.css" />' );
-        
+        $this->addCss( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/css/bootstrap-custom/css/bootstrap.min.css' );
+
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/jquery-1.11.1.min.js' );
-        $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/bootstrap.min.js' );
+        $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/css/bootstrap/js/bootstrap.min.js' );
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/angular/angular.min.js' );
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/angular/angular-sanitize.min.js' );
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ui-bootstrap-tpls-0.12.1.min.js' );

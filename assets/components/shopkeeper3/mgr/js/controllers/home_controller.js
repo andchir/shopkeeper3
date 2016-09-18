@@ -5,7 +5,7 @@ homeController
 
 */
 
-app.controller('homeController', function( $scope, $rootScope, $http, $templateCache, $modal, $filter, commonService, ngTableParams, usSpinnerService ) {
+app.controller('homeController', function( $scope, $rootScope, $http, $templateCache, $uibModal, $filter, commonService, ngTableParams, usSpinnerService ) {
     
     $scope.selected_total = 0;
     
@@ -20,12 +20,12 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
     
     $rootScope.startSpin = function(){
         usSpinnerService.spin('spinner-1');
-    }
+    };
     $rootScope.stopSpin = function(){
         setTimeout( function(){
             usSpinnerService.stop('spinner-1');
         }, 500 );
-    }
+    };
     
     /* multiselectOptions */
     $scope.multiselectOptions = {
@@ -103,7 +103,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
         
         $rootScope.tableParams.reload();
         
-    }
+    };
     
     
     /**
@@ -114,7 +114,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
         
         $rootScope.tableParams.reload();
         
-    }
+    };
     
     
     /**
@@ -163,7 +163,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
         
         $scope.selected_total = total;
         
-    } 
+    };
     
     /**
      * selectAll
@@ -172,7 +172,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
     $rootScope.selectAll = function( selected ){
         
         if ( typeof selected == 'undefined' ) {
-            var selected = !!$rootScope.tableParams.data[0] && !!$rootScope.tableParams.data[0].$selected;
+            selected = !!$rootScope.tableParams.data[0] && !!$rootScope.tableParams.data[0].$selected;
             selected = !selected;
         }
         
@@ -186,7 +186,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
         
         $scope.changeSelection();
         
-    }
+    };
     
     
     /**
@@ -195,22 +195,23 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
      */
     $rootScope.alert = function( title, message ){
         
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/alert.html',
-            controller: function ($scope, $modalInstance) {
+            appendTo: angular.element('.app-container').eq(0),
+            controller: function ($scope, $uibModalInstance) {
                 
                 $scope.title = title;
                 $scope.message = message;
                 
                 $scope.cancel = function () {
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 };
                 
             },
             resolve: {}
         });
         
-    }
+    };
     
     
     /**
@@ -251,9 +252,10 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
             
         }
         
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/change_status.html',
-            controller: function ($scope, $modalInstance) {
+            appendTo: angular.element('.app-container').eq(0),
+            controller: function ($scope, $uibModalInstance) {
                 
                 $scope.data = {
                     status: status,
@@ -269,7 +271,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                         HTTP_MODAUTH: shk_config.auth_token,
                         status: $scope.data.status,
                         order_id: $scope.data.order_id
-                    }
+                    };
                     
                     $scope.data.message = '';
                     $rootScope.startSpin();
@@ -282,8 +284,8 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                             
                             $rootScope.selectAll( false );
                             $rootScope.tableParams.reload();
-                            
-                            $modalInstance.close();
+
+                            $uibModalInstance.close();
                             
                         }
                         
@@ -299,14 +301,14 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 };
                 
                 $scope.cancel = function () {
-                    $modalInstance.dismiss('cancel');
+                    $uibModalInstance.dismiss('cancel');
                 };
                 
             },
             resolve: {}
         });
         
-    }
+    };
     
     
     /**
@@ -316,24 +318,25 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
      */
     $scope.confirm = function( action, text, header ){
         
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/confirm.html',
-            controller: function ($scope, $modalInstance) {
+            appendTo: angular.element('.app-container').eq(0),
+            controller: function ($scope, $uibModalInstance) {
                 
                 $scope.ok = function () {
                     action();
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 };
                 
                 $scope.cancel = function () {
-                    $modalInstance.dismiss('cancel');
+                    $uibModalInstance.dismiss('cancel');
                 };
                 
             },
             resolve: {}
         });
         
-    }
+    };
     
     
     /**
@@ -360,7 +363,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 action: 'mgr/removeOrders',
                 HTTP_MODAUTH: shk_config.auth_token,
                 order_id: order_ids
-            }
+            };
             
             $rootScope.startSpin();
             $scope.modal_loading = true;
@@ -388,7 +391,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
         
         $scope.confirm( delete_func );
         
-    }
+    };
     
     
     /**
@@ -398,11 +401,11 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
     $rootScope.viewOrder = function( order_id, action ){
         
         if ( typeof action == 'undefined' ) {
-            var action = 'view';
+            action = 'view';
         }
         
         /* modalController */
-        var modalController = function( $scope, $modalInstance ){
+        var modalController = function( $scope, $uibModalInstance ){
             
             $scope.data = {};
             $scope.data.total_items = 0;
@@ -444,7 +447,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                     $scope.modal_loading = false;
                 });
                 
-            }
+            };
             
             /* getOrder */
             var getOrder = function(){
@@ -467,7 +470,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 
                 ajaxRequest( post_data, callback_func );
                 
-            }
+            };
             
             getOrder();
             
@@ -494,20 +497,20 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 }
                 $scope.data.order.purchases[index].options[ opt_name ] = [ '', 0 ];
                 
-            }
+            };
             
             /* edit */
             $scope.edit = function() {
-                
-                $modalInstance.close();
+
+                $uibModalInstance.close();
                 $rootScope.viewOrder( order_id, 'edit' );
                 
             };
             
             /* view */
             $scope.view = function() {
-                
-                $modalInstance.close();
+
+                $uibModalInstance.close();
                 $rootScope.viewOrder( order_id, 'view' );
                 
             };
@@ -526,12 +529,12 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                     if ( !!response && response.success ) {
                         
                         $rootScope.tableParams.reload();
-                        $modalInstance.close();
+                        $uibModalInstance.close();
                         //$rootScope.viewOrder( order_id, 'view' );
                         
                     }
                     
-                }
+                };
                 
                 ajaxRequest( post_data, callback_func );
                 
@@ -542,7 +545,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 
                 $scope.data.order[d_name].splice( index, 1 );
                 
-            }
+            };
             
             /* addRow */
             $scope.addRow = function( d_name ){
@@ -552,11 +555,11 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 }
                 $scope.data.order[d_name].push({});
                 
-            }
+            };
             
             /* cancel */
             $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
+                $uibModalInstance.dismiss('cancel');
             };
             
             var getTotal = function(){
@@ -595,24 +598,25 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
                 $scope.data.total_items = total_items;
                 $scope.data.total_price = total_price + delivery_price;
                 
-            }
+            };
             
             /* watch */
             $scope.$watch( 'data.order.purchases', getTotal, true );
             
             $scope.$watch( 'data.order.delivery_price', getTotal );
             
-        }
+        };
         
         /* modalInstance */
         var modalInstance = $modal.open({
             templateUrl: 'modals/order_'+action+'.html',
+            appendTo: angular.element('.app-container').eq(0),
             size: 'lg',
             controller: modalController,
             resolve: {}
         });
         
-    }
+    };
     
     
     /**
@@ -735,27 +739,26 @@ app
     };
 }]);
 
-
 /* orderNote */
 app
 .directive('orderNote', ['$compile',function($compile) {
     return {
-	restrict: 'A',
-	scope: { },
-	template: '{{output}}',
-	link: function (scope, element, attrs) {
-	    
+        restrict: 'A',
+        scope: { },
+        template: '{{output}}',
+        link: function (scope, element, attrs) {
+
             scope.output = '';
-            
-	    if( typeof attrs.note != 'undefined' && attrs.note != '' ){
-                
-                var template = '<span class="glyphicon glyphicon-info-sign" tooltip-placement="left" tooltip="'+attrs.note+'"></span>';
-                element.html(template);
-                $compile(element.contents())(scope);
-                
+
+            if( typeof attrs.note != 'undefined' && attrs.note != '' ){
+
+                    var template = '<span class="glyphicon glyphicon-info-sign" tooltip-placement="left" tooltip="'+attrs.note+'"></span>';
+                    element.html(template);
+                    $compile(element.contents())(scope);
+
             }
-            
-	}
+
+        }
     };
 }]);
 

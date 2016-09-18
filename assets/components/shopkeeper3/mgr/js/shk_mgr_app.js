@@ -53,30 +53,29 @@ var ng_transformRequest = [function(data)
 /* *************************************** */
 /* app */
 
-//angularjs-dropdown-multiselect
-var app = angular.module('shkManagerApp', ['ui.bootstrap','app.tpls','ngTable','ngSanitize','ngTableExport','dateRangePicker','minicolors','angularSpinner'], function($httpProvider, $locationProvider, $tooltipProvider, minicolorsProvider, usSpinnerConfigProvider){
+var app = angular.module('shkManagerApp', ['ui.bootstrap','app.tpls','ngTable','ngSanitize','ngTableExport','dateRangePicker','minicolors','angularSpinner'], function($httpProvider, $locationProvider, $uibTooltipProvider, minicolorsProvider, usSpinnerConfigProvider){
     
     $locationProvider.html5Mode(false).hashPrefix('');
-    
+
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $httpProvider.defaults.transformRequest = ng_transformRequest;
-    
+
     //minicolors
     angular.extend(minicolorsProvider.defaults, {
-	control: 'hue',
-	position: 'bottom right'
+        control: 'hue',
+        position: 'bottom right'
     });
-    
+
     //spinner
     usSpinnerConfigProvider
     .setDefaults( { radius:30, width:8, length: 16, color: '#000' } );
     
-})
+});
 
 /* *************************************** */
 /* config */
 app.conf = {
-    
+
     connector_url: shk_config.assets_url + 'components/shopkeeper3/connector.php',
     main_menu: [
         {
@@ -104,31 +103,31 @@ app.conf = {
 /* *************************************** */
 /* commonService */
 app
-.factory('commonService', ['$rootScope','$modal','$http','$filter','$location',function($rootScope,$modal,$http,$filter,$location) {
-    
+.factory('commonService', ['$rootScope','$uibModal','$http','$filter','$location',function($rootScope,$uibModal,$http,$filter,$location) {
+
     return {
-	
+
 	main_menu: app.conf.main_menu,
 	new_window_url: app.conf.new_window_url,
 	new_window_icon: app.conf.new_window_url.indexOf('namespace=') > -1 ? 'glyphicon-log-in' : 'glyphicon-new-window',
-	
+
 	onWindowResize: function(){
-	    
+
 	    var wrapper = angular.element('.amod-wrapper');
-	    
+
 	    wrapper.css( { height: ( angular.element(window).height() - angular.element('#modx-header').height() ) + 'px' } );
-	    
+
 	},
-	
+
 	layoutInit: function(){
-	    
+
 	    var _self = this;
-	    
+
 	    _self.onWindowResize();
 	    angular.element(window).bind( 'resize', _self.onWindowResize );
-	    
+
 	},
-	
+
 	daterangepickerOptions: {
 	    apply_txt: shk_config.lang['shk3.apply'],
 	    reset_txt: shk_config.lang['shk3.reset'],
@@ -141,35 +140,35 @@ app
 	    last_30_days_txt: shk_config.lang['shk3.last_30_days'],
 	    this_month_txt: shk_config.lang['shk3.this_month']
 	},
-	
+
 	getFilters: function(){
-	    
+
 	    var output = {};
-	    
+
 	    for( var k in $rootScope.filters ){
-		
+
 		if ( !$rootScope.filters.hasOwnProperty(k) ) continue;
-		
+
 		if ( ( angular.isArray($rootScope.filters[k]) && $rootScope.filters[k].length > 0 ) || $rootScope.filters[k] != '' ) {
-		    
+
 		    $f_value = angular.copy( $rootScope.filters[k] );
-		    
+
 		    if ( k == 'date' && $f_value.indexOf(' - ') > -1 ) {
 			$f_value = $f_value.split(' - ');
 		    }
-		    
+
 		    output[k] = angular.copy( $f_value );
-		    
+
 		}
-		
+
 	    }
-	    
+
 	    return output;
-	    
+
 	}
-	
+
     }
-    
+
 }]);
 
 /* *************************************** */
@@ -177,26 +176,26 @@ app
 
 app
 .filter('renderFieldValue', function() {
-    
+
     return function( input ) {
-	
+
 	//console.log( app );
-	
+
 	return input;
-	
+
     };
 })
 
 .filter('translate', function() {
-    
+
     return function( input ) {
-	
+
 	if ( !!shk_config.lang[input] ) {
 	    input = shk_config.lang[input];
 	}
-	
+
 	return input;
-	
+
     };
 });
 
@@ -220,9 +219,9 @@ app
 
 .directive('multiselectDropdown', [function() {
     return function(scope, element, attributes) {
-        
+
 	var optionsData = !!element.data('options') ? scope[element.data('options')] : element.data();
-	
+
         element.multiselect({
             buttonClass : 'btn btn-default btn-small',
             buttonWidth : '220px',
@@ -245,29 +244,29 @@ app
                     + ' <b class="caret"></b>';
                 }
             },
-            
+
             onChange: function (optionElement, checked) {
-                
+
                 if(!!optionElement){
-                    
+
                     optionElement.removeAttr('selected');
                     if (checked) {
                         optionElement.prop('selected', 'selected');
                     }
                     element.change();
-                    
+
                 }
-                
+
             }
-            
+
         });
-        
+
         scope.$watch(function () {
             return element[0].length;
         }, function () {
             element.multiselect('rebuild');
         });
-        
+
         scope.$watch(attributes.ngModel, function () {
             element.multiselect('refresh');
         });
