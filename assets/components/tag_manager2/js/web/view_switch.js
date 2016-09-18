@@ -55,8 +55,12 @@ $(document).bind('ready',function(){
                     .removeClass('active')
                     .eq(view-1)
                     .addClass('active');
-                    
-                    tmFilters.ajaxRequest();
+
+                    if ( typeof tm_onSwitchViewAfter == 'function' ) {
+                        tm_onSwitchViewAfter();
+                    } else {
+                        tmFilters.ajaxRequest();
+                    }
                     
                 }else{
                     window.location.reload();

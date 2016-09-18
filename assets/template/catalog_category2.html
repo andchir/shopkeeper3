@@ -73,12 +73,28 @@
         </div>
         
         <div class="clearfix"></div>
-        <ul class="pagination" id="pages">
-            [[!+page.nav]]
-        </ul>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" id="button-show-more">
+                <span>[[!+limit]] / [[!+total]]</span>
+                &nbsp;&nbsp;
+                Показать ещё
+                &nbsp;
+                <i class="icon" data-icon="&#xe0bf"></i>
+            </button>
+        </div>
         
     </div>
     
 </div>
+
+<script type="text/javascript" src="[[++base_url]]assets/components/tag_manager2/js/web/one_page_pagination.js"></script>
+<script type="text/javascript">
+    onePagePagination.init({
+        currentPage: [[!+page]],
+        onPageLimit: [[!+limit]],
+        totalPages: [[!+pageCount]],
+        totalItems: [[!+total]]
+    });
+</script>
 
 [[$footer]]

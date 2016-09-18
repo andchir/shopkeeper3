@@ -64,7 +64,9 @@ $properties = $tag_manager->getSnippetProperties();
 
 $output['prod_list'] = $modx->runSnippet('tmCatalog', $properties);
 $output['prod_list'] .= '<div class="clearfix"></div>';
-$output['onPageLimit'] = intval($properties['limit']);
+$output['onPageLimit'] = $limit = isset($_GET['limit']) && is_numeric($_GET['limit'])
+    ? intval( $_GET['limit'] )
+    : intval( $properties['limit'] );
 
 if(isset($modx->placeholders[$properties['pageNavVar']])){
     $output['pages'] = $modx->placeholders[$properties['pageNavVar']];

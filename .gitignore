@@ -1,5 +1,6 @@
 .idea
 
+/faker/
 /core/cache/
 /core/config/
 /core/docs/
