@@ -1,4 +1,9 @@
 
+/**
+ * OnePagePagination for TagManager 2.x
+ * @author: Andchir <andchir@gmail.com>
+ * @version: 1.0
+ */
 var onePagePagination = {
     options: {
         currentPage: 1,
