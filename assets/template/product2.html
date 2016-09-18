@@ -3,7 +3,7 @@
 [[$header2]]
 
 [[QuickCrumbs@breadcrumbs_product?
-&resourceId=`[[*resource_id]]`
+&resourceId=`[[*parent]]`
 ]]
 
 <div class="row">
@@ -11,12 +11,6 @@
         
         <div class="product-page jumbotron">
             <div class="jumbotron-contents page-content">
-                
-                <div class="pull-right">
-                    <a href="#" class="btn btn-default [[!*id:in_compare=`active`]]" role="button" data-toggle="tooltip" data-placement="top" title="В избранное" onclick="return shkCompare.toCompare( [[*id]], [[*parent]], this );">
-                        <i class="icon" data-icon="&#xe089"></i>
-                    </a>
-                </div>
                 
                 <div class="product-title">
                     <h1>[[*longtitle:default=`[[*pagetitle]]`]]</h1>
@@ -45,7 +39,7 @@
                             
                             <div class="padding-lr-30">
                                 <h5>Дополнительные услуги</h5>
-                                [[*param1]]
+                                [[*params:replace=`[[+id]]==[[*id]]`]]
                             </div>
                             
                             <div class="product-price">

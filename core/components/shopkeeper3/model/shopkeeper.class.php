@@ -728,14 +728,19 @@ class Shopkeeper {
         
         $index = intval($index);
         $is_resource = !empty( $this->purchase->class_key ) && in_array( $this->purchase->class_key, array( 'modResource', 'modDocument' ) );
-        
+
         //modResource
         if( $is_resource ){
             
             $field_name = '';
             $a_tv = $this->modx->getObject( 'modTemplateVar', array( 'name' => $a_fieldname ) );
             if( $a_tv ){
-                $a_val_res = $this->config['processParams'] ? $a_tv->renderOutput( $this->purchase->id ) : $a_tv->getValue( $this->purchase->id );
+                $a_val_res = $this->config['processParams']
+                    ? $a_tv->renderOutput( $this->purchase->id )
+                    : $a_tv->getValue( $this->purchase->id );
+                if( !$a_val_res && $a_tv->get('default_text') ){
+                    $a_val_res = $a_tv->get('default_text');
+                }
                 $field_name = $a_tv->caption;
             }else{
                 $a_val_res = '';
@@ -749,7 +754,9 @@ class Shopkeeper {
             if( !$a_val_res ) $a_val_res = '';
             
             $migx_config = $this->getMigxConfig();
-            $field_name = isset( $migx_config[ $a_fieldname ] ) && isset( $migx_config[ $a_fieldname ]['caption'] ) ? $migx_config[ $a_fieldname ]['caption'] : '';
+            $field_name = isset( $migx_config[ $a_fieldname ] ) && isset( $migx_config[ $a_fieldname ]['caption'] )
+                ? $migx_config[ $a_fieldname ]['caption']
+                : '';
             
         }
         
