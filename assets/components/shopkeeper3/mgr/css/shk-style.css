@@ -26,6 +26,7 @@ html, body { height: 100%; }
 
 a { cursor: pointer; }
 a.glyphicon:hover { text-decoration: none; }
+.app-container { background-color: transparent !important; }
 
 .panel-heading h1,
 .panel-heading h2,

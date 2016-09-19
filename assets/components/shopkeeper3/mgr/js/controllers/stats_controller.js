@@ -5,7 +5,7 @@ statsController
 
 */
 
-app.controller('statsController', function( $scope, $rootScope, $http, $templateCache, $modal, $filter, commonService, ngTableParams, usSpinnerService ) {
+app.controller('statsController', function( $scope, $rootScope, $http, $templateCache, $uibModal, $filter, commonService, ngTableParams, usSpinnerService ) {
     
     $scope.main_menu = app.conf.main_menu;
     $scope.menu_current = 2;
@@ -15,12 +15,12 @@ app.controller('statsController', function( $scope, $rootScope, $http, $template
     
     $scope.startSpin = function(){
         usSpinnerService.spin('spinner-1');
-    }
+    };
     $scope.stopSpin = function(){
         setTimeout( function(){
             usSpinnerService.stop('spinner-1');
         }, 500 );
-    }
+    };
     
     /**
      * filters
@@ -66,7 +66,7 @@ app.controller('statsController', function( $scope, $rootScope, $http, $template
             $scope.loading = false;
         });
         
-    }
+    };
     
     /**
      * submitFilters
@@ -76,7 +76,7 @@ app.controller('statsController', function( $scope, $rootScope, $http, $template
         
         getData();
         
-    }
+    };
     
     /**
      * getData
@@ -130,7 +130,7 @@ app.controller('statsController', function( $scope, $rootScope, $http, $template
         
         ajaxRequest( post_data, callback_func );
         
-    }
+    };
     
     /**
      * alert
@@ -138,22 +138,22 @@ app.controller('statsController', function( $scope, $rootScope, $http, $template
      */
     $rootScope.alert = function( title, message ){
         
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/alert.html',
-            controller: function ($scope, $modalInstance) {
+            controller: function ($scope, $uibModalInstance) {
                 
                 $scope.title = title;
                 $scope.message = message;
                 
                 $scope.cancel = function () {
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 };
                 
             },
             resolve: {}
         });
         
-    }
+    };
     
     /**
      * watches

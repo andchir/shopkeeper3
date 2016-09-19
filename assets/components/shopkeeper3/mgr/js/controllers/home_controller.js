@@ -608,7 +608,7 @@ app.controller('homeController', function( $scope, $rootScope, $http, $templateC
         };
         
         /* modalInstance */
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/order_'+action+'.html',
             appendTo: angular.element('.app-container').eq(0),
             size: 'lg',

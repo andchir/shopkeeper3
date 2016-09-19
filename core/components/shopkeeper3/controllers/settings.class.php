@@ -27,7 +27,7 @@ abstract class shkBaseManagerController extends modExtraManagerController {
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/css/bootstrap/js/bootstrap.min.js' );
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/angular/angular.min.js' );
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/angular/angular-sanitize.min.js' );
-        $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ui-bootstrap-tpls-0.12.1.min.js' );
+        $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/ui-bootstrap-tpls-1.3.3.min.js' );
         
         $this->addCss( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/bootstrap-daterangepicker/daterangepicker-bs3.css' );
         $this->addLastJavascript( $this->modx->config['assets_url'] . 'components/shopkeeper3/mgr/js/bootstrap-daterangepicker/momentjs/moment.min.js' );

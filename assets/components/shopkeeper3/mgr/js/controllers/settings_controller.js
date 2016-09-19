@@ -5,7 +5,7 @@ settingsController
 
 */
 
-app.controller('settingsController', function( $scope, $rootScope, $http, $templateCache, $modal, $filter, commonService, usSpinnerService ) {
+app.controller('settingsController', function( $scope, $rootScope, $http, $templateCache, $uibModal, $filter, commonService, usSpinnerService ) {
     
     $scope.main_menu = app.conf.main_menu;
     $scope.menu_current = 3;
@@ -16,12 +16,12 @@ app.controller('settingsController', function( $scope, $rootScope, $http, $templ
     
     $scope.startSpin = function(){
         usSpinnerService.spin('spinner-1');
-    }
+    };
     $scope.stopSpin = function(){
         setTimeout( function(){
             usSpinnerService.stop('spinner-1');
         }, 500 );
-    }
+    };
     
     /**
      * getSettings
@@ -86,7 +86,7 @@ app.controller('settingsController', function( $scope, $rootScope, $http, $templ
             $scope.alert( 'Сообщение', response.code == 401 ? 'Доступ запрещен.' : 'Error' );
         });
         
-    }
+    };
     
     
     /**
@@ -95,22 +95,22 @@ app.controller('settingsController', function( $scope, $rootScope, $http, $templ
      */
     $rootScope.alert = function( title, message ){
         
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'modals/alert.html',
-            controller: function ($scope, $modalInstance) {
+            controller: function ($scope, $uibModalInstance) {
                 
                 $scope.title = title;
                 $scope.message = message;
                 
                 $scope.cancel = function () {
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 };
                 
             },
             resolve: {}
         });
         
-    }
+    };
     
     
     /**
@@ -121,7 +121,7 @@ app.controller('settingsController', function( $scope, $rootScope, $http, $templ
         
         $scope.data[d_name].splice( index, 1 );
         
-    }
+    };
     
     /**
      * addRow
@@ -134,7 +134,7 @@ app.controller('settingsController', function( $scope, $rootScope, $http, $templ
         }
         $scope.data[d_name].push({});
         
-    }
+    };
     
     $scope.layoutInit();
     getSettings();
