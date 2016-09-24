@@ -204,8 +204,8 @@
     </div>
     <div class="modal-body">
         
-        <tabset ng-show="data.order.purchases">
-            <tab heading="{{ 'shk3.order_data' | translate }}">
+        <uib-tabset ng-show="data.order.purchases">
+            <uib-tab heading="{{ 'shk3.order_data' | translate }}">
                 
                 <table class="table">
                     <colgroup>
@@ -282,8 +282,8 @@
                     </tfoot>
                 </table>
                 
-            </tab>
-            <tab heading="{{ 'shk3.contacts_data' | translate }}">
+            </uib-tab>
+            <uib-tab heading="{{ 'shk3.contacts_data' | translate }}">
                 
                 <table class="table table-hover noborder-top">
                     <tbody>
@@ -294,8 +294,8 @@
                     </tbody>
                 </table>
                 
-            </tab>
-        </tabset>
+            </uib-tab>
+        </uib-tabset>
         
         <div class="loader-line" ng-show="modal_loading"></div>
         
@@ -327,8 +327,8 @@
         
         <form name="orderEditForm" id="orderEditForm" action="" method="">
         
-            <tabset ng-show="data.order.purchases">
-                <tab heading="{{ 'shk3.order_data' | translate }}">
+            <uib-tabset ng-show="data.order.purchases">
+                <uib-tab heading="{{ 'shk3.order_data' | translate }}">
                     
                     <table class="table">
                         <colgroup>
@@ -479,8 +479,8 @@
                         </tfoot>
                     </table>
                     
-                </tab>
-                <tab heading="{{ 'shk3.contacts_data' | translate }}">
+                </uib-tab>
+                <uib-tab heading="{{ 'shk3.contacts_data' | translate }}">
                     
                     <table class="table table-hover noborder-top">
                         <colgroup>
@@ -515,8 +515,8 @@
                         </tfoot>
                     </table>
                     
-                </tab>
-            </tabset>
+                </uib-tab>
+            </uib-tabset>
             
         </form>
         

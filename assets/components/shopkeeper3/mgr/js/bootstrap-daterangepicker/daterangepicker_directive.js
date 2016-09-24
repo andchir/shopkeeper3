@@ -22,6 +22,7 @@ angular.module('dateRangePicker', [])
             angular.element(function(){
                 
                 var daterangepickerOptions = {
+                    parentEl: '.app-container',
                     format: 'DD/MM/YYYY',
                     showDropdowns: true,
                     locale: {

@@ -36,7 +36,7 @@ $template_name = isset($_GET['a']) && in_array( $_GET['a'], $templates ) ? $_GET
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shopkeeper</title>
     
-    <link href="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/css/bootstrap-custom/css/bootstrap.min.css" rel="stylesheet">
     
     <!--[if lt IE 9]>
         <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/html5shiv.min.js"></script>
@@ -45,10 +45,10 @@ $template_name = isset($_GET['a']) && in_array( $_GET['a'], $templates ) ? $_GET
     
     <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/shk_config.php"></script>
     <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/jquery-1.11.1.min.js"></script>
-    <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/bootstrap.min.js"></script>
+    <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/css/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/angular/angular.min.js"></script>
     <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/angular/angular-sanitize.min.js"></script>
-    <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+    <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/ui-bootstrap-tpls-1.3.3.min.js"></script>
     
     <link href="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
     <script src="<?php echo $modx->config['assets_url']; ?>components/shopkeeper3/mgr/js/bootstrap-daterangepicker/momentjs/moment.min.js"></script>
