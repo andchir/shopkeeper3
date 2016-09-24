@@ -141,12 +141,12 @@
                                                             <tr>
                                                                 <th>
                                                                     {{ 'shk3.field_name' | translate }}
-                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" tooltip="{{ 'shk3.help_fields' | translate }}"></span>
+                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.help_fields' | translate }}"></span>
                                                                 </th>
                                                                 <th>{{ 'shk3.field_caption' | translate }}</th>
                                                                 <th>
                                                                     {{ 'shk3.field_position' | translate }}
-                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" tooltip="{{ 'shk3.help_fields_pos' | translate }}"></span>
+                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.help_fields_pos' | translate }}"></span>
                                                                 </th>
                                                                 <th></th>
                                                             </tr>
@@ -253,7 +253,7 @@
                                                                 <th>{{ 'shk3.field_caption' | translate }}</th>
                                                                 <th>
                                                                     {{ 'shk3.field_position' | translate }}
-                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" tooltip="{{ 'shk3.help_contacts_fields_pos' | translate }}"></span>
+                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.help_contacts_fields_pos' | translate }}"></span>
                                                                 </th>
                                                                 <th></th>
                                                             </tr>
@@ -335,7 +335,7 @@
                                                                 <th>{{ 'shk3.name' | translate }}</th>
                                                                 <th>
                                                                     {{ 'shk3.mail_template' | translate }}
-                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" tooltip="{{ 'shk3.help_mail_template' | translate }}"></span>
+                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.help_mail_template' | translate }}"></span>
                                                                 </th>
                                                                 <th>{{ 'shk3.color' | translate }}</th>
                                                                 <th></th>
@@ -409,7 +409,7 @@
                                                                 <th>{{ 'shk3.price' | translate }}</th>
                                                                 <th>
                                                                     {{ 'shk3.max_order_price' | translate }}
-                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" tooltip="{{ 'shk3.help_max_order_price' | translate }}"></span>
+                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.help_max_order_price' | translate }}"></span>
                                                                 </th>
                                                                 <th></th>
                                                             </tr>
@@ -476,7 +476,7 @@
                                                                 <th>{{ 'shk3.name' | translate }}</th>
                                                                 <th>
                                                                     {{ 'shk3.value' | translate }}
-                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" tooltip="{{ 'shk3.help_field_value' | translate }}"></span>
+                                                                    <span class="glyphicon glyphicon-question-sign" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.help_field_value' | translate }}"></span>
                                                                 </th>
                                                                 <th></th>
                                                             </tr>

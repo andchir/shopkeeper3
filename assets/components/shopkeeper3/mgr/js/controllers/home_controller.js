@@ -752,7 +752,7 @@ app
 
             if( typeof attrs.note != 'undefined' && attrs.note != '' ){
 
-                    var template = '<span class="glyphicon glyphicon-info-sign" tooltip-placement="left" tooltip="'+attrs.note+'"></span>';
+                    var template = '<span class="glyphicon glyphicon-info-sign" tooltip-placement="left" uib-tooltip="'+attrs.note+'"></span>';
                     element.html(template);
                     $compile(element.contents())(scope);
 

@@ -160,11 +160,11 @@
                                         
                                         <span class="order-note" note="{{order.note}}" order-note></span>
                                         
-                                        <button type="button" class="btn btn-default btn-sm" tooltip-placement="bottom" tooltip="{{ 'shk3.view' | translate }}" ng-click="viewOrder(order.id,'view')">
+                                        <button type="button" class="btn btn-default btn-sm" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.view' | translate }}" ng-click="viewOrder(order.id,'view')">
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                         </button>
                                         
-                                        <button type="button" class="btn btn-default btn-sm" tooltip-placement="bottom" tooltip="{{ 'shk3.edit' | translate }}" ng-click="viewOrder(order.id,'edit')">
+                                        <button type="button" class="btn btn-default btn-sm" tooltip-placement="bottom" uib-tooltip="{{ 'shk3.edit' | translate }}" ng-click="viewOrder(order.id,'edit')">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </button>
                                         
