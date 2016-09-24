@@ -101,11 +101,11 @@ div.minicolors { /*width: 25px; border: 1px solid #ccc; border-radius: 4px;*/ }
 .ng-table-counts { margin: 0 15px 15px 0; }
 
 /* multiselect */
-.multiselect-container {  }
-.multiselect-container a.multiselect-all > label { font-weight: bold; }
-.multiselect-container li > a { padding: 3px 25px; }
-.multiselect-container li > a > label { font-weight: normal; }
-.multiselect-container li label { margin: 0; }
+.app-container .multiselect-container {  }
+.app-container .multiselect-container a.multiselect-all > label { font-weight: bold; }
+.app-container .multiselect-container li > a { padding: 3px 25px 3px 30px; }
+.app-container .multiselect-container li > a > label { font-weight: normal; margin-top: 5px; margin-bottom: 5px; }
+.app-container .multiselect-container li label { margin: 0; }
 
 /* orders grid */
 .ng-table .status-button { display: block; width: 160px; margin: 0; padding:5px; }
