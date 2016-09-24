@@ -15,6 +15,7 @@ Changelog
 - Исправлена ошибка с неверным подсчетом общей цены заказа при добавлении товара в админке.
 - Изменена логика присвоения порядкового номера полям контактных данных в админке (https://bitbucket.org/andchir/shopkeeper-3/issues/38/).
 - Сделана поддержка значений по умолчанию для TV (https://bitbucket.org/andchir/shopkeeper-3/issues/41/).
+- Обновлены библиотеки: AngularJS v1.5.8, Angular-ui-bootstrap v1.3.3, Bootstrap v3.3.7.
 
 3.2.4
 
