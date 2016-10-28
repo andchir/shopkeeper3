@@ -348,10 +348,12 @@ var SHK = {
                                 
                             } );
                             
+                        } else {
+                            if( typeof( SHKloadCartCallback ) == 'function' ) SHKloadCartCallback();
                         }
                         
+                    } else {
                         if( typeof( SHKloadCartCallback ) == 'function' ) SHKloadCartCallback();
-                        
                     }
                     
                     if( SHK.options.counterFieldCart ) SHK.counterFieldCartInit();
