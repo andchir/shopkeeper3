@@ -1,5 +1,6 @@
 .idea
 
+/_tmp/
 /faker/
 /core/cache/
 /core/config/
