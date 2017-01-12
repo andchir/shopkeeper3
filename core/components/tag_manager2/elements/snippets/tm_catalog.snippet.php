@@ -28,9 +28,14 @@ $limit = isset($_GET['limit']) && is_numeric($_GET['limit']) ? $_GET['limit'] : 
 $debug = isset($snippetProperties['debug']) ? $snippetProperties['debug'] : false;
 $sortby = isset($_GET['sortby']) && !is_array($_GET['sortby']) ? htmlspecialchars(trim($_GET['sortby'])) : $modx->getOption('sortby',$snippetProperties,'pagetitle');
 $sortdir = isset($_GET['sortdir']) && !is_array($_GET['sortdir']) ? htmlspecialchars(trim($_GET['sortdir'])) : $modx->getOption('sortdir',$snippetProperties,'asc');
+$orderby = isset($snippetProperties['orderby']) ? json_decode($snippetProperties['orderby'], true) : array(); //берем параметр orderby из настроек, где он хранится в виле {"stock":"DESC"} 
 if(strtolower($sortdir)=='rand' || strtolower($sortby)=='rand') { $sortby = 'RAND()'; }
 
 $sorting = $tm_catalog->getSorting($sortby, $sortdir);
+
+/*объединяем параметр $orderby с сортировкой*/
+$orderby[$sorting['sortby']] =$sorting['sortdir'];
+$sorting['orderby']=json_encode($orderby);
 
 $properties = array_merge($config, $snippetProperties, $sorting);
 
