@@ -244,7 +244,7 @@ class Shopkeeper {
         
         if( !empty( $this->data ) ){
             
-            $this_page_url = $this->config['pageId'] && is_numeric($this->config['pageId']) ? $this->modx->makeUrl($this->config['pageId'], '', '', 'full') : '';
+            $this_page_url = $this->config['pageId'] && is_numeric($this->config['pageId']) ? $this->modx->makeUrl($this->config['pageId'], '', '', 'full') : '/';
             $url_qs = strpos($this_page_url, "?") !== false ? "&amp;" : "?";
             
             $cartInner = $this->getProductsList();
@@ -260,7 +260,7 @@ class Shopkeeper {
                 'plural' => self::getPlural( self::$items_total, $plural_words ),
                 'this_page_url' => $this_page_url,
                 'empty_url' => $this_page_url.$url_qs.'shk_action=empty',
-                'order_page_url' => $this->modx->makeUrl( $this->config['orderFormPageId'] ),
+                'order_page_url' => $this->modx->makeUrl( $this->config['orderFormPageId'], '', '', 'full')),
                 'currency' => $this->config['currency']
             );
             
