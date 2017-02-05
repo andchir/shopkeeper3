@@ -3,7 +3,7 @@
  * snippet shk_sitemap
  *
  * @author slaad
- * 
+ *
  */
 
 /*
@@ -28,7 +28,7 @@ Examples
 ]]
 3. Excluding resources 
   
- excluding resources with ids 17,23,31,16:
+excluding resources with ids 17,23,31,16:
 
 [[shk_sitemap?
 &packageNames=`modResource,shop`
@@ -50,7 +50,7 @@ Examples
   
 */
 
-$config =  array( 
+$config =  array(
     'packageNames' => 'modResource,shop',
     'classNames' => 'modResource,ShopContent',
     'contexts' => 'web,catalog',
@@ -73,23 +73,23 @@ $output = '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
 
 if(!function_exists('getMapQuery')){
-function getMapQuery($className,$select,$where){
-    global $modx;
+    function getMapQuery($className,$select,$where){
+        global $modx;
         $query = $modx->newQuery($className);
         $query->select($select);
         $query->where($where);
-        $query->sortby('id','ASC');        
-        if ( $query->prepare() && $query->stmt->execute() ){     
+        $query->sortby('id','ASC');
+        if ( $query->prepare() && $query->stmt->execute() ){
             $query_out= array();
             //$modx->log(modX::LOG_LEVEL_ERROR, $query->toSql());
-            $query_out=$query->stmt->fetchAll(PDO::FETCH_ASSOC);
+            $query_out = $query->stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach($query_out as $r){
                 if (!isset($resources[$r['id']])) $resources[$r['id']]=array();
                 foreach ($select as $s){
                     $resources[$r['id']][$s] = $r[$s];
                 }
-            }         
+            }
         }
         return $resources;
     }
@@ -97,18 +97,18 @@ function getMapQuery($className,$select,$where){
 if (!function_exists('datediff')) {
     /**
      * @param string $interval Can be:
-        yyyy - Number of full years
-        q - Number of full quarters
-        m - Number of full months
-        y - Difference between day numbers
-        (eg 1st Jan 2004 is "1", the first day. 2nd Feb 2003 is "33". The
-        datediff is "-32".)
-        d - Number of full days
-        w - Number of full weekdays
-        ww - Number of full weeks
-        h - Number of full hours
-        n - Number of full minutes
-        s   - Number of full seconds (default)
+    yyyy - Number of full years
+    q - Number of full quarters
+    m - Number of full months
+    y - Difference between day numbers
+    (eg 1st Jan 2004 is "1", the first day. 2nd Feb 2003 is "33". The
+    datediff is "-32".)
+    d - Number of full days
+    w - Number of full weekdays
+    ww - Number of full weeks
+    h - Number of full hours
+    n - Number of full minutes
+    s   - Number of full seconds (default)
      * @param $datefrom
      * @param $dateto
      * @param bool $using_timestamps
@@ -195,9 +195,9 @@ if (!function_exists('datediff')) {
     }
 }
 
-               
+
 foreach ( $packageNames as $key => $packageName ){
-    
+
     $parentName = $packageName == 'modResource' ? "parent" : "resource_id";
     $select = array('id','alias','editedon','createdon',$parentName);
     if( $packageName != 'modResource' ){
@@ -206,68 +206,68 @@ foreach ( $packageNames as $key => $packageName ){
     }
     else{
         $select = array_merge( $select, array('context_key','isfolder') );
-    }   
-    
-    $where=array( 'published' => 1 );    
+    }
+
+    $where=array( 'published' => 1 );
     if($config['excludeModResIds'] && $packageName == 'modResource'){
         $ids=array('id:NOT IN' => explode(',',$config['excludeModResIds'] ));
         array_push($where,$ids);
-    } 
-        if($config['excludeModContIds']&& $packageName == 'modResource'){
+    }
+    if($config['excludeModContIds']&& $packageName == 'modResource'){
         $ids=array('parent:NOT IN' => explode(',',$config['excludeModContIds'] ));
         array_push($where,$ids);
-    } 
+    }
     $resources = getMapQuery($classNames[$key],$select,$where);
     if(!empty($resources)){
-    foreach ( $resources as $resource ){
-        if(!empty($resource['alias'])){
-            if (!isset($resource['context_key'])) {
-                $resource['context_key'] = !empty( $contexts[$key] ) ? $contexts[$key] : $contexts[0];
-            }     
-            if ( $resource[$parentName] != 0 ){
-                $url = $modx->makeUrl($resource[$parentName],$resource['context_key'],'','full');
-            }
-            else{
-                $url = $config['site_url'];
-            }
-           
-            $url .=substr($url, -1)=='/' ? $resource['alias'] : '/'.$resource['alias'];
-            $url .= !empty( $resource['isfolder'] ) ? $config['containerSuffix'] : $config['urlSuffix'];
-            
-            if ($packageName == 'modResource'&& $resource['id']==$config['site_start']){
-                $url=$config['site_url'];
-            }
-                        
-            $date = !empty( $resource['editedon'] ) ? $resource['editedon'] : $resource['createdon'];
-            $date = strftime( '%Y-%m-%d', $date );
-            $date = date("Y-m-d", strtotime($date));
+        foreach ( $resources as $resource ){
+            if(!empty($resource['alias'])){
+                if (!isset($resource['context_key'])) {
+                    $resource['context_key'] = !empty( $contexts[$key] ) ? $contexts[$key] : $contexts[0];
+                }
+                if ( $resource[$parentName] != 0 ){
+                    $url = $modx->makeUrl($resource[$parentName],$resource['context_key'],'','full');
+                }
+                else{
+                    $url = $config['site_url'];
+                }
 
-            /* Get the date difference */
-            $datediff = datediff("d", $date, date("Y-m-d"));
-            if ($datediff <=1) {
-                $priority = '1.0';
-                $update = 'daily';
-            } elseif (($datediff >1) && ($datediff<=7)) {
-                $priority = '0.75';
-                $update = 'weekly';
-            } elseif (($datediff >7) && ($datediff<=30)) {
-                $priority = '0.50';
-                $update = 'weekly';
-            } else {
-                $priority = '0.25';
-                $update = 'monthly';
-            }        
+                $url .=substr($url, -1)=='/' ? $resource['alias'] : '/'.$resource['alias'];
+                $url .= !empty( $resource['isfolder'] ) ? $config['containerSuffix'] : $config['urlSuffix'];
 
-            $output .= "
+                if ($packageName == 'modResource'&& $resource['id']==$config['site_start']){
+                    $url=$config['site_url'];
+                }
+
+                $date = !empty( $resource['editedon'] ) ? $resource['editedon'] : $resource['createdon'];
+                $date = strftime( '%Y-%m-%d', $date );
+                $date = date("Y-m-d", strtotime($date));
+
+                /* Get the date difference */
+                $datediff = datediff("d", $date, date("Y-m-d"));
+                if ($datediff <=1) {
+                    $priority = '1.0';
+                    $update = 'daily';
+                } elseif (($datediff >1) && ($datediff<=7)) {
+                    $priority = '0.75';
+                    $update = 'weekly';
+                } elseif (($datediff >7) && ($datediff<=30)) {
+                    $priority = '0.50';
+                    $update = 'weekly';
+                } else {
+                    $priority = '0.25';
+                    $update = 'monthly';
+                }
+
+                $output .= "
             <url>
                 <loc>{$url}</loc>
                 <lastmod>{$date}</lastmod>
                 <priority>{$priority}</priority>
                 <changefreq>{$update}</changefreq>
             </url>";
-       }
+            }
+        }
     }
-   }
 }
 unset($key);
 
