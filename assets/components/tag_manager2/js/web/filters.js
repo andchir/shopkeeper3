@@ -87,7 +87,7 @@ var tmFilters = {
      */
     slidersInit: function(){
         
-        if ( $( tmFilters.config.filter_slider, tmFilters.config.filters_cont).size() > 0 ) {
+        if ( $( tmFilters.config.filter_slider, tmFilters.config.filters_cont).length > 0 ) {
             
             $( tmFilters.config.filter_slider, tmFilters.config.filters_cont).each(function(i){
                 
@@ -121,7 +121,7 @@ var tmFilters = {
                     start: function(event, ui) {
                         //Сохраняем значение чтобы потом иметь возможность вернуть предыдущее
                         var activeHandler = $(ui.handle);
-                        var order = activeHandler.prevAll('.ui-slider-handle').size();
+                        var order = activeHandler.prevAll('.ui-slider-handle').length;
                         var value = $(event.target).slider("values", order);
                         $(ui.handle).data('value', value);
                     },
@@ -574,7 +574,7 @@ var tmFilters = {
                 
             }else{
                 
-		if ( $('label',elem_parent).next('sup').size() == 0 ) {
+		if ( $('label',elem_parent).next('sup').length == 0 ) {
 		    $('label',elem_parent).after('<sup>'+count+'</sup>');
 		}else{
 		    $('label',elem_parent).next('sup').text(count);
@@ -609,7 +609,7 @@ var tmFilters = {
         
         var this_slider = $( event.target );
         var activeHandler = $( event.currentTarget.activeElement );
-        var order = activeHandler.prevAll('.ui-slider-handle').size();
+        var order = activeHandler.prevAll('.ui-slider-handle').length;
         var filters = tmFilters.getFilters();
         var flt_name = this_slider.attr('id').replace('range_','');
         var slider_limits = [ this_slider.slider("option","min"), this_slider.slider("option","max") ];
@@ -656,14 +656,14 @@ var tmFilters = {
                 var select_sortdir = $('select.f_sortdir');
 
                 //sortby
-                if( f_name == 'sortby' && select_sortby.size() > 0 ){
+                if( f_name == 'sortby' && select_sortby.length > 0 ){
                     select_sortby.val(f_state[i]);
                     if( !!select_sortby.data("selectBoxSelectBoxIt") ){
                         select_sortby.data("selectBoxSelectBoxIt").refresh();
                     }
                 }
                 //sortdir
-                else if( f_name == 'sortdir' && select_sortdir.size() > 0 ){
+                else if( f_name == 'sortdir' && select_sortdir.length > 0 ){
                     select_sortdir.val(f_state[i]);
                     if( !!select_sortby.data("selectBoxSelectBoxIt") ){
                         select_sortdir.data("selectBoxSelectBoxIt").refresh();
@@ -675,7 +675,7 @@ var tmFilters = {
             else if( f_name == 'limit' &&  !isNaN(f_state[i]) ){
 
                 var select_limit = $('select.f_limit');
-                if ( select_limit.size() > 0 ) {
+                if ( select_limit.length > 0 ) {
                     select_limit.val(f_state[i]);
                     if( !!select_limit.data("selectBoxSelectBoxIt") ){
                         select_limit.data("selectBoxSelectBoxIt").refresh();
@@ -699,12 +699,12 @@ var tmFilters = {
                 f_count++;
 
                 //checkboxes
-                if( $( 'input:checkbox', tmFilters.config.filters_cont ).size() > 0 ){
+                if( $( 'input:checkbox', tmFilters.config.filters_cont ).length > 0 ){
 
                     var input_name = $.inArray( f_name, tmFilters.config.multitags ) > -1 ? 'f_'+f_name+'[like][]' : 'f_'+f_name+'[]';
                     var f_input = $( 'input[name="'+input_name+'"]:checkbox', tmFilters.config.filters_cont );
 
-                    if ( f_input.size() > 0 ) {
+                    if ( f_input.length > 0 ) {
 
                         f_input.each( function(){
                             if( $.inArray($(this).val(), f_state[i] ) > -1){
@@ -928,17 +928,17 @@ var tmFilters = {
         })
         .keyup(function(event){
             if(event.which==17) tmFilters.keyCtrl = false;
-            if($('#ajax_loader').size()>0) return;
+            if($('#ajax_loader').length > 0) return;
             
             if(tmFilters.keyCtrl && event.which==37){
                 var next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).prev('a');
-                if(next_link.size()==0) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().prev().children('a');
-                var next_page = next_link.size()>0 ? parseInt(next_link.text()) : 0;
+                if( next_link.length == 0 ) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().prev().children('a');
+                var next_page = next_link.length > 0 ? parseInt(next_link.text()) : 0;
             }
             if(tmFilters.keyCtrl && event.which==39){
                 var next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).next('a');
-                if(next_link.size()==0) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().next().children('a');
-                var next_page = next_link.size()>0 ? parseInt(next_link.text()) : 0;
+                if(next_link.length == 0) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().next().children('a');
+                var next_page = next_link.length > 0 ? parseInt(next_link.text()) : 0;
             }
             
             if(!!next_page && next_page > 0){
@@ -1011,7 +1011,7 @@ var tmFilters = {
      */
     setFormValue: function( name, value ){
 
-        if ( $('input[name="'+name+'"],select[name="'+name+'"]', tmFilters.config.filters_cont).size() == 0 ) {
+        if ( $('input[name="'+name+'"],select[name="'+name+'"]', tmFilters.config.filters_cont).length == 0 ) {
             $('form', tmFilters.config.filters_cont).append( '<input type="hidden" name="'+name+'" />' );
         }
 

@@ -77,24 +77,24 @@ var tmFilters = {
             if ($(elem).is('.f_limit') && !isNaN(elem.value)) {
                 
                 var limit_field = $('[name="limit"]',tmFilters.config.filters_cont);
-                if (limit_field.size() > 0) {
+                if (limit_field.length > 0) {
                     limit_field.val(elem.value);
                     $('form',tmFilters.config.filters_cont).submit();
                 }
                 
             }else{
                 
-                if ($('select.f_sortby').size() > 0) {
+                if ($('select.f_sortby').length > 0) {
                     var sortby = $('select.f_sortby').val();
                     var sortby_field = $('[name="sortby"]',tmFilters.config.filters_cont);
-                    if (sortby_field.size() > 0) {
+                    if (sortby_field.length > 0) {
                         sortby_field.val(sortby);
                     }
                 }
-                if ($('select.f_sortdir').size() > 0) {
+                if ($('select.f_sortdir').length > 0) {
                     var sortdir = $('select.f_sortdir').val();
                     var sortdir_field = $('[name="sortdir"]',tmFilters.config.filters_cont);
-                    if (sortdir_field.size() > 0) {
+                    if (sortdir_field.length > 0) {
                         sortdir_field.val(sortdir);
                     }
                 }
@@ -115,7 +115,7 @@ var tmFilters = {
      */
     slidersInit: function(){
         
-        if ( $('.range-slider').size() > 0 ) {
+        if ( $('.range-slider').length > 0 ) {
             
             $('.range-slider').each(function(i){
                 
@@ -296,14 +296,14 @@ var tmFilters = {
 		var select_sortdir = $('select.f_sortdir');
 		
 		//sortby
-                if( f_name == 'sortby' && select_sortby.size() > 0 ){
+                if( f_name == 'sortby' && select_sortby.length > 0 ){
                     select_sortby.val(f_state[i]);
                     if( !!select_sortby.data("selectBoxSelectBoxIt") ){
                         select_sortby.data("selectBoxSelectBoxIt").refresh();
                     }
                 }
                 //sortdir
-                else if( f_name == 'sortdir' && select_sortdir.size() > 0 ){
+                else if( f_name == 'sortdir' && select_sortdir.length > 0 ){
                     select_sortdir.val(f_state[i]);
                     if( !!select_sortby.data("selectBoxSelectBoxIt") ){
                         select_sortdir.data("selectBoxSelectBoxIt").refresh();
@@ -315,7 +315,7 @@ var tmFilters = {
 	    else if( f_name == 'limit' &&  !isNaN(f_state[i]) ){
 		
 		var select_limit = $('select.f_limit');
-		if ( select_limit.size() > 0 ) {
+		if ( select_limit.length > 0 ) {
 		    select_limit.val(f_state[i]);
                     if( !!select_limit.data("selectBoxSelectBoxIt") ){
                         select_limit.data("selectBoxSelectBoxIt").refresh();
@@ -337,12 +337,12 @@ var tmFilters = {
 	    }else{
                 
 		//checkboxes
-		if( $( 'input:checkbox', tmFilters.config.filters_cont ).size() > 0 ){
+		if( $( 'input:checkbox', tmFilters.config.filters_cont ).length > 0 ){
 		    
 		    var input_name = $.inArray( f_name, tmFilters.config.multitags ) > -1 ? 'f_'+f_name+'[like][]' : 'f_'+f_name+'[]';
 		    var f_input = $( 'input[name="'+input_name+'"]:checkbox', tmFilters.config.filters_cont );
 		    
-		    if ( f_input.size() > 0 ) {
+		    if ( f_input.length > 0 ) {
 			
 			f_input.each( function(){
 			    if( $.inArray($(this).val(), f_state[i] ) > -1){

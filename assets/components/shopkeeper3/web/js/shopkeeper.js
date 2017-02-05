@@ -2,7 +2,7 @@
 /**************************
 * 
 * http://modx-shopkeeper.ru/
-* Shopkeeper 3.2.5
+* Shopkeeper 3.2.6
 * shopping cart for MODX 2.x Revolution
 * 
 **************************/
@@ -16,7 +16,7 @@ var SHK = {
     settings_qs: '',
     data: { price_total: 0, items_total: 0, items_unique_total: 0, delivery_price: 0, delivery_name: '' },
     options: {
-        site_base_url: $('base').size() > 0 ? $('base:first').attr('href') : window.location.protocol+'//'+window.location.host+'/',
+        site_base_url: $('base').length > 0 ? $('base:first').attr('href') : window.location.protocol+'//'+window.location.host+'/',
         prodCont: 'div.shk-item',
         counterField: false,
         tocartImage_width: 70,
@@ -76,8 +76,8 @@ var SHK = {
         $(document).on( 'click', '[data-shopcart] .shk-del', function(){
             
             var parent = $(this).closest('tr,li');
-            if ( parent.size() > 0 ) {
-                var index = parent.prevAll().size();
+            if ( parent.length > 0 ) {
+                var index = parent.prevAll().length;
             }else{
                 var href = $(this).attr('href');
                 var regex = /n=(\d+)/;
@@ -175,7 +175,7 @@ var SHK = {
      */
     showHelper: function( elem, name, noCounter, func ){
         
-        if( $(elem).size() == 0 ) return;
+        if( $(elem).length == 0 ) return;
         if( typeof(func) == 'undefined' || !func ) var func = function(){};
         
         $('#shk_prodHelper').remove();
@@ -285,7 +285,7 @@ var SHK = {
         if ( SHK.options.propertySetNum > 0 ) {
             var propertySetNum = SHK.options.propertySetNum;
         }else{
-            var propertySetNum = shopCart.size() > 0 ? shopCart.data('shopcart') : '';
+            var propertySetNum = shopCart.length > 0 ? shopCart.data('shopcart') : '';
         }
         
         var params = params || {};
@@ -322,7 +322,7 @@ var SHK = {
                         $('#shk_butOrder').hide();
                     }
                     
-                    if ( shopCart.size() > 0 ) {
+                    if ( shopCart.length > 0 ) {
                         
                         var cartHeight = shopCart.height();
                         if(typeof(data.html)!='undefined') shopCart.replaceWith(data.html);
@@ -336,7 +336,7 @@ var SHK = {
                     
                     if ( SHK.options.is_first ) {
                         
-                        if ( $('[data-shopcart]').size() > 1 ) {
+                        if ( $('[data-shopcart]').length > 1 ) {
                             
                             var propertySetNum = parseInt( shopCart.data('shopcart') );
                             $('[data-shopcart]').each( function(){
@@ -377,7 +377,7 @@ var SHK = {
         if(typeof(refresh)=='undefined') var refresh = true;
         
         var shopCart = $(el).parents('[data-shopcart]');
-        if ( shopCart.size() > 0 ) {
+        if ( shopCart.length > 0 ) {
             SHK.options.propertySetNum = parseInt( shopCart.data('shopcart') );
         }
         
@@ -460,13 +460,13 @@ var SHK = {
      */
     setCounterToField: function( fields, callback ){
         
-        if ( fields.size() > 0 ) {
+        if ( fields.length > 0 ) {
             
             fields.filter(':text').each( function( i ){
                 
                 var el = $(this);
                 
-                if ( el.next('button.shk_count_button').size() == 0 ) {
+                if ( el.next('button.shk_count_button').length == 0 ) {
                     
                     el.css( { display: 'inline-block' } );
                     el.before( '<button class="shk_count_button ' + SHK.options.buttons_class + '" type="button">-</button>' );
@@ -512,7 +512,7 @@ var SHK = {
         var callback = function(el){
             
             var shopCart = $(el).parents('[data-shopcart]');
-            if ( shopCart.size() > 0 ) {
+            if ( shopCart.length > 0 ) {
                 SHK.options.propertySetNum = parseInt( shopCart.data('shopcart') );
             }
             SHK.changeCartItemsCount();
@@ -563,9 +563,9 @@ var SHK = {
         var self = this;
         var el = $(':submit,input[type="image"]',thisForm).eq(0);
         var name = '';
-        if( $('input[name="shk-name"]',thisForm).size() > 0 ){
+        if( $('input[name="shk-name"]',thisForm).length > 0 ){
             name = $("input[name='shk-name']",thisForm).val();
-        }else if( $( "h3", thisForm ).size() > 0 ){
+        }else if( $( "h3", thisForm ).length > 0 ){
             name = $( "h3", thisForm ).text();
         }
         
@@ -579,7 +579,7 @@ var SHK = {
                         if(!SHKtoCartCallback(thisForm)) return false;
                     }
                     var cartPos = self.getCenterPos( $('#shk_prodHelper'), SHK.getShopCartWrapper() );
-                    var count = $('#shk_prodCount').size() > 0 && $('input:text','#shk_prodCount').val().length > 0
+                    var count = $('#shk_prodCount').length > 0 && $('input:text','#shk_prodCount').val().length > 0
                         ? parseFloat( $('input:text','#shk_prodCount').val().replace(',','.') )
                         : '';
                     $('#shk_prodHelper').animate({
@@ -602,7 +602,7 @@ var SHK = {
                 }
                 var parent = $(thisForm).parents( SHK.options.prodCont );
                 var image = $( 'img.shk-image:first', parent );
-                if( $(image).size() > 0 ){
+                if( $(image).length > 0 ){
                     var cart = SHK.getShopCartWrapper();
                     var btPos = this.getPosition(image);
                     var cartPos = this.getCenterPos( image, cart, SHK.options.tocartImage_width, SHK.options.tocartImage_height );
@@ -644,7 +644,7 @@ var SHK = {
                 var parent = $(thisForm).parents(SHK.options.prodCont);
                 var image = $('img.shk-image:first',parent);
                 
-                if( $(image).size() > 0 ){
+                if( $(image).length > 0 ){
                     
                     var yScroll = SHK.isIE ? document.documentElement.scrollTop : self.pageYOffset;
                     var cart = SHK.getShopCartWrapper();
@@ -728,7 +728,7 @@ var SHK = {
         if ( typeof elem == 'undefined' ) {
             
             $( SHK.options.prodCont ).each( function(){
-                if( $( SHK.options.paramsSelector, this ).size() > 0 ){
+                if( $( SHK.options.paramsSelector, this ).length > 0 ){
                     SHK.additOpt( $( SHK.options.paramsSelector, this).first() );
                 }
             });

@@ -51,7 +51,7 @@ if( $optJsScripts ){
     $headHtml = '
     <script type="text/javascript">
     var tmFiltersOptions = '. json_encode( $options ) .';
-    $(document).bind( "ready", function(){
+    jQuery(document).ready(function(){
         tmFilters.init( tmFiltersOptions );
     });
     </script>';

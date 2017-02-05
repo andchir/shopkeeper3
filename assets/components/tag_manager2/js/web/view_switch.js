@@ -15,7 +15,9 @@
 
 (function() {
 
-$(document).bind('ready',function(){
+'use strict';
+
+$(document).ready(function(){
     
     var tm_view = 1;
     

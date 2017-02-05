@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             javascript: {
                 files: {
                     'dist/js/scripts_all.min.js': [
-                        'js/jquery-2.2.3.js',
+                        'js/jquery-3.1.1.js',
                         'bootstrap/js/bootstrap.js',
                         'js/Magnific-Popup/jquery.magnific-popup.js',
                         'js/slick/slick.js',

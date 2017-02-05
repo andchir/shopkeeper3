@@ -34,7 +34,7 @@ if( $SHK_callCount === 1 ){
     }
 
     if( !$modx->getOption('noJQuery', $scriptProperties, false) ){
-        $modx->regClientScript(SHOPKEEPER_URL . "web/js/jquery-1.11.1.min.js");
+        $modx->regClientScript(SHOPKEEPER_URL . "web/js/jquery-3.1.1.min.js");
     }
 
     if( $optJsScripts ) {
@@ -81,7 +81,7 @@ if( $SHK_callCount === 1 ){
         $headHtml = "\t<script type=\"text/javascript\">";
         $headHtml .= "
         SHK.data = " . $shk_data_str . ";
-        jQuery(document).bind( 'ready', function(){
+        jQuery(document).ready(function(){
             SHK.init( " . $options_obj_str . " );
         });" . PHP_EOL;
 
