@@ -63,7 +63,7 @@ var tmFilters = {
 	    this.filterSelected();
         
         $( 'input,select', this.config.filters_cont )
-        .bind('change', function( event ){
+        .on('change', function( event ){
             
             tmFilters.filtersPreSubmit( event );
 
@@ -144,7 +144,7 @@ var tmFilters = {
                     }
                 });
 
-                $('input:text', slider_wrapper).bind('keyup', function(e){
+                $('input:text', slider_wrapper).on('keyup', function(e){
                     clearTimeout(tmFilters.timer2);
                     tmFilters.timer2 = setTimeout(function(){
                         var curMinValue = parseFloat(tmFilters.getNumber(minField.val())),
@@ -1034,7 +1034,6 @@ var tmFilters = {
     }
     
 };
-
 
 History.Adapter.bind(window,'statechange',function(){
     

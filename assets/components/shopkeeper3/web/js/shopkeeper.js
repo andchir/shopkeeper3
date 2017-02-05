@@ -488,7 +488,7 @@ var SHK = {
                         }
                     );
                     
-                    el.bind('keyup',function(e){
+                    el.on('keyup',function(e){
                         var value = $(e.target).val();
                         var value = value.replace( /[^\d,\.]+/g, '' );
                         if ( !value ) { value = 1; }

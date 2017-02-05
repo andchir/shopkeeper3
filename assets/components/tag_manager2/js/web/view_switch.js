@@ -37,42 +37,42 @@ $(document).ready(function(){
     .each(function(i){
         
         $(this)
-        .data({'view':i+1})
-        .bind('click',function(){
-            
-            if (!$(this).is('.active')) {
-                
-                var view = $(this).data('view');
-                
-                var date = new Date();
-                date.setTime(date.getTime() + (7*24*60*60*1000));//7 days
-                var expires = "; expires=" + date.toGMTString();
-                
-                document.cookie = "tm_view="+view+expires+"; path=/";//set cookie
-                
-                //reload view
-                if( typeof tmFilters != 'undefined' && !!tmFilters.ajaxRequest ){
-                    
-                    $('a','#viewSwitch')
-                    .removeClass('active')
-                    .eq(view-1)
-                    .addClass('active');
+            .data({'view':i+1})
+            .on('click',function(){
 
-                    if ( typeof tm_onSwitchViewAfter == 'function' ) {
-                        tm_onSwitchViewAfter();
-                    } else {
-                        tmFilters.ajaxRequest();
+                if (!$(this).is('.active')) {
+
+                    var view = $(this).data('view');
+
+                    var date = new Date();
+                    date.setTime(date.getTime() + (7*24*60*60*1000));//7 days
+                    var expires = "; expires=" + date.toGMTString();
+
+                    document.cookie = "tm_view="+view+expires+"; path=/";//set cookie
+
+                    //reload view
+                    if( typeof tmFilters != 'undefined' && !!tmFilters.ajaxRequest ){
+
+                        $('a','#viewSwitch')
+                        .removeClass('active')
+                        .eq(view-1)
+                        .addClass('active');
+
+                        if ( typeof tm_onSwitchViewAfter == 'function' ) {
+                            tm_onSwitchViewAfter();
+                        } else {
+                            tmFilters.ajaxRequest();
+                        }
+
+                    }else{
+                        window.location.reload();
                     }
-                    
-                }else{
-                    window.location.reload();
+
                 }
-                
-            }
-            
-            return false;
-            
-        });
+
+                return false;
+
+            });
         
         if (tm_view == i+1) {
             $(this).addClass('active');

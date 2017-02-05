@@ -56,7 +56,7 @@ var tmFilters = {
      */
     sortingInit: function(){
         
-        $('select.f_sortby,select.f_sortdir,*.f_limit').bind('change', tmFilters.sortingAction);
+        $('select.f_sortby,select.f_sortdir,*.f_limit').on('change', tmFilters.sortingAction);
         
     },
     
