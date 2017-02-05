@@ -2,7 +2,7 @@
 /**
  * OnePagePagination for TagManager 2.x
  * @author: Andchir <andchir@gmail.com>
- * @version: 1.0
+ * @version: 1.1
  */
 var onePagePagination = {
     options: {
@@ -17,7 +17,7 @@ var onePagePagination = {
 
         $.extend( this.options, options );
 
-        $( onePagePagination.options.buttonSelector ).bind('click', function(e){
+        $( onePagePagination.options.buttonSelector ).on('click', function(e){
             e.preventDefault();
 
             if( $(this).hasClass( onePagePagination.options.buttonDisabledClass ) ){

@@ -4,7 +4,7 @@
  * Class for getProducts.
  *
  * @package getproducts
- * @version 1.5beta1
+ * @version 1.6
  * @author Andchir <andchir@gmail.com>
  */
 
@@ -270,7 +270,7 @@ class getProducts
                     
                     if((in_array($f_act,array('<','>','<=','>=')) && is_numeric($f_val))){
                         if($convert)
-                            $sql .= "CAST(`tvc`.`value` AS DECIMAL(10,2)) {$f_act} :tvvalue{$f_index}".($key+1);
+                            $sql .= "CAST(`tvc`.`value` AS DECIMAL(16,2)) {$f_act} :tvvalue{$f_index}".($key+1);
                         else
                             $sql .= "`tvc`.`value` {$f_act} :tvvalue{$f_index}".($key+1);
                     }else{
