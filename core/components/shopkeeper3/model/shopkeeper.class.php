@@ -260,7 +260,7 @@ class Shopkeeper {
                 'plural' => self::getPlural( self::$items_total, $plural_words ),
                 'this_page_url' => $this_page_url,
                 'empty_url' => $this_page_url.$url_qs.'shk_action=empty',
-                'order_page_url' => $this->modx->makeUrl( $this->config['orderFormPageId'], '', '', 'full')),
+                'order_page_url' => $this->modx->makeUrl( $this->config['orderFormPageId'], '', '', 'full'),
                 'currency' => $this->config['currency']
             );
             
