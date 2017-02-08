@@ -132,6 +132,6 @@ var siteLib = (function( $ ){
     
 }).call( {}, jQuery );
 
-jQuery(document).bind('ready', function(){
+jQuery(document).ready(function(){
     siteLib.init();
 });

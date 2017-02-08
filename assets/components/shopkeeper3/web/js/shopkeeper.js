@@ -76,13 +76,14 @@ var SHK = {
         $(document).on( 'click', '[data-shopcart] .shk-del', function(){
             
             var parent = $(this).closest('tr,li');
+            var index;
             if ( parent.length > 0 ) {
-                var index = parent.prevAll().length;
+                index = parent.prevAll().length;
             }else{
                 var href = $(this).attr('href');
                 var regex = /n=(\d+)/;
                 var results = regex.exec( href );
-                var index = ( results && results.length > 1 ) ? parseInt( results[1] ) : 0;
+                index = ( results && results.length > 1 ) ? parseInt( results[1] ) : 0;
             }
             self.deleteItem( index, this );
             
@@ -176,7 +177,7 @@ var SHK = {
     showHelper: function( elem, name, noCounter, func ){
         
         if( $(elem).length == 0 ) return;
-        if( typeof(func) == 'undefined' || !func ) var func = function(){};
+        if( typeof(func) == 'undefined' || !func ) func = function(){};
         
         $('#shk_prodHelper').remove();
         $('body').append( SHK.options.helperHtml );
@@ -210,15 +211,13 @@ var SHK = {
      *
      */
     getShopCartWrapper: function(){
-        
+        var shopCart;
         if ( SHK.options.propertySetNum > 0 ) {
-            var shopCart = $('[data-shopcart="' + SHK.options.propertySetNum + '"]');
+            shopCart = $('[data-shopcart="' + SHK.options.propertySetNum + '"]');
         }else{
-            var shopCart = $('[data-shopcart]').eq(0);
+            shopCart = $('[data-shopcart]').eq(0);
         }
-        
         return shopCart;
-        
     },
     
     /**
@@ -228,7 +227,7 @@ var SHK = {
         
         if( !SHK.options.noLoader ){
             
-            if( typeof shopCart == 'undefined' ) { var shopCart = SHK.getShopCartWrapper(); }
+            if( typeof shopCart == 'undefined' ) { shopCart = SHK.getShopCartWrapper(); }
             var propertySetNum = shopCart.data('shopcart');
             
             if(show==true){
@@ -279,16 +278,17 @@ var SHK = {
      */
     ajaxRequest: function( params, refresh ){
         
-        if(typeof(refresh)=='undefined') var refresh = true;
+        if(typeof(refresh)=='undefined') refresh = true;
         
         var shopCart = SHK.getShopCartWrapper();
+        var propertySetNum;
         if ( SHK.options.propertySetNum > 0 ) {
-            var propertySetNum = SHK.options.propertySetNum;
+            propertySetNum = SHK.options.propertySetNum;
         }else{
-            var propertySetNum = shopCart.length > 0 ? shopCart.data('shopcart') : '';
+            propertySetNum = shopCart.length > 0 ? shopCart.data('shopcart') : '';
         }
         
-        var params = params || {};
+        params = params || {};
         params.psn = propertySetNum;
         
         SHK.showLoading( true );
@@ -374,7 +374,7 @@ var SHK = {
      */
     deleteItem: function( n, el, refresh ){
         
-        if(typeof(refresh)=='undefined') var refresh = true;
+        if(typeof(refresh)=='undefined') refresh = true;
         
         var shopCart = $(el).parents('[data-shopcart]');
         if ( shopCart.length > 0 ) {
@@ -398,7 +398,7 @@ var SHK = {
             $('#shk_prodHelper').fadeOut( 500,function(){
                 $(this).remove();
             });
-        }
+        };
         
         if( el != null ){
             this.showHelper( el, langTxt['confirm'], true, thisAction );
@@ -425,7 +425,7 @@ var SHK = {
             }
             var params = { shk_action: 'recount', index: num, count: count };
             SHK.ajaxRequest( params );
-        }
+        };
         this.showHelper(el,false,false,thisAction);
         el.blur();
         var thisCount = parseFloat($(el).val().replace(',','.'));
@@ -445,7 +445,7 @@ var SHK = {
             if( !SHKrecountItemCallback( count, el ) ) return false;
         }
         var params = { shk_action: 'recount' };
-        if( cartData ) { $.extend( params, cartData ); };
+        if( cartData ) { $.extend( params, cartData ); }
         
         SHK.options.is_first = true;
         
@@ -490,7 +490,7 @@ var SHK = {
                     
                     el.on('keyup',function(e){
                         var value = $(e.target).val();
-                        var value = value.replace( /[^\d,\.]+/g, '' );
+                        value = value.replace( /[^\d,\.]+/g, '' );
                         if ( !value ) { value = 1; }
                         $(e.target).val( value );
                         if ( typeof callback == 'function' ) { callback( $(this) ); }
@@ -517,7 +517,7 @@ var SHK = {
             }
             SHK.changeCartItemsCount();
             
-        }
+        };
         
         SHK.setCounterToField( $('[data-shopcart] input.shk-count'), callback );
         
@@ -538,7 +538,7 @@ var SHK = {
      */
     fillCart: function( thisForm, count, refresh ){
         
-        if(typeof(refresh)=='undefined') var refresh = true;
+        if(typeof(refresh)=='undefined') refresh = true;
         
         SHK.options.is_first = true;
         
@@ -769,17 +769,18 @@ var SHK = {
         if( additPriceSum && !isNaN(additPriceSum) && !SHK.options.changePrice ){
             
             additPriceSum = this.round(additPriceSum,2);
-            $( '.shk-price:first', parent ).after('<sup id="add_'+productId+'" class="price-add">+'+additPriceSum+'</sup>');
+            $( '.shk-price:first', parent ).after('<sup id="add_'+productId+'" class="price-add">' + ( additPriceSum > 0 ? '+' : '' ) + additPriceSum + '</sup>');
             
         }else if( !isNaN(additPriceSum) && SHK.options.changePrice != false ){
             
             var priceTxt = $('.shk-price:first',parent);
             var curPrice = $(priceTxt).is(":has('span')") ? $('span',priceTxt).text() : $(priceTxt).text();
             var formated = curPrice.indexOf(' ') > 0;
+            var newPrice;
             if(SHK.options.changePrice=='replace'){
-                var newPrice = additPriceSum>0 ? additPriceSum : parseFloat(curPrice.replace(/\D* /,''));
+                newPrice = additPriceSum>0 ? additPriceSum : parseFloat(curPrice.replace(/\D* /,''));
             }else{
-                var newPrice = parseFloat(curPrice.replace(/\D* /,''))+additPriceSum;
+                newPrice = parseFloat(curPrice.replace(/\D* /,''))+additPriceSum;
                 for(var i=0;i<multiplication.length;i++){
                     newPrice = newPrice*multiplication[i];
                 }
@@ -800,9 +801,9 @@ var SHK = {
     toCartFromArray: function( ids_arr, count_arr, shk_catalog, refresh ){
         
         if(typeof(ids_arr)!='object') return false;
-        if(typeof(count_arr)=='undefined') var count_arr = [];
-        if(typeof(shk_catalog)=='undefined') var shk_catalog = 1;
-        if(typeof(refresh)=='undefined') var refresh = true;
+        if(typeof(count_arr)=='undefined') count_arr = [];
+        if(typeof(shk_catalog)=='undefined') shk_catalog = 1;
+        if(typeof(refresh)=='undefined') refresh = true;
         if( typeof( SHKfillCartCallback)=='function') SHKfillCartCallback();
         
         var params = { shk_action: 'add_from_array', ids: ids_arr.join(','), count: count_arr.join(','), "shk-catalog": shk_catalog };
@@ -816,7 +817,7 @@ var SHK = {
      */
     emptyCart: function(refresh){
         
-        if(typeof(refresh)=='undefined') var refresh = true;
+        if(typeof(refresh)=='undefined') refresh = true;
         if( typeof( SHKemptyCartCallback)=='function') SHKemptyCartCallback();
         this.ajaxRequest( { shk_action: 'empty' }, refresh );
         
@@ -850,7 +851,7 @@ var SHK = {
      */
     animCartHeight: function( curH, newH, shopCart ){
         
-        if ( typeof shopCart == 'undefined' ) { var shopCart = SHK.getShopCartWrapper(); }
+        if ( typeof shopCart == 'undefined' ) { shopCart = SHK.getShopCartWrapper(); }
         
         shopCart
         .css({'height':curH+'px','overflow':'hidden'})
