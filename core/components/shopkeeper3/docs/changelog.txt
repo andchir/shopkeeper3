@@ -5,6 +5,13 @@ Changelog
 
 ================================
 
+3.2.6
+
+- Поддержка jQuery 3.x.
+- Исправлен баг с изменением SHK.data.ids (https://github.com/andchir/shopkeeper3/issues/1).
+- Для доп. параметров можно указывать минусовые значения.
+- Исправлен конфликт TV с типом ввода "param-edit" на одной странице (https://github.com/andchir/shopkeeper3/issues/9).
+
 3.2.5
 
 - Исправлена проблема с обработкой shk_config.php на некоторых хостингах.
