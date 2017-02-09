@@ -12,10 +12,10 @@
 
 if($modx->context->get('key') == 'mgr') return '';
 
-$prodPackageName = $modx->getOption('prodPackageName',$scriptProperties,'');//shop
-$prodClassName = $modx->getOption('prodClassName',$scriptProperties,'');//ShopContent
-$prodTemplateId = $modx->getOption('prodTemplateId',$scriptProperties,1);
-$debug = $modx->getOption('debug',$scriptProperties,false);
+$prodPackageName = $modx->getOption('prodPackageName', $scriptProperties, '');//shop
+$prodClassName = $modx->getOption('prodClassName', $scriptProperties, '');//ShopContent
+$prodTemplateId = $modx->getOption('prodTemplateId', $scriptProperties, 1);
+$debug = $modx->getOption('debug', $scriptProperties, 0);
 $cacheOptions = array(
     xPDO::OPT_CACHE_KEY => $modx->getOption('cache_resource_key', $scriptProperties, 'resource'),
     xPDO::OPT_CACHE_HANDLER => $modx->getOption('cache_resource_handler', $scriptProperties, 'xPDOFileCache'),
