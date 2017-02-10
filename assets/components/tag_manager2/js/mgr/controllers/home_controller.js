@@ -44,23 +44,23 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
      *
      */
     var onWindowResize = function(){
-	
-	var wrapper = angular.element('.tm-wrapper');
-	
-	wrapper.css( { height: ( angular.element(window).height() - angular.element('#modx-header').height() ) + 'px' } );
-	
-    }
+
+        var wrapper = angular.element('.tm-wrapper');
+
+        wrapper.css( { height: ( angular.element(window).height() - angular.element('#modx-header').height() ) + 'px' } );
+
+    };
     
     /**
      * layoutinit
      *
      */
     var layoutInit = function(){
-	
-	onWindowResize();
-	angular.element(window).bind( 'resize', onWindowResize );
-	
-    }
+
+        onWindowResize();
+        angular.element(window).bind( 'resize', onWindowResize );
+
+    };
     
     /**
      * popupAlert
@@ -94,36 +94,36 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             }
         });
         
-    }
+    };
     
     /**
      * confirmAction
      *
      */
     var confirmAction = function(action){
-	
-	var modalOpts = {
-	    backdrop: true,
-	    keyboard: true,
-	    backdropClick: true,
-	    templateUrl: 'modal_confirm.html',
-	    controller: function($scope, $modalInstance){
-		
-		$scope.ok = function () {
-		    action();
-		    $modalInstance.close();
-		};
-		
-		$scope.cancel = function () {
-		    $modalInstance.dismiss('cancel');
-		};
-		
-	    }
-	};
-	
-	var modalInstance = $modal.open(modalOpts);
-	
-    }
+
+        var modalOpts = {
+            backdrop: true,
+            keyboard: true,
+            backdropClick: true,
+            templateUrl: 'modal_confirm.html',
+            controller: function($scope, $modalInstance){
+
+            $scope.ok = function () {
+                action();
+                $modalInstance.close();
+            };
+
+            $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+            };
+
+            }
+        };
+
+        var modalInstance = $modal.open(modalOpts);
+
+    };
     
     /* ####################################################
     * Tree
@@ -134,7 +134,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
      */
     var loadDataTree = function(reload){
         
-        if (typeof reload == 'undefined') var reload = false;
+        if (typeof reload == 'undefined') reload = false;
         
         var params = {
             'HTTP_MODAUTH': tm_config.auth_token,
@@ -168,7 +168,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             
         });
         
-    }
+    };
     
     /**
      * treeBranchActive
@@ -203,7 +203,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         
         return true;
         
-    }
+    };
     
     /**
      * my_tree_handler
@@ -247,7 +247,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             }
         }
         
-    }
+    };
     
     
     /**
@@ -260,7 +260,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         
         expandLevel($scope.tree_data, expand);
         
-    }
+    };
     
     
     /**
@@ -271,7 +271,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         
         loadDataTree(true);
         
-    }
+    };
     
     
     /* ####################################################
@@ -315,7 +315,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             
         });
         
-    }
+    };
     
     
     /**
@@ -325,7 +325,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
      */
     var sortFiltersSubmit = function(tvname){
         
-        if (typeof tvname == 'undefined') var tvname = '';
+        if (typeof tvname == 'undefined') tvname = '';
 	
         var filters_all_tmp = [[],[]];
         var flt_names_tmp = [[],[]];
@@ -441,7 +441,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             
         }
         
-    }
+    };
     
     
     /**
@@ -472,7 +472,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             
         });
         
-    }
+    };
     
     
     /**
@@ -506,11 +506,11 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
                 
             });
             
-        }
+        };
         
         confirmAction( remove_action );
         
-    }
+    };
     
     
     /**
@@ -544,11 +544,11 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
                 
             });
             
-        }
+        };
         
         confirmAction( remove_action );
         
-    }
+    };
     
     
     /**
@@ -608,7 +608,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         
         return true;
         
-    }
+    };
     
     
     /**
@@ -616,10 +616,10 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
      *
      */
     $scope.closeMsg = function(index){
-	
-	$scope.alerts.splice(index, 1);
-	
-    }
+
+        $scope.alerts.splice(index, 1);
+
+    };
     
     
     /* ####################################################
@@ -631,7 +631,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         
         angular.element('#tag_toolbar').hide();
         
-    }
+    };
     
     /**
      * tagEdit
@@ -649,7 +649,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         $scope.tagtoolbar.oldValue = temp.value;
         var top = Math.round(parseFloat($scope.tagtoolbar.style.top.replace(/[^\d.]/,'')));
         $scope.tagtoolbar.style.top = ($scope.tagtoolbar.edit ? (top - 49) : (top + 49)) + 'px';
-    }
+    };
     
     /**
      * tagUpdate
@@ -678,50 +678,50 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
             
         });
         
-    }
+    };
     
     /**
      * showTagToolbar
      *
      */
     $scope.showTagToolbar = function( e, tvid, tag_value ){
-	
-	var outerIndex = -1, innerIndex = -1;
-	
-	//get indexes
-	for ( var i in $scope.filters ) {
-	    if ( !$scope.filters.hasOwnProperty(i) ) continue;
-	    
-	    if ( $scope.filters[i].tvid == tvid ) {
-		outerIndex = i;
-		for( var ii in $scope.filters[i].tags ){
-		    if ( !$scope.filters[i].tags.hasOwnProperty(ii) ) continue;
-		    
-		    if($scope.filters[i].tags[ii].value == tag_value){
-			innerIndex = ii;
-			break;
-		    }
-		}
-		break;
-	    }
-	    
-	}
-	
+
+        var outerIndex = -1, innerIndex = -1;
+
+        //get indexes
+        for ( var i in $scope.filters ) {
+            if ( !$scope.filters.hasOwnProperty(i) ) continue;
+
+            if ( $scope.filters[i].tvid == tvid ) {
+            outerIndex = i;
+            for( var ii in $scope.filters[i].tags ){
+                if ( !$scope.filters[i].tags.hasOwnProperty(ii) ) continue;
+
+                if($scope.filters[i].tags[ii].value == tag_value){
+                innerIndex = ii;
+                break;
+                }
+            }
+            break;
+            }
+
+        }
+
         e.preventDefault();
         e.stopPropagation();
         
         var pos = angular.element(e.target).position();//offset();
         var scrollTop = 0;//$scope.toppanel_fixed ? angular.element('.tm-container-c').scrollTop() : angular.element('.tm-container-b').scrollTop();
         pos.top -= scrollTop;
-	var container_padding_top = parseInt( angular.element( '#modx-content .tm-container-c' ).css('padding-top').replace('px','') );
-	var container_padding_left = parseInt( angular.element( '#modx-content .tm-container-c' ).css('padding-left').replace('px','') );
-	if( container_padding_top ){
-	    pos.top += container_padding_top;
-	}
-	if( container_padding_left ){
-	    pos.left += container_padding_left;
-	}
-        
+        var container_padding_top = parseInt( angular.element( '#modx-content .tm-container-c' ).css('padding-top').replace('px','') );
+        var container_padding_left = parseInt( angular.element( '#modx-content .tm-container-c' ).css('padding-left').replace('px','') );
+        if( container_padding_top ){
+            pos.top += container_padding_top;
+        }
+        if( container_padding_left ){
+            pos.left += container_padding_left;
+        }
+
         if ($scope.tagtoolbar.outerIndex == outerIndex && $scope.tagtoolbar.innerIndex == innerIndex && $scope.tagtoolbar.style.display != 'none') {
             $scope.tagtoolbar.style.display = 'none';
         }else{
@@ -740,7 +740,7 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
         
         angular.element('#tag_toolbar button').blur();
         
-    }
+    };
     
     $scope.sortableOptions = {
         //axis: 'x',
@@ -777,4 +777,3 @@ app.controller('homeController', function($scope, $rootScope, $http, $templateCa
     loadDataFilters();
     
 });
-

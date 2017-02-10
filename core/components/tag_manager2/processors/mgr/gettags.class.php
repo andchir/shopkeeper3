@@ -102,7 +102,7 @@ class getTagsProcessor extends modProcessor {
                     }
                     if(!empty($tvs_data_all_names)) $c->where(array( "modTemplateVar.name:NOT IN" => $tvs_data_all_names ));
                     $c->select("modTemplateVar.id, modTemplateVar.name AS `tvname`, modTemplateVar.caption AS `tvcaption`");
-                    $c->groupby('modTemplateVar.name');
+                    //$c->groupby('modTemplateVar.name');
                     $c->sortby('modTemplateVar.rank','asc');
                     
                     if ($c->prepare() && $c->stmt->execute()) {

@@ -76,7 +76,7 @@ app.conf = {
 	tm_config.assets_url + 'components/tag_manager2/' :
 	tm_config.manager_url + 'index.php?a=index&namespace=tag_manager2'
     
-}
+};
 
 /* *************************************** */
 /* filters */
