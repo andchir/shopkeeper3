@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="giftcards" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="giftcards">
+    <object class="giftCardsGroup" table="giftcard_group" extends="xPDOSimpleObject">
+        <field key="date" dbtype="datetime" phptype="string" null="true" />
+        <field key="nominal" dbtype="varchar" precision="100" phptype="text" null="false" default="0" />
+    </object>
+    <object class="giftCardsItem" table="giftcard_item" extends="xPDOSimpleObject">
+        <field key="parent" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+        <field key="code" dbtype="varchar" precision="100" phptype="text" null="false" default="0" />
+        <field key="date" dbtype="datetime" phptype="string" null="true" />
+        <field key="orderid" dbtype="int" precision="10" phptype="text" null="false" default="0" />
+        <field key="state" dbtype="varchar" precision="100" phptype="text" null="false" default="0" />
+    </object>
+    <object class="giftCardsAttempt" table="giftcard_attempt" extends="xPDOSimpleObject">
+        <field key="ip" dbtype="varchar" precision="100" phptype="text" null="false" default="0" />
+        <field key="date" dbtype="datetime" phptype="string" null="true" />
+    </object>
+    <object class="giftCardsDiscount" table="giftcard_discount" extends="xPDOSimpleObject">
+        <field key="id_group" dbtype="int" precision="11" phptype="int" null="true" />
+        <field key="discount" dbtype="float" phptype="float" null="true" />
+        <field key="condition" dbtype="float" phptype="float" null="true" />
+    </object>
+</model>

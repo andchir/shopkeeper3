@@ -32,7 +32,7 @@ class getParentsListProcessor extends modProcessor {
         $c = $this->modx->newQuery('tagManager');
         //$c->where(array('active'=>true));
         $c->select(array('id','category'));
-        //$c->groupby('category');
+        $c->groupby('category');
         $results = $this->modx->getCollection('tagManager', $c);
         if ($c->prepare() && $c->stmt->execute()) {
             while ($row = $c->stmt->fetch(PDO::FETCH_ASSOC)) {

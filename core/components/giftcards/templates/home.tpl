@@ -1,0 +1,1 @@
+<div id="giftcards-panel-home-div"></div>
