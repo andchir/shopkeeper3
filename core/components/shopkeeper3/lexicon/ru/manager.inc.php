@@ -58,6 +58,7 @@ $_lang['shk3.this_month'] = 'Этот месяц';
 $_lang['shk3.exchange_rates'] = 'Курсы валют';
 $_lang['shk3.orders_table_fields'] = 'Поля в таблице заказов';
 $_lang['shk3.contact_details'] = 'Контактные данные';
+$_lang['shk3.status'] = 'Статус';
 $_lang['shk3.statuses'] = 'Статусы';
 $_lang['shk3.delivery_methods'] = 'Методы доставки';
 $_lang['shk3.payment_methods'] = 'Методы оплаты';
@@ -98,3 +99,8 @@ $_lang['shk3.month11'] = 'Нояб.';
 $_lang['shk3.month12'] = 'Дек.';
 $_lang['shk3.widget_name'] = 'Статистика заказов';
 $_lang['shk3.widget_desc'] = 'Статистика заказов в интернет-магазине';
+
+$_lang['shk3.confirm'] = 'Подтверждение';
+$_lang['shk3.cancel'] = 'Отмена';
+$_lang['shk3.accept'] = 'Принять';
+$_lang['shk3.confirm_question'] = 'Вы уверены?';

@@ -58,6 +58,7 @@ $_lang['shk3.this_month'] = 'This month';
 $_lang['shk3.exchange_rates'] = 'Exchange rates';
 $_lang['shk3.orders_table_fields'] = 'Field in the orders table';
 $_lang['shk3.contact_details'] = 'Contact details';
+$_lang['shk3.status'] = 'Status';
 $_lang['shk3.statuses'] = 'Statuses';
 $_lang['shk3.delivery_methods'] = 'Delivery methods';
 $_lang['shk3.payment_methods'] = 'Payment methods';
@@ -99,3 +100,7 @@ $_lang ['shk3.month12'] = 'Dec.';
 $_lang['shk3.widget_name'] = 'Statistics orders';
 $_lang['shk3.widget_desc'] = 'Statistics orders online store';
 
+$_lang['shk3.confirm'] = 'Confirm';
+$_lang['shk3.cancel'] = 'Cancel';
+$_lang['shk3.accept'] = 'Accept';
+$_lang['shk3.confirm_question'] = 'Are you sure?';
