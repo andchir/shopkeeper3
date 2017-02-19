@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+        [[!ResetPassword@reset_password]]
+
+        [[+loginfp.errors]]
+
+        <div class="loginFP">
+            <form class="loginFPForm" action="[[~[[*id]]]]" method="post">
+
+                <input class="returnUrl" type="hidden" name="returnUrl" value="[[+loginfp.request_uri]]">
+                <input class="loginFPService" type="hidden" name="login_fp_service" value="forgotpassword">
+
+                <p>
+                    Введите свой адрес электронной почты.
+                </p>
+
+                <div class="form-group">
+                    <input id="formFieldEmail" class="form-control" type="text" name="username" value="[[+loginfp.post.username]]">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary" type="submit" name="login_fp" value="[[%login.reset_password]]">
+                        [[%login.reset_password]]
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

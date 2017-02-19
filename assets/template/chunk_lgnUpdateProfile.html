@@ -1,0 +1,124 @@
+<div style="float: right; position: relative; top: -45px; right: 0;">
+    <a class="btn btn-info" href="[[~39]]?service=logout">
+        Выйти
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+        [[+login.update_success:is=`1`:then=`
+        <div class="alert alert-success">
+            [[%login.profile_updated? &namespace=`login` &topic=`updateprofile`]]
+        </div>
+        `]]
+
+        <form class="form" action="[[~[[*id]]]]" method="post">
+            <input type="hidden" name="nospam" value="" />
+
+            <div class="row form-group">
+                <label for="formFieldFullName" class="col-sm-5 control-label">
+                    [[!%login.fullname? &namespace=`login` &topic=`updateprofile`]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldFullName" class="form-control" type="text" name="fullname" value="[[+fullname]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.fullname]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldEmail" class="col-sm-5 control-label">
+                    [[!%login.email]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldEmail" class="form-control" type="text" name="email" value="[[+email]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.email]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldPhone" class="col-sm-5 control-label">
+                    [[!%login.mobilephone]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldPhone" class="form-control" type="text" name="mobilephone" value="[[+mobilephone]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.mobilephone]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldAddress" class="col-sm-5 control-label">
+                    [[!%login.address]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldAddress" class="form-control" type="text" name="address" value="[[+address]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.address]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldCity" class="col-sm-5 control-label">
+                    [[!%login.city]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldCity" class="form-control" type="text" name="city" value="[[+city]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.city]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldState" class="col-sm-5 control-label">
+                    [[!%login.state]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldState" class="form-control" type="text" name="state" value="[[+state]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.state]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldZip" class="col-sm-5 control-label">
+                    [[!%login.zip]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldZip" class="form-control" type="text" name="zip" value="[[+zip]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.zip]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldState" class="col-sm-5 control-label">
+
+                </label>
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-xs-12">
+
+                </div>
+            </div>
+
+            <br class="clear">
+
+            <div class="form-buttons">
+                <button class="btn btn-lg btn-primary" type="submit" name="login-updprof-btn" value="[[!%login.update_profile]]">
+                    [[!%login.update_profile]]
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

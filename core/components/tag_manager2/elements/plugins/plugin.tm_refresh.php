@@ -70,8 +70,6 @@ if( $eventName == 'OnDocFormSave' ){
     //run in background
     @exec( "php -f '" . $modx->config['assets_path'] . "components/tag_manager2/cron_updatefilters.php' > /dev/null 2>&1 &" );
     
-    return 'tmRefresh: OK';
-    
 }
 
 //$modx->event->output('');
