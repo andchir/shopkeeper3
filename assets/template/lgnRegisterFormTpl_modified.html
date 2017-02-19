@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        [[+error.message]]
+        <form class="form" action="[[~[[*id]]]]" method="post" class="form-horizontal">
+            <input type="hidden" name="nospam:blank" value="" />
+
+            <!--div class="row form-group">
+                <label for="formFieldUsername" class="col-sm-5 control-label">
+                    [[%register.username? &namespace=`login` &topic=`register`]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldUsername" class="form-control" type="text" name="username:required:minLength=6" value="[[+username]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.username]]
+                </div>
+            </div-->
+
+            <div class="row form-group">
+                <label for="formFieldFullname" class="col-sm-5 control-label">
+                    [[%register.fullname]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldFullname" class="form-control" type="text" name="fullname:required" value="[[+fullname]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.fullname]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldEmail" class="col-sm-5 control-label">
+                    [[%register.email]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldEmail" class="form-control" type="text" name="email:email" value="[[+email]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.email]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldPassword" class="col-sm-5 control-label">
+                    [[%register.password]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldPassword" class="form-control" type="password" name="password:required:minLength=6" value="[[+password]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.password]]
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label for="formFieldPasswordRe" class="col-sm-5 control-label">
+                    [[%register.password_confirm]]
+                </label>
+                <div class="col-sm-7">
+                    <input id="formFieldPasswordRe" class="form-control" type="password" name="password_confirm:password_confirm=`password`" value="[[+password_confirm]]">
+                </div>
+                <div class="col-xs-12">
+                    [[+error.password_confirm]]
+                </div>
+            </div>
+
+            [[+register.recaptcha_html]]
+            [[+error.recaptcha]]
+
+            <div class="form-buttons">
+                <button class="btn btn-primary" type="submit" name="login-register-btn" value="Register">
+                    Register
+                </button>
+            </div>
+
+            <hr>
+            <a href="[[~39]]">
+                Войти
+            </a>
+            &nbsp;&bull;&nbsp;
+            <a href="[[~42]]">
+                Забыли пароль?
+            </a>
+
+        </form>
+    </div>
+</div>

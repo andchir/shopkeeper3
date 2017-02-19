@@ -49,6 +49,7 @@ form > .form-group.pull-right { margin-left: 15px; }
 .navbar-default .btn-link { color: #fff; }
 .nav .icon { margin-right: 2px; }
 .nav .icon:before { font-size: 120%; }
+.navbar-header .navbar-toggle { float: left; margin: 8px 8px 0 8px; }
 
 .navbar-default .navbar-toggle { background-color: #317589; border-color: #317589; }
 .navbar-default .navbar-toggle:hover,

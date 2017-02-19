@@ -9,7 +9,19 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="header-right">
-                        
+
+                        <div class="pull-right">
+                            [[!+modx.user.id:isloggedin:then=`
+                            <a href="[[~41]]">
+                                <i class="icon" data-icon="&#xe0b4" data-toggle="tooltip" title="Профиль"></i>
+                            </a>
+                            `:else=`
+                            <a href="[[~39]]">
+                                <i class="icon" data-icon="&#xe098" data-toggle="tooltip" title="Войти"></i>
+                            </a>
+                            `]]
+                        </div>
+
                         [[!compare@compare_options]]
                         
                         [[!Shopkeeper3@cart_catalog]]
