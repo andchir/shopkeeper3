@@ -35,15 +35,6 @@ var siteLib = (function( $ ){
                 }
             });
 
-        jQuery('a.magnificPopup')
-            .magnificPopup({
-                type:'image',
-                cursor: 'mfp-zoom-out-cur',
-                gallery: {
-                    enabled: true
-                }
-            });
-
         jQuery('.slick-slider-one')
             .slick({
                 dots: true,
@@ -80,6 +71,14 @@ var siteLib = (function( $ ){
                     }
                 ]
             });
+
+        var viewer;
+        if( $('ul.images-zoom').length > 0 ){
+            viewer = new Viewer($('ul.images-zoom').get(0), {
+                url: 'data-original',
+                navbar: false
+            });
+        }
 
     };
     

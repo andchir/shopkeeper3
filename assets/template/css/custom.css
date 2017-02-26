@@ -17,6 +17,11 @@ h1:first-child { margin-top: 0; }
 .panel-heading h4 { margin: 0; padding: 5px 0; }
 .padding-lr-30 { padding: 0 30px; }
 .nowrap { white-space: nowrap; }
+ul.images-zoom { list-style-type: none; }
+ul.images-zoom li { margin: 0; padding: 0; }
+.images-zoom img,
+.image-zoom img,
+img.image-zoom { cursor: zoom-in; }
 
 h1:first-child,
 h2:first-child,
