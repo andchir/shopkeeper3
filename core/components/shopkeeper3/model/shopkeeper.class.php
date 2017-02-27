@@ -7,7 +7,7 @@
  *
  * @author Andchir <andchir@gmail.com>
  * @package shopkeeper
- * @version 3.2.4
+ * @version 3.2.6
  */
 
 //ini_set( 'display_errors', 1 );
@@ -22,7 +22,7 @@ class Shopkeeper {
     public static $price_total = 0;
     public static $items_total = 0;
     public static $items_unique_total = 0;
-    protected $version = '3.2.4';
+    protected $version = '3.2.6';
     
     public function __construct( modX &$modx, $config = array(), $applyRequest = false ){
         
@@ -1292,9 +1292,10 @@ class Shopkeeper {
             }
             
         }
+
+        $output = $this->stripModxTags( $output );
         
         return $output;
-        
     }
     
     
