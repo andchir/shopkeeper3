@@ -41,7 +41,7 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('shopkeeper3','3.2.6','rc1');
+$builder->createPackage('shopkeeper3','3.2.6','pl1');
 $builder->registerNamespace('shopkeeper3',false,true,'{core_path}components/shopkeeper3/');
 
 /* load action/menu */
