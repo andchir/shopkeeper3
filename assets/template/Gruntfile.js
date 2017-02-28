@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                     'dist/js/scripts_all.min.js': [
                         'js/jquery-3.1.1.js',
                         'bootstrap/js/bootstrap.js',
-                        'js/Magnific-Popup/jquery.magnific-popup.js',
+                        'js/viewerjs/dist/viewer.js',
                         'js/slick/slick.js',
 
                         //Shopkeeper
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                         'bootflat/bootflat/css/bootflat.css',
                         'js/slick/css/slick.css',
                         'js/slick/css/slick-theme.css',
-                        'js/Magnific-Popup/magnific-popup.css',
+                        'js/viewerjs/dist/viewer.css',
                         'angularicons/src/css/angularicons.css',
                         '../components/tag_manager2/css/web/tm-style.css',
                         'css/custom.css'

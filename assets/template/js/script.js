@@ -73,9 +73,13 @@ var siteLib = (function( $ ){
             });
 
         var viewer;
-        if( $('ul.images-zoom').length > 0 ){
-            viewer = new Viewer($('ul.images-zoom').get(0), {
+        if( $('.images-zoom').length > 0 ){
+            var $viewerContainer = $('<div/>', {
+                id: 'viewerContainer'
+            }).appendTo(document.body);
+            viewer = new Viewer(document.querySelector('.images-zoom'), {
                 url: 'data-original',
+                targetElement: $viewerContainer.get(0),
                 navbar: false
             });
         }

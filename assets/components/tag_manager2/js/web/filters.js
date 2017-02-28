@@ -235,7 +235,7 @@ var tmFilters = {
      */
     pushState: function(){
         
-        $('input[name="page_id"]',tmFilters.config.filters_cont).removeAttr('disabled');
+        $('input[name="page_id"]',tmFilters.config.filters_cont).prop('disabled', false);
         
         var form_data = $('form',tmFilters.config.filters_cont).serializeArray();
 	    var form_data_push = [];
@@ -594,7 +594,7 @@ var tmFilters = {
         }else{
             
             elem_parent.removeClass('unactive');
-            $('input:checkbox,select',elem_parent).removeAttr('disabled');
+            $('input:checkbox,select',elem_parent).prop('disabled', false);
             
         }
         
@@ -639,7 +639,7 @@ var tmFilters = {
         var f_count = 0, fsort_count = 0;
 
         //Сброс чекбоксов
-        $( 'input:checkbox', tmFilters.config.filters_cont ).removeAttr('checked');
+        $( 'input:checkbox', tmFilters.config.filters_cont ).prop('checked', false);
 
         for(var i in f_state){
             if(f_state[i].length == 0) continue;
@@ -802,7 +802,7 @@ var tmFilters = {
     ajaxRequest: function( state_data ){
         
         if ( typeof state_data == 'undefined' ) {
-            $('input[name="page_id"]',tmFilters.config.filters_cont).removeAttr('disabled');
+            $('input[name="page_id"]',tmFilters.config.filters_cont).prop('disabled', false);
             state_data = $('form',tmFilters.config.filters_cont).serializeArray();
         }
         
@@ -860,11 +860,11 @@ var tmFilters = {
     resetFilters: function(){
         
         $('input:checkbox', tmFilters.config.filters_cont)
-        .removeAttr('checked');
+            .prop('checked', false);
 
         $('select', tmFilters.config.filters_cont).each(function(){
             if ( $(this).attr('name').indexOf('f_') == 0 ) {
-            $(this).val('');
+                $(this).val('');
             }
         });
 
