@@ -37,13 +37,27 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     
                     [[menuCaching@top_menu]]
-                    
-                    <form action="[[~11]]" method="get" class="navbar-form-right navbar-right" role="search">
-                        <div class="form-search search-only">
-                            <i class="search-icon glyphicon glyphicon-search"></i>
-                            <input type="search" name="f_pagetitle[like]" class="form-control search-query" value="[[!getRequest?paramName=`f_pagetitle.like`]]">
+
+                    <div class="navbar-form-right navbar-right">
+                        <div class="row">
+                            <div class="col-md-8 col-xs-8">
+                                <form action="[[~11]]" method="get"role="search">
+                                    <div class="form-search search-only">
+                                        <i class="search-icon glyphicon glyphicon-search"></i>
+                                        <input type="search" name="f_pagetitle[like]" class="form-control search-query" value="[[!getRequest?paramName=`f_pagetitle.like`]]">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4 col-xs-4">
+                                <select class="form-control" id="site_currency" name="curency">
+                                    <option value="1">руб.</option>
+                                    <option value="2">грн.</option>
+                                    <option value="3">USD</option>
+                                    <option value="4">euro</option>
+                                </select>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </nav>

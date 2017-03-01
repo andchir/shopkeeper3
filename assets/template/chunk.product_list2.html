@@ -4,7 +4,8 @@
             <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">
                 <div class="pull-right">
                     <div class="product-price no-margin-top">
-                        <span class="shk-price">[[+tv.price:num_format]]</span> руб.
+                        <span class="shk-price">[[+tv.price:shk_curr_rate:num_format]]</span>
+                        [[+shk_currency]]
                     </div>
                     <div class="btn-group" role="group">
                         <a href="[[~[[+id]]?&scheme=`abs`]]" class="btn btn-success" role="button">Подробнее</a>

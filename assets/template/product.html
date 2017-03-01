@@ -40,7 +40,8 @@
                             <input type="hidden" name="shk-count" value="1" />
                             
                             <div class="product-price">
-                                Цена: <span class="shk-price">[[*price:num_format]]</span> руб.
+                                Цена: <span class="shk-price">[[!*price:shk_curr_rate:num_format]]</span>
+                                [[!+shk_currency]]
                             </div>
                             
                             <div class="padding-lr-30">

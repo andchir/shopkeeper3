@@ -31,10 +31,19 @@ if( $optStyles ){
 }
 
 if( $optJsScripts ){
-    
+
     $filtersType = $modx->getOption('filtersType', $scriptProperties, 'filters');
-    $shk_currency_default = $modx->getOption('shk.currency_default',$scriptProperties,'');
-    $shk_currency_rate = $modx->getOption('shk.currency_rate',$scriptProperties,'');
+    $shk_currency_default = $modx->getOption('shk3.currency_default', $scriptProperties, '');
+    $shk_currency_rate = $modx->getOption('shk3.currency_rate', $scriptProperties, '');
+
+    //Get currency rate
+    if( $shk_currency_default && empty( $shk_currency_rate ) ){
+        require_once $modx->getOption('core_path') . "components/shopkeeper3/model/shopkeeper.class.php";
+        $shkConfig = Shopkeeper::getConfig('currency_rate');
+        $shk_currency_rate = isset( $shkConfig['currency_rate'] )
+            ? $shkConfig['currency_rate']
+            : array();
+    }
 
     if( $optJsScripts != 2 ){
         $modx->regClientScript($modx->config['assets_url']."components/tag_manager2/js/web/jquery-ui-1.10.3.custom.min.js");
