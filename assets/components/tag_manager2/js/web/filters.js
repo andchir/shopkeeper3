@@ -361,24 +361,33 @@ var tmFilters = {
         if ( typeof type == 'undefined' ) type = 'min';
         if ( flt_name == this.config['price_field'] && typeof tmFiltersOptions != 'undefined' && tmFiltersOptions.currency_rate ) {
 
-            var curr_default = !!tmFiltersOptions.currency_default ? parseInt( tmFiltersOptions.currency_default ) : 1;
-            var curr_rates_arr = tmFiltersOptions.currency_rate.split('||');
+            var curr_default = tmFiltersOptions.currency_default ? parseInt( tmFiltersOptions.currency_default ) : 1;
+            var curr_rates_arr = tmFiltersOptions.currency_rate || [];
 
-            var shk_cindex = document.cookie.indexOf("shk_currency=") > -1 ? document.cookie.indexOf("shk_currency=") + new String("shk_currency=").length : -1;
-                var shk_currency = shk_cindex > -1 ? parseInt( document.cookie.substring(shk_cindex,shk_cindex+1) ) : 1;
+            var shk_cindex = document.cookie.indexOf("shk_currency=") > -1
+                ? document.cookie.indexOf("shk_currency=") + new String("shk_currency=").length
+                : -1;
+            var shk_currency = shk_cindex > -1
+                ? parseInt( document.cookie.substring(shk_cindex, shk_cindex + 1) )
+                : 1;
 
-            if ( shk_currency != curr_default ) {
+            if ( shk_currency !== curr_default ) {
 
-            var temp_arr = curr_rates_arr[shk_currency-1].split('==');
-            var rate = !!temp_arr[1] && !isNaN(temp_arr[1]) ? parseFloat(temp_arr[1].replace(',','.')) : 1;
-            var temp_arr = curr_rates_arr[curr_default-1].split('==');
-            var temp_rate = !!temp_arr[1] && !isNaN(temp_arr[1]) ? parseFloat(temp_arr[1].replace(',','.')) : 1;//курс базовой валюты
-            var rate_ratio = temp_rate / rate;
-            value = value * rate_ratio;
-            if( rate_ratio < 1 ){
-                value = type == 'min' ? value - 1 : value + 1;
-            }
-            value = parseFloat( value.toFixed(2) );
+                var temp_arr = curr_rates_arr[shk_currency-1];
+                var rate = temp_arr.value && !isNaN(temp_arr.value)
+                    ? parseFloat(temp_arr.value.replace(',','.'))
+                    : 1;
+                temp_arr = curr_rates_arr[curr_default-1];
+                var temp_rate = temp_arr.value && !isNaN(temp_arr.value)
+                    ? parseFloat(temp_arr.value.replace(',','.'))
+                    : 1;//курс базовой валюты
+                var rate_ratio = temp_rate / rate;
+                value = value * rate_ratio;
+
+                if( rate_ratio < 1 ){
+                    value = type == 'min' ? value - 1 : value + 1;
+                }
+                value = parseFloat( value.toFixed(2) );
 
             }
 

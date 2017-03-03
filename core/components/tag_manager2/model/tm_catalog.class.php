@@ -192,7 +192,6 @@ class tmCatalog extends tagManagerBase {
         }
         
         return $value;
-        
     }
     
     

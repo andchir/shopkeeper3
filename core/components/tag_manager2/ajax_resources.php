@@ -21,7 +21,7 @@ $resource_id = !empty($_GET['page_id']) && is_numeric($_GET['page_id']) ? $_GET[
 $output = array('prod_list'=>'','pages'=>'','total'=>0,'pageCount'=>1,'onPageLimit'=>1);
 
 require_once '../../../config.core.php';
-require_once MODX_CORE_PATH.'model/modx/modx.class.php';
+require_once MODX_CORE_PATH . 'model/modx/modx.class.php';
 $modx = new modX();
 
 //get resourse context_key
@@ -57,7 +57,7 @@ $modx->resource->_contextKey = $modx->context->get('key');
 
 $modx->invokeEvent('OnLoadWebDocument');
 
-require_once MODX_CORE_PATH."components/tag_manager2/model/tm_base.class.php";
+require_once MODX_CORE_PATH . "components/tag_manager2/model/tm_base.class.php";
 $tag_manager = new tagManagerBase($modx);
 
 $properties = $tag_manager->getSnippetProperties();

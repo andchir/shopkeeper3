@@ -23,7 +23,9 @@ $scriptProperties = array_merge(
     $scriptProperties
 );
 
-$shk_currency = !empty($_COOKIE['shk_currency']) && is_numeric($_COOKIE['shk_currency']) ? abs(intval($_COOKIE['shk_currency'])) : $scriptProperties['currency_default'];
+$shk_currency = !empty($_COOKIE['shk_currency']) && is_numeric($_COOKIE['shk_currency'])
+    ? abs(intval($_COOKIE['shk_currency']))
+    : $scriptProperties['currency_default'];
 //Если нужен всегда преевод в одну валюту
 if( !empty( $scriptProperties['currency_selected'] ) && $shk_currency != $scriptProperties['currency_selected'] ){
     setcookie( 'shk_currency', intval($scriptProperties['currency_selected']), time()+3600*24, "/" );
