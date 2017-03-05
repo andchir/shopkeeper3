@@ -2,7 +2,7 @@
 /**
  * tmFilters
  *
- * tagManager 2.3
+ * tagManager 2.3.1pl2
  * Andchir
  * http://modx-shopkeeper.ru/
  * 
@@ -246,10 +246,10 @@ var tmFilters = {
             for( var i in form_data ){
                 if ( !form_data.hasOwnProperty(i) ) continue;
                 if ( $.inArray( form_data[i].name, ['page'] ) > -1 ) {
-		    if( form_data[i].name != 'page' || form_data[i].value != 1 ) {
-			search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
-		    }
-                    form_data_push.push( form_data[i] );
+                    if( form_data[i].name != 'page' || form_data[i].value != 1 ) {
+                        search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
+                        form_data_push.push( form_data[i] );
+                    }
                 }
                 if ( $.inArray( form_data[i].name, ['page_id'] ) > -1 ) {
                     form_data_push.push( form_data[i] );
@@ -259,12 +259,12 @@ var tmFilters = {
         }else if ( tmFilters.sorted && !tmFilters.filtered ) {
             
             for( var i in form_data ){
-		if ( !form_data.hasOwnProperty(i) ) continue;
+		        if ( !form_data.hasOwnProperty(i) ) continue;
                 if ( $.inArray( form_data[i].name, ['page','sortby','sortdir','limit'] ) > -1 ) {
-		    if( form_data[i].name != 'page' || form_data[i].value != 1 ) {
-			search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
-		    }
-                    form_data_push.push( form_data[i] );
+                    if( form_data[i].name != 'page' || form_data[i].value != 1 ) {
+                        search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
+                        form_data_push.push( form_data[i] );
+                    }
                 }
                 if ( $.inArray( form_data[i].name, ['page_id'] ) > -1 ) {
                     form_data_push.push( form_data[i] );
@@ -276,8 +276,10 @@ var tmFilters = {
             for( var i in form_data ){
 		        if ( !form_data.hasOwnProperty(i) ) continue;
                 if ( $.inArray( form_data[i].name, ['page_id'] ) == -1 ) {
-                    search_uri += '&'+form_data[i].name+'='+form_data[i].value;
-		            form_data_push.push( form_data[i] );
+                    if( form_data[i].name != 'page' || form_data[i].value != 1 ){
+                        search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
+                        form_data_push.push( form_data[i] );
+                    }
                 }
                 if ( $.inArray( form_data[i].name, ['page_id'] ) > -1 ) {
                     form_data_push.push( form_data[i] );
@@ -286,7 +288,7 @@ var tmFilters = {
             
         }
         
-        if(search_uri) search_uri = '?'+search_uri.substring(1);
+        if(search_uri) search_uri = '?' + search_uri.substring(1);
         
         tmFilters.filtersActive = true;
         var loc_path = window.location.pathname;
