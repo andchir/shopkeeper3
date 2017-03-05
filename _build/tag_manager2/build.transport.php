@@ -43,7 +43,7 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('tagmanager2','2.3','pl');
+$builder->createPackage('tagmanager2','2.3.1','pl');
 $builder->registerNamespace('tag_manager2',false,true,'{core_path}components/tag_manager2/');
 
 /* load action/menu */
