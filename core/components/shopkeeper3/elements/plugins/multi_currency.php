@@ -109,7 +109,7 @@ switch($modx->event->name){
                 var shk_currency = shk_cindex > -1 ? document.cookie.substring(shk_cindex,shk_cindex+1) : 1;
                 jQuery("#site_currency")
                 .val(shk_currency)
-                .bind("change",function(){
+                .on("change",function(){
                     var loc_href = window.location.pathname+document.location.search;
                     window.location.href = loc_href+(loc_href.indexOf("?") > -1 ? "&" : "?") + "scurr=" + this.value;
                 });
