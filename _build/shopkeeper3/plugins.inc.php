@@ -18,21 +18,21 @@ $events = array();
 $events['OnHandleRequest'] = $modx->newObject('modPluginEvent');
 $events['OnHandleRequest']->fromArray(array(
     'event' => 'OnHandleRequest',
-    'priority' => 0,
+    'priority' => 1,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnPageNotFound'] = $modx->newObject('modPluginEvent');
 $events['OnPageNotFound']->fromArray(array(
     'event' => 'OnPageNotFound',
-    'priority' => 0,
+    'priority' => 2,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnWebPageComplete'] = $modx->newObject('modPluginEvent');
 $events['OnWebPageComplete']->fromArray(array(
     'event' => 'OnWebPageComplete',
-    'priority' => 0,
+    'priority' => 3,
     'propertyset' => 0,
 ),'',true,true);
 
@@ -107,7 +107,7 @@ $events = array();
 $events['OnSHKChangeStatus'] = $modx->newObject('modPluginEvent');
 $events['OnSHKChangeStatus']->fromArray(array(
     'event' => 'OnSHKChangeStatus',
-    'priority' => 0,
+    'priority' => 1,
     'propertyset' => 0,
 ),'',true,true);
 $plugins[1]->addMany($events);
@@ -191,28 +191,28 @@ $events = array();
 $events['OnTVInputRenderList'] = $modx->newObject('modPluginEvent');
 $events['OnTVInputRenderList']->fromArray(array(
     'event' => 'OnTVInputRenderList',
-    'priority' => 0,
+    'priority' => 1,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnTVInputPropertiesList'] = $modx->newObject('modPluginEvent');
 $events['OnTVInputPropertiesList']->fromArray(array(
     'event' => 'OnTVInputPropertiesList',
-    'priority' => 0,
+    'priority' => 2,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnTVOutputRenderList'] = $modx->newObject('modPluginEvent');
 $events['OnTVOutputRenderList']->fromArray(array(
     'event' => 'OnTVOutputRenderList',
-    'priority' => 0,
+    'priority' => 3,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnTVOutputRenderPropertiesList'] = $modx->newObject('modPluginEvent');
 $events['OnTVOutputRenderPropertiesList']->fromArray(array(
     'event' => 'OnTVOutputRenderPropertiesList',
-    'priority' => 0,
+    'priority' => 4,
     'propertyset' => 0,
 ),'',true,true);
 
@@ -237,28 +237,28 @@ $events = array();
 $events['OnLoadWebDocument'] = $modx->newObject('modPluginEvent');
 $events['OnLoadWebDocument']->fromArray(array(
     'event' => 'OnLoadWebDocument',
-    'priority' => 0,
+    'priority' => 8,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnSHKgetProductPrice'] = $modx->newObject('modPluginEvent');
 $events['OnSHKgetProductPrice']->fromArray(array(
     'event' => 'OnSHKgetProductPrice',
-    'priority' => 0,
+    'priority' => 9,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnSHKgetProductAdditParamPrice'] = $modx->newObject('modPluginEvent');
 $events['OnSHKgetProductAdditParamPrice']->fromArray(array(
     'event' => 'OnSHKgetProductAdditParamPrice',
-    'priority' => 0,
+    'priority' => 10,
     'propertyset' => 0,
 ),'',true,true);
 
 $events['OnSHKgetDeliveryPrice'] = $modx->newObject('modPluginEvent');
 $events['OnSHKgetDeliveryPrice']->fromArray(array(
     'event' => 'OnSHKgetDeliveryPrice',
-    'priority' => 0,
+    'priority' => 11,
     'propertyset' => 0,
 ),'',true,true);
 
