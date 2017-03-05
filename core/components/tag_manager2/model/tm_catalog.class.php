@@ -177,13 +177,13 @@ class tmCatalog extends tagManagerBase {
      *
      */
     public function priceFilter($name, $value, $inverse=false){
-        
+
         //Если это цена, пропускаем через плагин
-        if($this->config['priceName'] && $this->config['priceName']==$name){
+        if($this->config['priceName'] && $this->config['priceName'] == $name){
             //OnSHKgetProductPrice
-            $evtOut = $this->modx->invokeEvent('OnSHKgetProductPrice',array('purchaseArray' => array(), 'price' => $value, 'inverse' => $inverse));    
-            if(is_array($evtOut) && count($evtOut)>0){
-                $new_price = (float) str_replace(array(' ',','),array('','.'),$evtOut[0]);
+            $evtOut = $this->modx->invokeEvent('OnSHKgetProductPrice',array('purchaseArray' => array(), 'price' => $value, 'inverse' => $inverse));
+            if( !empty($evtOut) && is_array($evtOut) ){
+                $new_price = (float) str_replace(array(' ',','), array('','.'), end($evtOut));
                 if($new_price != $value){
                     $value = $new_price;
                 }

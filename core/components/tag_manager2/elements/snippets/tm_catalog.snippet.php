@@ -42,7 +42,7 @@ $properties = array_merge($config, $snippetProperties, $sorting);
 if(count($flt_arr) > 0){
     if(isset($properties['className']) && $properties['className'] != 'modResource'){
         $where_arr = !empty($properties['where']) ? $modx->fromJSON($properties['where']) : array();
-        $where_arr = array_merge($where_arr,$flt_arr);
+        $where_arr = array_merge($where_arr, $flt_arr);
         $properties['where'] = json_encode($where_arr);
         $properties['tvFilters'] = '';
     }else{
