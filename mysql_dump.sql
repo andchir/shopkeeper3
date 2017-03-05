@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Мар 05 2017 г., 16:39
+-- Время создания: Мар 05 2017 г., 16:42
 -- Версия сервера: 5.7.17-0ubuntu0.16.04.1
 -- Версия PHP: 7.0.15-0ubuntu0.16.04.1
 
@@ -2452,7 +2452,9 @@ INSERT INTO `modx_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, 
 (1163, 1, '2017-03-05 14:57:58', 'plugin_update', 'modPlugin', '13'),
 (1164, 1, '2017-03-05 14:57:58', 'propertyset_update_from_element', 'modPlugin', '13'),
 (1165, 1, '2017-03-05 15:55:09', 'login', 'modContext', 'mgr'),
-(1166, 1, '2017-03-05 16:35:19', 'setting_update', 'modSystemSetting', 'debug');
+(1166, 1, '2017-03-05 16:35:19', 'setting_update', 'modSystemSetting', 'debug'),
+(1167, 1, '2017-03-05 16:41:47', 'tv_update', 'modTemplateVar', '6'),
+(1168, 1, '2017-03-05 16:41:47', 'propertyset_update_from_element', 'modTemplateVar', '6');
 
 -- --------------------------------------------------------
 
@@ -3642,7 +3644,7 @@ INSERT INTO `modx_site_tmplvars` (`id`, `source`, `property_preprocess`, `type`,
 (3, 2, 0, 'migx', 'gallery', 'Фотогалерея', '', 0, 0, 0, '', 0, 'default', '', 'a:0:{}', 'a:7:{s:7:"configs";s:7:"gallery";s:8:"formtabs";s:0:"";s:7:"columns";s:0:"";s:7:"btntext";s:0:"";s:10:"previewurl";s:0:"";s:10:"jsonvarkey";s:0:"";s:19:"autoResourceFolders";s:5:"false";}', 'a:0:{}', 0, ''),
 (4, 0, 0, 'checkbox', 'tags', 'Метки', '', 0, 0, 0, 'новинка==#новинка#||лидер продаж==#лидер продаж#||акция==#акция#', 0, 'default', '', 'a:0:{}', 'a:2:{s:10:"allowBlank";s:4:"true";s:7:"columns";s:1:"1";}', 'a:0:{}', 0, ''),
 (5, 0, 0, 'param-edit', 'params', 'Дополнительные параметры', '', 0, 0, 0, '', 0, 'shk_checkbox', 'Установка ПО==500||Гарантия +1 год==1000', 'a:0:{}', 'a:6:{s:11:"input_count";s:1:"2";s:14:"input_captions";s:25:"Название,Цена";s:11:"input_width";s:3:"150";s:16:"input_defaultval";s:1:"0";s:13:"input_addcols";s:4:"Да";s:11:"input_ftype";s:4:"text";}', 'a:5:{s:8:"function";s:18:"SHK.additOpt(this)";s:8:"cssclass";s:9:"shk_param";s:7:"wraptag";s:3:"div";s:14:"first_selected";s:1:"0";s:10:"param_name";s:6:"params";}', 0, ''),
-(6, 1, 0, 'number', 'price', 'Цена', '', 0, 0, 0, '', 0, 'default', '100', 'a:0:{}', 'a:7:{s:10:"allowBlank";s:4:"true";s:13:"allowDecimals";s:4:"Да";s:13:"allowNegative";s:4:"Да";s:16:"decimalPrecision";s:1:"2";s:16:"decimalSeparator";s:1:".";s:8:"maxValue";s:0:"";s:8:"minValue";s:0:"";}', 'a:0:{}', 0, ''),
+(6, 1, 0, 'number', 'price', 'Цена', '', 0, 0, 0, '', 0, 'default', '0', 'a:0:{}', 'a:7:{s:10:"allowBlank";s:4:"true";s:13:"allowDecimals";s:4:"Да";s:13:"allowNegative";s:4:"Да";s:16:"decimalPrecision";s:1:"2";s:16:"decimalSeparator";s:1:".";s:8:"maxValue";s:0:"";s:8:"minValue";s:0:"";}', 'a:0:{}', 0, ''),
 (7, 0, 0, 'number', 'weight', 'Вес', '', 0, 0, 0, '', 0, 'default', '', 'a:0:{}', 'a:7:{s:10:"allowBlank";s:4:"true";s:13:"allowDecimals";s:4:"Да";s:13:"allowNegative";s:4:"Да";s:16:"decimalPrecision";s:1:"2";s:16:"decimalSeparator";s:1:".";s:8:"maxValue";s:0:"";s:8:"minValue";s:0:"";}', 'a:0:{}', 0, ''),
 (8, 0, 0, 'text', 'country', 'Страна', '', 0, 0, 0, '', 0, 'default', '', 'a:0:{}', 'a:5:{s:10:"allowBlank";s:4:"true";s:9:"maxLength";s:0:"";s:9:"minLength";s:0:"";s:5:"regex";s:0:"";s:9:"regexText";s:0:"";}', 'a:0:{}', 0, ''),
 (9, 1, 0, 'text', 'articul', 'Артикул', '', 0, 0, 0, '', 0, 'default', '', 'a:0:{}', 'a:5:{s:10:"allowBlank";s:4:"true";s:9:"maxLength";s:0:"";s:9:"minLength";s:0:"";s:5:"regex";s:0:"";s:9:"regexText";s:0:"";}', 'a:0:{}', 0, ''),
@@ -5627,7 +5629,7 @@ ALTER TABLE `modx_lexicon_entries`
 -- AUTO_INCREMENT для таблицы `modx_manager_log`
 --
 ALTER TABLE `modx_manager_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1167;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1169;
 --
 -- AUTO_INCREMENT для таблицы `modx_media_sources`
 --
