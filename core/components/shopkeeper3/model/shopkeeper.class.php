@@ -872,6 +872,21 @@ class Shopkeeper {
         return $output;
         
     }
+
+    /**
+     * Combine plugins output for change price events
+     * @param $evtData
+     * @param $evtOut
+     * @return int
+     */
+    public function pluginsChangePriceCombine( $evtData, $evtOut )
+    {
+        $output = 0;
+
+
+
+        return $output;
+    }
     
     
     /**
