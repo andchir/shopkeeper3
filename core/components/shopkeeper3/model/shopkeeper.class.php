@@ -10,9 +10,6 @@
  * @version 3.2.6
  */
 
-//ini_set( 'display_errors', 1 );
-//error_reporting( E_ALL );
-
 class Shopkeeper {
     
     public $lang = array();
