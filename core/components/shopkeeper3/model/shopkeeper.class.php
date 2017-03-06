@@ -22,7 +22,7 @@ class Shopkeeper {
     public static $price_total = 0;
     public static $items_total = 0;
     public static $items_unique_total = 0;
-    protected $version = '3.2.6';
+    protected $version = '3.2.7';
     
     public function __construct( modX &$modx, $config = array(), $applyRequest = false ){
         
@@ -845,13 +845,13 @@ class Shopkeeper {
             $key = current( array_keys( $data ) );
             $object = new stdClass();
             $object->content = current( array_values( $data ) );
-            $this->modx->invokeEvent( $event_name, array( $key => &$object ) );
+            $this->invokeEventCombine( $event_name, array( $key => &$object ) );
             
             $output = $object->content;
             
         }else{
             
-            $evtOut = $this->modx->invokeEvent( $event_name, $data );
+            $evtOut = $this->invokeEventCombine( $event_name, $data );
             
             if( empty( $evtOut ) || $evtOut[0] === false ) { return false; }
             
@@ -870,7 +870,70 @@ class Shopkeeper {
         }
         
         return $output;
-        
+    }
+
+    /**
+     * Invokes a specified Event with combine plugins results by returnedValues
+     * @param $eventName
+     * @param array $params
+     * @return array|bool
+     */
+    public function invokeEventCombine($eventName, array $params= array ()) {
+        if (!$eventName)
+            return false;
+        if ($this->modx->eventMap === null && $this->modx->context instanceof modContext) {
+            //$this->modx->_initEventMap($this->modx->context->get('key'));
+        }
+        if (!isset($this->modx->eventMap[$eventName])) {
+            $this->modx->log(modX::LOG_LEVEL_DEBUG,'System event '.$eventName.' was executed but does not exist.');
+            return false;
+        }
+        $this->modx->event->returnedValues = [];
+        $results = array ();
+        if (count($this->modx->eventMap[$eventName])) {
+            $this->modx->event = new modSystemEvent();
+            foreach ($this->modx->eventMap[$eventName] as $pluginId => $pluginPropset) {
+                $plugin = null;
+                $this->modx->Event = & $this->modx->event;
+
+                $this->modx->event->name = '';
+                $this->modx->event->_output = '';
+                $this->modx->event->activated = false;
+
+                $this->modx->event->name = $eventName;
+                if (isset ($this->modx->pluginCache[$pluginId])) {
+                    $plugin = $this->modx->newObject('modPlugin');
+                    $plugin->fromArray($this->modx->pluginCache[$pluginId], '', true, true);
+                    $plugin->_processed = false;
+                    if ($plugin->get('disabled')) {
+                        $plugin = null;
+                    }
+                } else {
+                    $plugin= $this->modx->getObject('modPlugin', array ('id' => intval($pluginId), 'disabled' => '0'), true);
+                }
+                if ($plugin && !$plugin->get('disabled')) {
+                    $this->modx->event->plugin =& $plugin;
+                    $this->modx->event->activated = true;
+
+                    /* merge in plugin properties */
+                    $eventParams = array_merge($plugin->getProperties(),$params);
+
+                    $msg = $plugin->process($eventParams);
+                    $results[] = $this->modx->event->returnedValues[] = $this->modx->event->_output;
+                    if ($msg && is_string($msg)) {
+                        $this->modx->log(modX::LOG_LEVEL_ERROR, '[' . $this->modx->event->name . ']' . $msg);
+                    } elseif ($msg === false) {
+                        $this->modx->log(modX::LOG_LEVEL_ERROR, '[' . $this->modx->event->name . '] Plugin ' . $plugin->name . ' failed!');
+                    }
+                    $this->modx->event->plugin = null;
+                    if (!$this->modx->event->isPropagatable()) {
+                        break;
+                    }
+                }
+            }
+        }
+        $this->modx->event->returnedValues = null;
+        return $results;
     }
 
     /**
@@ -1481,13 +1544,12 @@ class Shopkeeper {
         }
         
     }
-    
-    
+
+
     /**
      * print_arr
-     *
-     * @param array $array
-     *
+     * @param $array
+     * @return string
      */
     public static function print_arr( $array ){
         

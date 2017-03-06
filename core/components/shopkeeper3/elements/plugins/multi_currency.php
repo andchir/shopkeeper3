@@ -244,8 +244,12 @@ switch($modx->event->name){
     case 'OnSHKgetProductAdditParamPrice':
     case 'OnSHKgetDeliveryPrice':
     case 'OnSHKgetProductPrice':
-        
-        $output = $modx->getOption( 'price', $scriptProperties, 0 );
+
+        if( !empty( $modx->event->returnedValues ) ){//Get from previous plugin
+            $output = end( $modx->event->returnedValues );
+        } else {
+            $output = $modx->getOption( 'price', $scriptProperties, 0 );
+        }
         
         if( is_numeric( $output ) ){
             

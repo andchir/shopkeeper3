@@ -181,7 +181,7 @@ class tmCatalog extends tagManagerBase {
         //Если это цена, пропускаем через плагин
         if($this->config['priceName'] && $this->config['priceName'] == $name){
             //OnSHKgetProductPrice
-            $evtOut = $this->modx->invokeEvent('OnSHKgetProductPrice',array('purchaseArray' => array(), 'price' => $value, 'inverse' => $inverse));
+            $evtOut = $this->invokeEventCombine('OnSHKgetProductPrice',array('purchaseArray' => array(), 'price' => $value, 'inverse' => $inverse));
             if( !empty($evtOut) && is_array($evtOut) ){
                 $new_price = (float) str_replace(array(' ',','), array('','.'), end($evtOut));
                 if($new_price != $value){

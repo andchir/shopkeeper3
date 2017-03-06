@@ -8,6 +8,9 @@
  * file that was distributed with this source code.
  */
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 $tstart= microtime(true);
 
 /* define this as true in another entry file, then include this file to simply access the API

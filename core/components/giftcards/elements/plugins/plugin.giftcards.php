@@ -14,8 +14,12 @@ switch($modx->event->name) {
     
     //Если введён код подарочной карты, вычитаем её номинал из цены заказа и возвращаем новую цену
     case 'OnSHKcalcTotalPrice':
-        
-        $price_total = (float) str_replace(array(' ',','),array('','.'),$modx->getOption('price_total',$scriptProperties,0));
+
+        if( !empty( $modx->event->returnedValues ) ){//Get from previous plugin
+            $price_total = end( $modx->event->returnedValues );
+        } else {
+            $price_total = (float) str_replace(array(' ',','), array('','.'), $modx->getOption('price_total', $scriptProperties, 0));
+        }
         
         $modx->setPlaceholder('shk.price_without_discount',$price_total);
         
@@ -160,8 +164,13 @@ switch($modx->event->name) {
     
     //Возвращает цену товара с учётом скидки пользователя
     case 'OnSHKgetProductPrice':
-        
-        $price = $modx->getOption('price',$scriptProperties,0);
+
+        if( !empty( $modx->event->returnedValues ) ){//Get from previous plugin
+            $price = end( $modx->event->returnedValues );
+        } else {
+            $price = $modx->getOption('price', $scriptProperties, 0);
+        }
+
         if(isset($_SESSION['shk_orderdata']['discount'])){
             $discount = (int) $_SESSION['shk_orderdata']['discount'];
         }else{
