@@ -1,0 +1,29 @@
+
+[[!Shopkeeper3@cart_order_page]]
+
+[[!FormIt?
+&hooks=`spam,shk_fihook,email,FormItAutoResponder,redirect`
+&submitVar=`order`
+&emailTpl=`shopOrderReport`
+&fiarTpl=`shopOrderReport`
+&emailSubject=`В интернет-магазине "[[++site_name]]" сделан новый заказ`
+&fiarSubject=`Вы сделали заказ в интернет-магазине "[[++site_name]]"`
+&emailTo=`[[++emailsender]]`
+&fiarReplyTo=`[[++emailsender]]`
+&fiarToField=`email`
+&redirectTo=`12`
+&validate=`address:required,fullname:required,email:email:required,phone:required`
+&errTpl=`<span class="error">[[+error]]</span>`
+]]
+
+[[!+shk.items_total:gt=`0`:then=`
+[[$shopOrderForm_modified]]
+`:else=``]]
+
+<script type="text/javascript">
+    function SHKloadCartCallback() {
+        if( $('#shopOrderForm').length > 0 && SHK.data.items_total == 0 ){
+            window.location.reload();
+        }
+    }
+</script>

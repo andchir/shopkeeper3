@@ -1,0 +1,22 @@
+
+[[!userDiscount?toPlaceholder=`currentUserDiscount`]]
+
+[[!+currentUserDiscount:gt=`0`:then=`
+<br><p class="big">Ваша скидка: <b>[[!+currentUserDiscount]] %</b></p>
+`:else=``]]
+
+<div class="loginMessage">[[+errors]]</div>
+<br>
+<p>
+    <a href="[[~41]]">Редактировать профиль</a>
+</p>
+<p>
+    <a href="[[~45]]">Изменить пароль</a>
+</p>
+
+<br><br>
+<div class="loginLogin">
+    <div class="loginRegister">
+        <a class="btn btn-primary" href="[[+logoutUrl]]" title="[[+actionMsg]]">[[+actionMsg]]</a>
+    </div>
+</div>

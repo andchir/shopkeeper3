@@ -42,4 +42,9 @@ if($user->isAuthenticated($modx->context->get('key'))){
     
 }
 
+if($toPlaceholder){
+    $modx->setPlaceholder($toPlaceholder, $discount);
+    $discount = '';
+}
+
 return $discount;

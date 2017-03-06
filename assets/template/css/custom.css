@@ -11,6 +11,12 @@ h1:first-child { margin-top: 0; }
 .min-height-md-100 { min-height: 100px; }
 .relative { position: relative; }
 .tooltip { pointer-events: none; }
+.small,
+p.small,
+.jumbotron p.small { font-size: 85%; }
+.big,
+p.big,
+.jumbotron p.big { font-size: 120%; }
 .panel-heading h1,
 .panel-heading h2,
 .panel-heading h3,

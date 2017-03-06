@@ -1,0 +1,140 @@
+
+[[!shkOptions?
+&get=`delivery,payments`
+&post_name=`shk_delivery,payment`
+&toPlaceholders=`1`
+&pl_prefix=`shkopt_`
+&tpl=`select_option`
+]]
+
+[[!userDiscount?toPlaceholder=`currentUserDiscount`]]
+
+<div class="row">
+    <div class="col-md-6">
+
+        [[!giftCards?
+        &tpl=`giftCards_form`
+        &max_attempts=`10`
+        ]]
+
+        [[!+currentUserDiscount:gt=`0`:then=`
+        <p class="big">Ваша скидка: <b>[[!+currentUserDiscount]] %</b></p>
+        `:else=``]]
+
+    </div>
+    <div class="col-md-6">
+
+        <p class="error">[[!+fi.error.error_message]]</p>
+        <br />
+
+        <form method="post" action="[[~[[*id]]]]" id="shopOrderForm">
+
+            <fieldset>
+
+                <input type="text" name="nospam:blank" value="" style="display:none;" />
+                <input type="hidden" name="order" value="1" />
+
+                <div class="form-group">
+                    <label for="orderFormName">
+                        Ф.И.О.*:
+                    </label>
+                    <input name="fullname" size="30" id="orderFormName" class="form-control" type="text" value="[[!+fi.fullname:default=`[[+modx.user.id:userinfo=`fullname`]]`:ne=`0`:show]]" />
+                    <p class="help-block">
+                        [[!+fi.error.fullname]]
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderFormName">
+                        Адрес*:
+                    </label>
+                    <input name="address" size="30" class="form-control" type="text" value="[[!+fi.address:default=`[[+modx.user.id:userinfo=`address`]]`:ne=`0`:show]]" />
+                    <p class="help-block">
+                        [[!+fi.error.address]]
+                    </p>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-6">
+
+                        <label for="orderFormName">
+                            E-mail*:
+                        </label>
+                        <input name="email" size="30" class="form-control" type="text" value="[[!+fi.email:default=`[[+modx.user.id:userinfo=`email`]]`:ne=`0`:show]]" />
+                        <p class="help-block">
+                            [[!+fi.error.email]]
+                        </p>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <label for="orderFormName">
+                            Телефон*:
+                        </label>
+                        <input name="phone" size="30" class="form-control" type="text" value="[[!+fi.phone:default=`[[+modx.user.id:userinfo=`phone`]]`:ne=`0`:show]]" />
+                        <p class="help-block">
+                            [[!+fi.error.phone]]
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-6">
+
+                        <label for="orderFormName">
+                            Способ доставки*:
+                        </label>
+                        <select name="shk_delivery" class="form-control">
+                            <option value=""></option>
+                            [[!+shkopt_delivery]]
+                        </select>
+                        <p class="help-block">
+                            [[!+fi.error.shk_delivery]]
+                        </p>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <label for="orderFormName">
+                            Способ оплаты*:
+                        </label>
+                        <select name="payment" class="form-control">
+                            <option value=""></option>
+                            [[!+shkopt_payments]]
+                        </select>
+                        <p class="help-block">
+                            [[!+fi.error.payment]]
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderFormName">
+                        Комментарий:
+                    </label>
+                    <textarea name="message" class="form-control" rows="4" cols="30">[[!+fi.message]]</textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="submit_button" class="button btn btn-primary btn-lg" value="Отправить" />
+                </div>
+
+            </fieldset>
+
+        </form>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        if ( SHK.data.delivery_name ) {
+            $('select[name="shk_delivery"]','#shopOrderForm').val( SHK.data.delivery_name );
+        }
+        $('select[name="shk_delivery"]','#shopOrderForm').bind('change',function(){
+            SHK.selectDelivery( $(this).val() );
+        });
+    });
+</script>
