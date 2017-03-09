@@ -180,7 +180,7 @@ categoryId - ID документа откуда нужно брать сохра
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/assets/template/js/jquery.selectBoxIt.js/src/javascripts/jquery.selectBoxIt.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).bind('ready',function(){
+$(document).ready(function(){
     $("select").selectBoxIt();
 });
 </script>
@@ -251,7 +251,7 @@ function tm_onFilterAfter( total, pageCount, onPageLimit ){
 
 <script type="text/javascript">
 //Filters initialization
-$(document).bind( 'ready', function(){ tmFilters.init(); } );
+$(document).ready(function(){ tmFilters.init(); } );
 </script>
 
 ==================================================================

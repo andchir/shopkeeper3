@@ -6,21 +6,33 @@
 
 <div class="catalog-header">
     <div class="form-group pull-right">
-        <select class="f_limit form-control" name="limit" onchange="tmFilters.changeOrder(this);">
+        <select class="f_sortby form-control inline-block w150 margin-bottom-sm" name="sortby" onchange="tmFilters.changeOrder(this);">
+            <option value="pagetitle">по названию</option>
+            <option value="price">по цене</option>
+            <option value="publishedon">по дате</option>
+        </select>
+        &nbsp;
+        <select class="f_sortdir form-control inline-block w150 margin-bottom-sm" name="sortdir" onchange="tmFilters.changeOrder(this);">
+            <option value="asc">по возростанию</option>
+            <option value="desc">по убыванию</option>
+        </select>
+        &nbsp;
+        <div id="viewSwitch" class="inline-block margin-bottom-sm">
+            <div class="btn-group">
+                <a class="btn btn-default active" data-toggle="tooltip" title="Плитка">
+                    <i class="glyphicon glyphicon-th"></i>
+                </a>
+                <a class="btn btn-default" data-toggle="tooltip" title="Список">
+                    <i class="glyphicon glyphicon-list"></i>
+                </a>
+            </div>
+        </div>
+        &nbsp;
+        <select class="f_limit form-control inline-block w70 margin-bottom-sm" name="limit" onchange="tmFilters.changeOrder(this);">
             <option value="9" selected="selected">9</option>
             <option value="12">12</option>
             <option value="24">24</option>
         </select>
-    </div>
-    <div class="form-group pull-right" id="viewSwitch">
-        <div class="btn-group">
-            <a class="btn btn-default active" data-toggle="tooltip" title="Плитка">
-                <i class="glyphicon glyphicon-th"></i>
-            </a>
-            <a class="btn btn-default" data-toggle="tooltip" title="Список">
-                <i class="glyphicon glyphicon-list"></i>
-            </a>
-        </div>
     </div>
     <div class="pagetitle">
         <h1>[[*pagetitle]]</h1>
@@ -54,9 +66,10 @@
                     <div class="row">
                     [[tmFilters@filters]]
                     </div>
-                    
-                    <input type="hidden" name="page_id" value="[[*id]]" disabled="disabled" />
-                    <input type="hidden" name="sortdir" value="asc" />
+
+                    <input type="hidden" name="sortby" value="pagetitle">
+                    <input type="hidden" name="sortdir" value="asc">
+                    <input type="hidden" name="page_id" value="[[*id]]" disabled="disabled">
                     
                 </form>
                 

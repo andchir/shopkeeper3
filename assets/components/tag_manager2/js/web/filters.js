@@ -1010,11 +1010,11 @@ var tmFilters = {
         
         if ( $.inArray( name, ['sortby','sortdir','limit'] ) > -1 ) {
             
-	    tmFilters.setFormValue( name, value );
-            
-            tmFilters.sorted = true;
-            tmFilters.switchPage(1, false);
-            tmFilters.pushState();
+	        this.setFormValue( name, value );
+
+            this.sorted = true;
+            this.switchPage(1, false);
+            this.pushState();
             
         }
         

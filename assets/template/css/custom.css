@@ -4,11 +4,6 @@ body > .container {  }
 h1:first-child { margin-top: 0; }
 .page-content { min-height: 350px; }
 .pagination { margin-top: 5px; }
-.no-margin { margin: 0 !important; }
-.no-margin-top { margin-top: 0 !important; }
-.margin-bottom-lg { margin-bottom: 20px !important; }
-.min-height-100 { min-height: 100px; }
-.min-height-md-100 { min-height: 100px; }
 .relative { position: relative; }
 .tooltip { pointer-events: none; }
 .small,
@@ -28,6 +23,22 @@ p.big,
 .images-zoom img,
 .image-zoom img,
 img.image-zoom { cursor: zoom-in; }
+
+/* display */
+.inline-block { display: inline-block; }
+
+/* sizes */
+.w70 { width: 70px; }
+.w100 { width: 100px; }
+.w150 { width: 150px; }
+.min-height-100 { min-height: 100px; }
+.min-height-md-100 { min-height: 100px; }
+
+/* margins */
+.no-margin { margin: 0 !important; }
+.no-margin-top { margin-top: 0 !important; }
+.margin-bottom-lg { margin-bottom: 20px !important; }
+.margin-bottom-sm { margin-bottom: 10px !important; }
 
 h1:first-child,
 h2:first-child,
