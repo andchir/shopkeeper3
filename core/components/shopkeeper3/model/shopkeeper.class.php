@@ -7,7 +7,7 @@
  *
  * @author Andchir <andchir@gmail.com>
  * @package shopkeeper
- * @version 3.2.6
+ * @version 3.2.7
  */
 
 class Shopkeeper {
