@@ -118,7 +118,8 @@ giftCards.window.CreateItem = function(config) {
     Ext.applyIf(config,{
         title: _('giftcards.item_create')
         ,id: this.ident
-        ,height: 150
+        ,height: 350
+        ,autoHeight: false
         ,width: 475
         ,url: giftCards.config.connector_url
         ,action: 'mgr/item/create'
@@ -140,7 +141,7 @@ giftCards.window.CreateItem = function(config) {
     });
     giftCards.window.CreateItem.superclass.constructor.call(this,config);
 };
-Ext.extend(giftCards.window.CreateItem,MODx.Window);
+Ext.extend(giftCards.window.CreateItem, MODx.Window);
 Ext.reg('giftcards-window-item-create',giftCards.window.CreateItem);
 
 
@@ -151,11 +152,10 @@ giftCards.window.ViewItems = function(config) {
     //if (!this.menu.record) this.menu.recor = config.record;
     Ext.applyIf(config,{
         title: _('giftcards.view_items')
-        ,id: 'items_win'+this.record
+        ,id: 'items_win' + this.record
         ,layout: 'anchor'
-        ,height: 400
         ,width: 700
-        ,boxMaxWidth: 700
+        ,autoHeight: true
         ,closeAction: 'close'
         ,autoDestroy: true
         ,url: giftCards.config.connector_url
@@ -192,6 +192,7 @@ giftCards.grid.Items = function(config) {
             ,id: config.record.id
         }
         ,fields: ['id','parent','code','date','orderid','state','state_value']
+        ,maxHeight: 400
         ,autoHeight: true
         ,paging: true
         ,remoteSort: true
