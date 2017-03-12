@@ -12,8 +12,9 @@
         </a>
         <div class="caption text-center">
             <h3>[[+pagetitle]]</h3>
+            <p>[[+introtext]]</p>
             <div class="product-price">
-                <span class="shk-price">[[+price]]</span> руб.
+                <span class="shk-price">[[+price:shk_curr_rate:num_format]]</span> [[+shk_currency]]
             </div>
             <div>
                 <form action="[[~[[*id]]? &scheme=`abs`]]" method="post">

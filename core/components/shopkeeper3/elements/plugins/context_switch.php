@@ -157,6 +157,9 @@ switch($modx->event->name){
                     $modx->resource->fromArray($cachedResource['resource'], '', true, true, true);
                     $modx->resource->_content = $cachedResource['resource']['_content'];
                     $modx->resource->_isForward = isset($cachedResource['resource']['_isForward']) && !empty($cachedResource['resource']['_isForward']);
+                    if( !empty($cachedResource['resource']['_fieldMeta']) ){
+                        $modx->resource->_fieldMeta = $cachedResource['resource']['_fieldMeta'];
+                    }
                     
                     if (isset($cachedResource['elementCache'])) $modx->elementCache = $cachedResource['elementCache'];
                     if (isset($cachedResource['sourceCache'])) $modx->sourceCache = $cachedResource['sourceCache'];
@@ -175,7 +178,6 @@ switch($modx->event->name){
             }else{
                 
                 $modx->resource = $modx->newObject('modResource');
-                //$modx->resource->set();
                 
                 ####################################################
                 //Просчитываем поля по типам ввода связанных TV
@@ -242,7 +244,6 @@ switch($modx->event->name){
                 $modx->resource->_content = '';
                 $modx->resource->_output = '';
                 $modx->resource->_isForward = true;
-                //$modx->resource->_class = $prodClassName;
                 
                 $modx->elementCache = array();
                 $modx->resourceGenerated = true;
@@ -252,7 +253,9 @@ switch($modx->event->name){
             
             unset($product);
             
-            if($debug){ echo '<pre>'.print_r($modx->resource->toArray(),true).'</pre>'; exit; }
+            if($debug){
+                echo '<pre>'.print_r($modx->resource->toArray(),true).'</pre>'; exit;
+            }
             
             //Просчитываем и выводим HTML-код страницы товара
             $modx->resourceIdentifier = $modx->resource->get('id');
@@ -283,33 +286,34 @@ switch($modx->event->name){
             if ( !is_array( $cachedResource ) || empty( $cachedResource ) ) {
                 
                 $results['resourceClass'] = $modx->resource->_class;
-                $results['resource']['_processed']= $modx->resource->getProcessed();
-                $results['resource']= $modx->resource->toArray('', true);
-                $results['resource']['_content']= $modx->resource->_content;
-                $results['resource']['_isForward']= $modx->resource->_isForward;
+                $results['resource']['_processed'] = $modx->resource->getProcessed();
+                $results['resource'] = $modx->resource->toArray('', true);
+                $results['resource']['_content'] = $modx->resource->_content;
+                $results['resource']['_isForward'] = $modx->resource->_isForward;
+                $results['resource']['_fieldMeta'] = $modx->resource->_fieldMeta;
                 if ($contentType = $modx->resource->getOne('ContentType')) {
-                    $results['contentType']= $contentType->toArray('', true);
+                    $results['contentType'] = $contentType->toArray('', true);
                 }
                 $results['resourceGroups']= array();
                 $context = $modx->resource->_contextKey ? $modx->resource->_contextKey : 'web';
                 $policies = $modx->resource->findPolicy($context);
                 if (is_array($policies)) {
-                    $results['policyCache']= $policies;
+                    $results['policyCache'] = $policies;
                 }
                 if (!empty($modx->elementCache)) {
-                    $results['elementCache']= $modx->elementCache;
+                    $results['elementCache'] = $modx->elementCache;
                 }
                 if (!empty($modx->sourceCache)) {
-                    $results['sourceCache']= $modx->sourceCache;
+                    $results['sourceCache'] = $modx->sourceCache;
                 }
                 if (!empty($modx->resource->_sjscripts)) {
-                    $results['resource']['_sjscripts']= $modx->resource->_sjscripts;
+                    $results['resource']['_sjscripts'] = $modx->resource->_sjscripts;
                 }
                 if (!empty($modx->resource->_jscripts)) {
-                    $results['resource']['_jscripts']= $modx->resource->_jscripts;
+                    $results['resource']['_jscripts'] = $modx->resource->_jscripts;
                 }
                 if (!empty($modx->resource->_loadedjscripts)) {
-                    $results['resource']['_loadedjscripts']= $modx->resource->_loadedjscripts;
+                    $results['resource']['_loadedjscripts'] = $modx->resource->_loadedjscripts;
                 }
                 
                 $lifetime = (integer) $modx->cacheManager->getOption('cache_resource_expires', $cacheOptions, $modx->cacheManager->getOption(xPDO::OPT_CACHE_EXPIRES, $cacheOptions, 0));
