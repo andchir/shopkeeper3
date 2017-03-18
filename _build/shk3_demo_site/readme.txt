@@ -4,29 +4,37 @@
 Описание
 --------
 
-Простой интернет-магазин на MODX Revolution + Shopkeeper 3.x.  
-Товары в отдельной таблице, не ресурсы MODX.  
-Фильтрация в каталоге, корзина товаров, форма обратной связи, блоки "Новинки" и "Лидеры продаж", избранные товары.
-
+Простой интернет-магазин на MODX Revolution + Shopkeeper 3.x.
+Что реализовано:
+- Есть примеры двух типов товаров: ресурсы MODX и товары, созданные в MIGXDB
+- Фильтрация в каталоге
+- Корзина товаров
+- Мультивалютность
+- Регистрация, авторизация, восстановление пароля для пользователей
+- Подарочные карты и скидки
+- Форма обратной связи
+- Блоки "Новинки" и "Лидеры продаж"
+- Избранные товары
 
 Что включено
 ------------
 
-* MODX Revolution 2.5.0-pl
-* Shopkeeper 3.2.4pl
-* TagManager 2.3beta
-* getProducts 1.4-rc2
-* getPage 1.2.4-pl
-* Compare 1.1-pl
-* FormIt 2.2.10-pl
-* coolcaptchafihook 1.3-pl
-* Wayfinder 2.3.3-pl
-* menuCaching 1.0-pl
-* MIGX 2.9.6-pl
-* phpThumbOn 1.3.1-pl
-* QuickCrumbs 1.0.1-pl (модифицированный)
-* TinyMCE Rich Text Editor 1.1.1-pl
-* translit 1.0.0-beta
+- MODX Revolution 2.5.5-pl
+- Shopkeeper 3.2.7pl2
+- TagManager 2.3.1pl2
+- getProducts 1.4-rc2
+- getPage 1.2.4-pl
+- Compare 1.1-pl
+- Login 1.9.2-pl
+- FormIt 2.2.11-pl
+- coolcaptchafihook 1.3-pl
+- Wayfinder 2.3.3-pl
+- menuCaching 1.0-pl
+- MIGX 2.9.6-pl
+- phpThumbOn 1.3.1-pl
+- QuickCrumbs 1.0.1-pl (модифицированный)
+- TinyMCE Rich Text Editor 1.1.1-pl
+- translit 1.0.0-beta
 
 Инструкци по установке
 ----------------------
@@ -51,7 +59,6 @@
 5. Завершить установку как обычно устанавливаете MODX.  
     При установке нужно будет указать параметры подключения к базе данных MySQL, которую нужно создать заранее,
     а так же логин и пароль администратора сайта.
-    
 
 6. После установки в браузере открыть адрес:  
     ``http://[адрес вашего сайта]/install.php?import_bd=1``  
