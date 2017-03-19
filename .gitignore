@@ -14,6 +14,7 @@
 /manager/
 /connectors/
 /assets/cache_image/
+/_build/shk3_demo_site/shk3_simple_site/
 /.htaccess
 
 /core/export/
