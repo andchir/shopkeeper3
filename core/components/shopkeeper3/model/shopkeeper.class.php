@@ -885,7 +885,7 @@ class Shopkeeper {
             $this->modx->log(modX::LOG_LEVEL_DEBUG,'System event '.$eventName.' was executed but does not exist.');
             return false;
         }
-        $this->modx->event->returnedValues = [];
+        $this->modx->event->returnedValues = array();
         $results = array ();
         if (count($this->modx->eventMap[$eventName])) {
             $this->modx->event = new modSystemEvent();
