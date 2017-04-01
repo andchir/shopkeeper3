@@ -19,7 +19,7 @@ class Shopkeeper {
     public static $price_total = 0;
     public static $items_total = 0;
     public static $items_unique_total = 0;
-    protected $version = '3.2.7';
+    protected $version = '3.2.7pl3';
     
     public function __construct( modX &$modx, $config = array(), $applyRequest = false ){
         

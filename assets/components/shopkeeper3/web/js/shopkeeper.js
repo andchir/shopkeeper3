@@ -2,8 +2,8 @@
 /**************************
 * 
 * http://modx-shopkeeper.ru/
-* Shopkeeper 3.2.6
-* shopping cart for MODX 2.x Revolution
+* Shopkeeper 3.2.7pl3
+* Shopping cart for MODX 2.x Revolution
 * 
 **************************/
 
@@ -768,28 +768,33 @@ var SHK = {
         
         if( additPriceSum && !isNaN(additPriceSum) && !SHK.options.changePrice ){
             
-            additPriceSum = this.round(additPriceSum,2);
+            additPriceSum = this.round(additPriceSum, 2);
             $( '.shk-price:first', parent ).after('<sup id="add_'+productId+'" class="price-add">' + ( additPriceSum > 0 ? '+' : '' ) + additPriceSum + '</sup>');
             
         }else if( !isNaN(additPriceSum) && SHK.options.changePrice != false ){
-            
+
             var priceTxt = $('.shk-price:first',parent);
-            var curPrice = $(priceTxt).is(":has('span')") ? $('span',priceTxt).text() : $(priceTxt).text();
+            var curPrice = $(priceTxt).is(":has('span')")
+                ? $('span', priceTxt).text()
+                : $(priceTxt).text();
             var formated = curPrice.indexOf(' ') > 0;
             var newPrice;
+
             if(SHK.options.changePrice=='replace'){
-                newPrice = additPriceSum>0 ? additPriceSum : parseFloat(curPrice.replace(/\D* /,''));
+                newPrice = additPriceSum > 0
+                    ? additPriceSum
+                    : parseFloat(curPrice.replace(/[^\d\.]/g,''));
             }else{
-                newPrice = parseFloat(curPrice.replace(/\D* /,''))+additPriceSum;
-                for(var i=0;i<multiplication.length;i++){
-                    newPrice = newPrice*multiplication[i];
+                newPrice = parseFloat(curPrice.replace(/[^\d\.]/g,'')) + additPriceSum;
+                for(var i=0; i < multiplication.length; i++){
+                    newPrice = newPrice * multiplication[i];
                 }
             }
             newPrice = this.round(newPrice,2);
             if(formated){
-                newPrice = this.numFormat(newPrice);
+                newPrice = this.numFormat( newPrice );
             }
-            $(priceTxt).empty().append('<span style="display:none;">'+curPrice+'</span>'+newPrice);
+            $(priceTxt).empty().append('<span style="display:none;">' + curPrice + '</span>' + newPrice);
             
         }
         
