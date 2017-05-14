@@ -41,23 +41,10 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('shopkeeper3','3.2.7','pl2');
+$builder->createPackage('shopkeeper3','3.2.7','pl3');
 $builder->registerNamespace('shopkeeper3',false,true,'{core_path}components/shopkeeper3/');
 
 /* load action/menu */
-/*
-$action= $modx->newObject('modAction');
-$action->fromArray(array(
-    'id' => 1,
-    'namespace' => 'shopkeeper3',
-    'parent' => '0',
-    'controller' => 'index',
-    'haslayout' => '1',
-    'lang_topics' => 'shopkeeper3:default',
-    'assets' => '',
-),'',true,true);
-*/
-
 $menu= $modx->newObject('modMenu');
 $menu->fromArray(array(
     'text' => 'shopkeeper3',
@@ -70,7 +57,6 @@ $menu->fromArray(array(
     'params' => '',
     'handler' => '',
 ),'',true,true);
-//$menu->addOne($action);
 $vehicle= $builder->createVehicle($menu,array (
     xPDOTransport::PRESERVE_KEYS => true,
     xPDOTransport::UPDATE_OBJECT => true,
@@ -178,8 +164,6 @@ $attributes= array(
     ),
 );
 foreach ($plugins as $plugin) {
-    //$vehicle = $builder->createVehicle($plugin, $attributes);
-    //$builder->putVehicle($vehicle);
     $category->addMany($plugin);
 }
 $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($plugins).' plugins.'); flush();
