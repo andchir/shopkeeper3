@@ -2,20 +2,20 @@
 /**
  * tmFilters
  *
- * tagManager 2.3.1pl2
+ * tagManager 2.3.2
  * Andchir
  * http://modx-shopkeeper.ru/
- * 
+ *
  */
 
 var tmFilters = {
-    
+
     /* ########################################### */
     /**
      * config
      *
      * Настройки
-     * 
+     *
      */
     config: {
         filters_cont: '#filters',//Селектор оберточного элемента блоков с фильтрами
@@ -31,9 +31,9 @@ var tmFilters = {
         pages_cont2: '#pages2',//Селектор второго контейнера с постраничной навигацией. Если нет, оставить пустым.
         active_page_selector: '.current',//селектор номера текущей страницы внутри контейнера (pages_cont)
         filters_type: 'default',//Тип фильтрации. Возможные значения:
-            // default (показ числа товаров по каждому фильтру и блокирование пустых вариантов),
-            // only_block (только блокирование пустых париантов),
-            // none (не показывать цифры и не блокировать)
+        // default (показ числа товаров по каждому фильтру и блокирование пустых вариантов),
+        // only_block (только блокирование пустых париантов),
+        // none (не показывать цифры и не блокировать)
         filter_delay: 700,//Задержка до отправления запроса на сервер (сбрасывается после каждой отметки фильтра)
         price_field: 'price',//Название поля или TV цены товара
         multi_currency: true,//Мультивалютность включить / выключить (true/false)
@@ -42,55 +42,55 @@ var tmFilters = {
         ajax_loader: 'assets/components/tag_manager2/img/ajax-loader2.gif'
     },
     /* ########################################### */
-    
+
     result_ids: [],
     filtersActive: false,
     filtered: false,
     sorted: false,
     keyCtrl: false,
     timer: null,
-    
+
     /**
      * init
      *
      */
     init: function( conf ){
-        
+
         $.extend( this.config, conf );
-        
+
         this.slidersInit();
         this.ajaxPagesInit();
-	    this.filterSelected();
-        
+        this.filterSelected();
+
         $( 'input,select', this.config.filters_cont )
-        .on('change', function( event ){
-            
-            tmFilters.filtersPreSubmit( event );
+            .on('change', function( event ){
 
-            clearTimeout(tmFilters.timer);
-            tmFilters.timer = setTimeout( function(){
-                tmFilters.filtersSubmit();
-            }, tmFilters.config.filter_delay );
+                tmFilters.filtersPreSubmit( event );
 
-        });
-        
+                clearTimeout(tmFilters.timer);
+                tmFilters.timer = setTimeout( function(){
+                    tmFilters.filtersSubmit();
+                }, tmFilters.config.filter_delay );
+
+            });
+
         var filters = tmFilters.getFilters();
         tmFilters.countAllFIlters( filters );
-        
+
     },
-    
-    
+
+
     /**
      * slidersInit
      *
      * Инициализация слайдеров
      */
     slidersInit: function(){
-        
+
         if ( $( tmFilters.config.filter_slider, tmFilters.config.filters_cont).length > 0 ) {
-            
+
             $( tmFilters.config.filter_slider, tmFilters.config.filters_cont).each(function(i){
-                
+
                 var this_slider = $(this),
                     slider_wrapper = this_slider.parent(),
                     flt_name = tmFilters.getFilterName( $('input:text:eq(0)',slider_wrapper).attr('name') ),
@@ -107,8 +107,8 @@ var tmFilters = {
                     maxField.val( maxValue.toString() );
                 }
 
-		        var slider_step = maxValue - minValue < 100 ? 0.1 : 1;
-		
+                var slider_step = maxValue - minValue < 100 ? 0.1 : 1;
+
                 this_slider.slider({
                     min: minValue,
                     max: maxValue,
@@ -129,7 +129,7 @@ var tmFilters = {
 
                         minField.val(this_slider.slider("values",0));
                         maxField.val(this_slider.slider("values",1));
-                        
+
                         tmFilters.filtersPreSubmit( event );
 
                         clearTimeout(tmFilters.timer);
@@ -170,79 +170,79 @@ var tmFilters = {
                         this_slider.slider('option', 'stop').call(this_slider);
                     }, tmFilters.config.filter_delay);
                 });
-                
+
             });
-            
+
         }
-        
+
     },
-    
-    
+
+
     filtersPreSubmit: function( event ){
-        
+
         var filters = tmFilters.getFilters();
-	    var is_select = typeof event != 'undefined' && $(event.target).is('select');
-	
+        var is_select = typeof event != 'undefined' && $(event.target).is('select');
+
         tmFilters.filtered = !$.isEmptyObject( filters );
-        
+
         if ( typeof window.flt_data != 'undefined' ) {
-            
+
             tmFilters.result_ids = [];
-            
+
             for (var i in window.flt_data.products) {
                 tmFilters.result_ids.push( parseInt( window.flt_data.products[i].id ) );
             }
-            
+
             tmFilters.search( filters );
             var result_ids = $.extend( [], tmFilters.result_ids );
-            
+
             tmFilters.countAllFIlters( filters );
-            
+
         }else{
-            
+
             tmFilters.config['filters_type'] = 'none';
             var result_ids = [];
-            
+
         }
-        
+
         if ( !is_select && tmFilters.config['filters_type'] != 'none' && result_ids.length == 0 ) {
-            
+
             //если товаров не найдено, изменяем значение на ближайшее
             if ( typeof event != 'undefined' && $(event.target).is( tmFilters.config.filter_slider ) ) {
-                
+
                 tmFilters.setbackSlider( event );
-                
+
             }
-            
+
         }
-        
+
     },
-    
+
     /**
      * filtersSubmit
      *
      */
     filtersSubmit: function(){
-        
+
         tmFilters.switchPage(1, false);
         tmFilters.pushState();
-        
+
     },
-    
+
     /**
      * pushState
      *
      */
     pushState: function(){
-        
+
         $('input[name="page_id"]',tmFilters.config.filters_cont).prop('disabled', false);
-        
+
         var form_data = $('form',tmFilters.config.filters_cont).serializeArray();
-	    var form_data_push = [];
+        var form_data_push = [];
         var search_uri = '';
-        
+
         if ( !tmFilters.filtered && !tmFilters.sorted ) {
-            
+
             for( var i in form_data ){
                 if ( !form_data.hasOwnProperty(i) ) continue;
                 if ( $.inArray( form_data[i].name, ['page'] ) > -1 ) {
@@ -255,11 +255,11 @@ var tmFilters = {
                     form_data_push.push( form_data[i] );
                 }
             }
-            
+
         }else if ( tmFilters.sorted && !tmFilters.filtered ) {
-            
+
             for( var i in form_data ){
-		        if ( !form_data.hasOwnProperty(i) ) continue;
+                if ( !form_data.hasOwnProperty(i) ) continue;
                 if ( $.inArray( form_data[i].name, ['page','sortby','sortdir','limit'] ) > -1 ) {
                     if( form_data[i].name != 'page' || form_data[i].value != 1 ) {
                         search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
@@ -270,11 +270,11 @@ var tmFilters = {
                     form_data_push.push( form_data[i] );
                 }
             }
-            
+
         }else{
-            
+
             for( var i in form_data ){
-		        if ( !form_data.hasOwnProperty(i) ) continue;
+                if ( !form_data.hasOwnProperty(i) ) continue;
                 if ( $.inArray( form_data[i].name, ['page_id'] ) == -1 ) {
                     if( form_data[i].name != 'page' || form_data[i].value != 1 ){
                         search_uri += '&' + form_data[i].name + '=' + form_data[i].value;
@@ -285,19 +285,19 @@ var tmFilters = {
                     form_data_push.push( form_data[i] );
                 }
             }
-            
+
         }
-        
+
         if(search_uri) search_uri = '?' + search_uri.substring(1);
-        
+
         tmFilters.filtersActive = true;
         var loc_path = window.location.pathname;
-        
+
         window.History.pushState( form_data_push, $('title').text(), loc_path + search_uri );
-        
+
     },
-    
-    
+
+
     /**
      * reload
      *
@@ -310,54 +310,54 @@ var tmFilters = {
         return true;
 
     },
-    
-    
+
+
     /**
      * getFilters
      *
      */
     getFilters: function(){
-        
+
         var filters = {};
-        
+
         $( 'input:checkbox,select', tmFilters.config.filters_cont ).each(function(){
-	    
+
             if ( $(this).attr('name').substr(0,2) == 'f_' ) {
-		
-		if ( $(this).is(':checked') || ( $(this).is('select') && !!$(this).val() ) ) {
-		    
-		    var flt_name = tmFilters.getFilterName( $(this).attr('name') );
-		    var flt_value = $(this).val();
-		    
-		    if (!!filters[flt_name]) {
-			    filters[flt_name].push( flt_value );
-		    }else{
-			    filters[flt_name] = [ flt_value ];
-		    }
-		    
-		}
-                
+
+                if ( $(this).is(':checked') || ( $(this).is('select') && !!$(this).val() ) ) {
+
+                    var flt_name = tmFilters.getFilterName( $(this).attr('name') );
+                    var flt_value = $(this).val();
+
+                    if (!!filters[flt_name]) {
+                        filters[flt_name].push( flt_value );
+                    }else{
+                        filters[flt_name] = [ flt_value ];
+                    }
+
+                }
+
             }
-            
+
         });
-        
+
         $( tmFilters.config.filter_slider ).each(function(i){
-            
+
             var flt_name = $(this).attr('id').replace('range_','');
             var flt_values = $(this).slider("values");
             var slider_limits = [ $(this).slider("option","min"), $(this).slider("option","max") ];
-            
+
             if(flt_values[0] !== slider_limits[0] || flt_values[1] !== slider_limits[1]){
                 filters[flt_name] = flt_values;
             }
-            
+
         });
-        
+
         return filters;
-        
+
     },
-    
-    
+
+
     /**
      * currRate
      *
@@ -402,7 +402,7 @@ var tmFilters = {
         return value;
 
     },
-    
+
     /**
      * getFilterNmae
      *
@@ -418,64 +418,64 @@ var tmFilters = {
 
         return name;
     },
-    
-    
+
+
     /**
      * search
      *
      */
     search: function(filters){
-        
+
         for(key in filters){
-            
+
             var flt_key = 'eq';
-            
+
             //numeric values
             if( $.inArray( key, tmFilters.config.numeric ) > -1 ){
-                
+
                 flt_key = 'between';
-                
-            //multitags
+
+                //multitags
             }else if( $.inArray( key, tmFilters.config.multitags ) > -1 ){
-                
+
                 flt_key = 'like';
-                
-            //text values
+
+                //text values
             }else{
-                
+
                 flt_key = 'eq';
-                
+
             }
-            
+
             tmFilters.filter( key+':'+flt_key, filters[key] );
-            
+
         }
-        
+
     },
-    
-    
+
+
     /**
      * filter
      *
      */
     filter: function(flt_name, flt_value){
-        
+
         var flt = flt_name.split(':');
-        
+
         //filter
         for (var i in window.flt_data.products) {
-            
+
             if ( $.inArray( parseInt( window.flt_data.products[i].id ), tmFilters.result_ids ) == -1 ) {
                 continue;
             }
-            
+
             var remove = true;
-            
+
             if (!!window.flt_data.products[i][flt[0]]) {
-                
+
                 switch (flt[1]) {
                     case 'between':
-                        
+
                         var p_value = parseFloat( window.flt_data.products[i][flt[0]].replace(',','.') );
 
                         //если включена мультивалютность, пересчитываем цену по курсу
@@ -486,142 +486,142 @@ var tmFilters = {
                         if ( p_value >= flt_value[0] && p_value <= flt_value[1] ) {
                             remove = false;
                         }
-                        
-                    break;
+
+                        break;
                     case 'like':
-                        
+
                         for( var ii in flt_value ){
-                            
+
                             if ( window.flt_data.products[i][flt[0]].indexOf( tmFilters.config.guard_key+flt_value[ii]+tmFilters.config.guard_key ) > -1 ) {
                                 remove = false;
                                 break;
                             }
                         }
-                        
-                    break;
+
+                        break;
                     case 'eq':
-                        
+
                         if ( $.inArray( window.flt_data.products[i][flt[0]],  flt_value) > -1 ) {
                             remove = false;
                         }
-                        
-                    break;
+
+                        break;
                 }
-                
+
             }
-            
+
             if ( remove ) {
-                
+
                 var index = $.inArray( parseInt( window.flt_data.products[i].id ), tmFilters.result_ids );
                 tmFilters.result_ids.splice( index, 1 );
-                
+
             }
-            
+
         }
-        
+
     },
-    
+
     /**
      * countAllFIlters
      *
      */
     countAllFIlters: function( filters ){
-        
+
         if ( typeof window.flt_data == 'undefined' ) return;
-        
+
         var temp_ids = [];
         for (var i in window.flt_data.products) {
             temp_ids.push( parseInt( window.flt_data.products[i].id ) );
         }
-        
+
         $( 'input:checkbox', tmFilters.config.filters_cont ).each(function(){
-	    
+
             if ( $(this).attr('name').substr(0,2) == 'f_' ) {
-                
+
                 tmFilters.result_ids = $.extend([], temp_ids);
-                
+
                 var elem = $(this);
                 var name = elem.attr('name');
                 var flt_name = name.substr(2);
                 flt_name = flt_name.substr(0,flt_name.indexOf('['));
                 var flt_value = elem.val();
-                
+
                 var temp_filters = $.extend(true,{},filters);
-		
+
                 if ( $(this).is('input:checked') ) {
-                    
+
                     var index = $.inArray( flt_value, temp_filters[flt_name] );
                     temp_filters[flt_name].splice( index, 1 );
                     if (temp_filters[flt_name].length == 0) {
                         delete temp_filters[flt_name];
                     }
-                    
+
                 }{
-                    
+
                     temp_filters[flt_name] = [ flt_value ];
-                    
+
                 }
-		
+
                 tmFilters.search( temp_filters );
-                
+
                 tmFilters.updateMarkerCount( elem, tmFilters.result_ids.length );
-                
+
             }
-            
+
         });
-        
+
     },
-    
-    
+
+
     /**
      * updateMarkerCount
      *
      */
     updateMarkerCount: function(elem, count){
-        
+
         var elem_parent = elem.parent();
-        
+
         if ( tmFilters.config['filters_type'] != 'only_block' ) {
-	    
+
             if ( elem.is('input:checked') ) {
-                
+
                 $('label',elem_parent).next('sup').remove();
-                
+
             }else{
-                
-		if ( $('label',elem_parent).next('sup').length == 0 ) {
-		    $('label',elem_parent).after('<sup>'+count+'</sup>');
-		}else{
-		    $('label',elem_parent).next('sup').text(count);
-		}
-		
+
+                if ( $('label',elem_parent).next('sup').length == 0 ) {
+                    $('label',elem_parent).after('<sup>'+count+'</sup>');
+                }else{
+                    $('label',elem_parent).next('sup').text(count);
+                }
+
             }
         }
-        
+
         if (count == 0) {
-            
+
             elem_parent.addClass('unactive');
             if ( tmFilters.config['filters_type'] != 'only_block' ){
                 $('label',elem_parent).next('sup').remove();
             }
             $('input:checkbox,select',elem_parent).prop('disabled','disabled');
-            
+
         }else{
-            
+
             elem_parent.removeClass('unactive');
             $('input:checkbox,select',elem_parent).prop('disabled', false);
-            
+
         }
-        
+
     },
-    
-    
+
+
     /**
      * setbackSlider
      *
      */
     setbackSlider: function( event ){
-        
+
         var this_slider = $( event.target );
         var activeHandler = $( event.currentTarget.activeElement );
         var order = activeHandler.prevAll('.ui-slider-handle').length;
@@ -629,19 +629,19 @@ var tmFilters = {
         var flt_name = this_slider.attr('id').replace('range_','');
         var slider_limits = [ this_slider.slider("option","min"), this_slider.slider("option","max") ];
         var prevValue = activeHandler.data('value');
-        
+
         if (typeof prevValue != 'undefined') {
-            
+
             this_slider.slider( "values", order, prevValue );
             $('#'+flt_name+( order == 0 ? 'Min' : 'Max' )).val( prevValue );
-            
+
             tmFilters.filtersPreSubmit( event );
-            
+
         }
-        
+
     },
-    
-    
+
+
     /**
      * filterSelected
      *
@@ -708,32 +708,34 @@ var tmFilters = {
                     $('#'+'range_'+f_name).slider("values",1,f_state[i].to);
                 }
 
-            //filter
+                //filter
             }else{
 
                 f_count++;
+                var input_name = $.inArray(f_name, tmFilters.config.multitags) > -1
+                    ? 'f_'+f_name+'[like][]'
+                    : 'f_'+f_name+'[]';
 
                 //checkboxes
                 if( $( 'input:checkbox', tmFilters.config.filters_cont ).length > 0 ){
 
-                    var input_name = $.inArray( f_name, tmFilters.config.multitags ) > -1 ? 'f_'+f_name+'[like][]' : 'f_'+f_name+'[]';
                     var f_input = $( 'input[name="'+input_name+'"]:checkbox', tmFilters.config.filters_cont );
 
                     if ( f_input.length > 0 ) {
 
                         f_input.each( function(){
                             if( $.inArray($(this).val(), f_state[i] ) > -1){
-                            $(this).prop('checked','checked');
-                            $(this).parent().addClass('active');
+                                $(this).prop('checked','checked');
+                                $(this).parent().addClass('active');
                             }
                         } );
 
                     }
 
-                //selects
+                    //selects
                 }else{
 
-                    var f_select = $( 'select[name="f_'+f_name+'"]', tmFilters.config.filters_cont );
+                    var f_select = $( 'select[name="'+input_name+'"]', tmFilters.config.filters_cont );
 
                     f_select.val( f_state[i] );
                     if( !!f_select.data("selectBoxSelectBoxIt") ){
@@ -750,8 +752,8 @@ var tmFilters = {
         if ( fsort_count > 0 ) { tmFilters.sorted = true; }
 
     },
-    
-    
+
+
     /**
      * getUrlVars
      *
@@ -795,8 +797,8 @@ var tmFilters = {
         return vars;
 
     },
-    
-    
+
+
     /**
      * isEmpty
      *
@@ -804,23 +806,23 @@ var tmFilters = {
     isEmpty: function(obj) {
         for (var prop in obj) {
             if (obj.hasOwnProperty(prop))
-            return false;
+                return false;
         }
         return true;
     },
-    
-    
+
+
     /**
      * ajaxRequest
      *
      */
     ajaxRequest: function( state_data ){
-        
+
         if ( typeof state_data == 'undefined' ) {
             $('input[name="page_id"]',tmFilters.config.filters_cont).prop('disabled', false);
             state_data = $('form',tmFilters.config.filters_cont).serializeArray();
         }
-        
+
         tmFilters.ajaxPreload( $(tmFilters.config.products_cont), true );
 
         //tm_onFilterBefore
@@ -835,24 +837,24 @@ var tmFilters = {
             data: state_data,
             dataType: 'json',
             success: function(response) {
-                
+
                 if (typeof response.prod_list != 'undefined') {
-		    
+
                     $(tmFilters.config.products_cont).html( response.prod_list );
 
                     $('html,body').animate({
                         scrollTop: Math.round($(tmFilters.config.products_cont).position().top)
                     });
-		    
+
                 }
-		
+
                 if (typeof response.pages != 'undefined'){
                     $(tmFilters.config.pages_cont1).html( response.pages );
                     if ( tmFilters.config.pages_cont2.length > 0 ){
                         $(tmFilters.config.pages_cont2).html( response.pages );
                     }
                 }
-                
+
                 tmFilters.ajaxPreload( $(tmFilters.config.products_cont), false );
 
                 //tm_onFilterAfter
@@ -865,15 +867,15 @@ var tmFilters = {
                 if(typeof(console)!='undefined') console.log(jqXHR,textStatus,errorThrown);
             }
         });
-        
+
     },
-    
+
     /**
      * resetFilters
      *
      */
     resetFilters: function(){
-        
+
         $('input:checkbox', tmFilters.config.filters_cont)
             .prop('checked', false);
 
@@ -895,77 +897,77 @@ var tmFilters = {
                 this_slider.slider("values",1,this_slider.slider("option",'max'));
             });
         }
-        
+
         tmFilters.filtersPreSubmit();
-        
+
         tmFilters.switchPage(1, false);
         tmFilters.filtersSubmit();
-        
+
     },
-    
+
     /**
      * ajaxPreload
      *
      */
     ajaxPreload: function(target, action){
-        
+
         if(action==true){
-            
+
             $('#ajax_loader').remove();
-            
+
             target
-            .css({'position':'relative','opacity':0.4})
-            .prepend('<div id="ajax_loader"></div>');
-            
+                .css({'position':'relative','opacity':0.4})
+                .prepend('<div id="ajax_loader"></div>');
+
             $('#ajax_loader')
-            .css({
-                'width': target.width()+'px',
-                'height': target.height()+'px',
-                'background': "url('" + tmFilters.config.base_url + tmFilters.config.ajax_loader + "') center center no-repeat transparent"
-            });
-            
+                .css({
+                    'width': target.width()+'px',
+                    'height': target.height()+'px',
+                    'background': "url('" + tmFilters.config.base_url + tmFilters.config.ajax_loader + "') center center no-repeat transparent"
+                });
+
         }else{
             target.css({'opacity':1});
             $('#ajax_loader').remove();
         }
-        
+
     },
-    
+
     /**
      * pagesInit
      *
      */
     ajaxPagesInit: function(){
-        
+
         $(document)
-        .keydown(function(event){
-            if(event.which==17) tmFilters.keyCtrl = true;
-        })
-        .keyup(function(event){
-            if(event.which==17) tmFilters.keyCtrl = false;
-            if($('#ajax_loader').length > 0) return;
-            
-            if(tmFilters.keyCtrl && event.which==37){
-                var next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).prev('a');
-                if( next_link.length == 0 ) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().prev().children('a');
-                var next_page = next_link.length > 0 ? parseInt(next_link.text()) : 0;
-            }
-            if(tmFilters.keyCtrl && event.which==39){
-                var next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).next('a');
-                if(next_link.length == 0) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().next().children('a');
-                var next_page = next_link.length > 0 ? parseInt(next_link.text()) : 0;
-            }
-            
-            if(!!next_page && next_page > 0){
-                
-                tmFilters.switchPage(next_page);
-                
-            }
-        });
-        
+            .keydown(function(event){
+                if(event.which==17) tmFilters.keyCtrl = true;
+            })
+            .keyup(function(event){
+                if(event.which==17) tmFilters.keyCtrl = false;
+                if($('#ajax_loader').length > 0) return;
+
+                if(tmFilters.keyCtrl && event.which==37){
+                    var next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).prev('a');
+                    if( next_link.length == 0 ) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().prev().children('a');
+                    var next_page = next_link.length > 0 ? parseInt(next_link.text()) : 0;
+                }
+                if(tmFilters.keyCtrl && event.which==39){
+                    var next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).next('a');
+                    if(next_link.length == 0) next_link = $(tmFilters.config.active_page_selector, tmFilters.config.pages_cont1).parent().next().children('a');
+                    var next_page = next_link.length > 0 ? parseInt(next_link.text()) : 0;
+                }
+
+                if(!!next_page && next_page > 0){
+
+                    tmFilters.switchPage(next_page);
+
+                }
+            });
+
         var pages_selector = tmFilters.config.pages_cont1+' a';
         if (tmFilters.config.pages_cont2.length > 0) pages_selector += ','+tmFilters.config.pages_cont2+' a';
-        
+
         $(document).on('click', pages_selector, function(){
 
             if ( !$(this).is(tmFilters.config.active_page_selector) ) {
@@ -979,47 +981,47 @@ var tmFilters = {
             }
             return false;
         });
-        
+
     },
-    
+
     /**
      * switchPage
      *
      */
     switchPage: function(page, go){
-        
+
         if (typeof go == 'undefined') go = true;
-        
+
         if (!!page && !isNaN(page)) {
 
-	        tmFilters.setFormValue( 'page', page );
-            
+            tmFilters.setFormValue( 'page', page );
+
             if(go) tmFilters.pushState();
-            
+
         }
     },
-    
+
     /**
      * changeOrder
      *
      */
     changeOrder: function(elem){
-        
+
         var name = $(elem).attr('name');
         var value = $(elem).val();
-        
+
         if ( $.inArray( name, ['sortby','sortdir','limit'] ) > -1 ) {
-            
-	        this.setFormValue( name, value );
+
+            this.setFormValue( name, value );
 
             this.sorted = true;
             this.switchPage(1, false);
             this.pushState();
-            
+
         }
-        
+
     },
-    
+
     /**
      * setFormValue
      *
@@ -1047,31 +1049,31 @@ var tmFilters = {
         }
         return parseFloat(string).toFixed(2);
     }
-    
+
 };
 
 History.Adapter.bind(window,'statechange',function(){
-    
+
     //HTML 5 replaceState supported?
     var html5History_support = window.history && window.history.pushState && !window.History.options.html4Mode;
     var f_state = window.History.getState();
-    
+
     //При фильтрации сразу отправляем запрос
     if ( tmFilters.filtersActive ) {
-        
+
         tmFilters.filtersActive = false;
         tmFilters.ajaxRequest( f_state.data );
-        
-    //Если это переходы по истории
+
+        //Если это переходы по истории
     }else{
-        
+
         if ( !$.isArray( f_state.data ) ) {
             f_state.data = [ { name: "page_id", value: $('input[name="page_id"]',tmFilters.config.filters_cont).val() } ];
         }
-        
+
         tmFilters.ajaxRequest( f_state.data );
         tmFilters.filterSelected();
-	
+
     }
-    
+
 });
