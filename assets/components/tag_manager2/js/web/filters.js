@@ -2,7 +2,7 @@
 /**
  * tmFilters
  *
- * tagManager 2.3.2
+ * tagManager 2.3.3
  * Andchir
  * http://modx-shopkeeper.ru/
  *
@@ -527,49 +527,52 @@ var tmFilters = {
      */
     countAllFIlters: function( filters ){
 
-        if ( typeof window.flt_data == 'undefined' ) return;
+        if (typeof window.flt_data === 'undefined') return;
 
         var temp_ids = [];
         for (var i in window.flt_data.products) {
             temp_ids.push( parseInt( window.flt_data.products[i].id ) );
         }
 
-        $( 'input:checkbox', tmFilters.config.filters_cont ).each(function(){
+        $('input:checkbox,select>option', tmFilters.config.filters_cont).each(function(){
 
-            if ( $(this).attr('name').substr(0,2) == 'f_' ) {
+            var isSelect = $(this).is('option');
+            var fieldName = isSelect
+                ? $(this).parent('select').attr('name')
+                : $(this).attr('name');
+
+            if (fieldName.substr(0, 2) === 'f_') {
 
                 tmFilters.result_ids = $.extend([], temp_ids);
 
-                var elem = $(this);
-                var name = elem.attr('name');
-                var flt_name = name.substr(2);
-                flt_name = flt_name.substr(0,flt_name.indexOf('['));
-                var flt_value = elem.val();
+                var $elem = $(this);
+                var flt_name = fieldName.substr(2);
+                flt_name = flt_name.substr(0, flt_name.indexOf('['));
+                var flt_value = $elem.val();
+                var temp_filters = $.extend(true, {}, filters);
 
-                var temp_filters = $.extend(true,{},filters);
-
-                if ( $(this).is('input:checked') ) {
-
-                    var index = $.inArray( flt_value, temp_filters[flt_name] );
-                    temp_filters[flt_name].splice( index, 1 );
-                    if (temp_filters[flt_name].length == 0) {
-                        delete temp_filters[flt_name];
-                    }
-
-                }{
-
-                    temp_filters[flt_name] = [ flt_value ];
-
+                if (isSelect && !flt_value) {
+                    return;
                 }
 
-                tmFilters.search( temp_filters );
+                var isChecked = isSelect
+                    ? $(this).parent('select').val() === flt_value
+                    : $(this).is('input:checked');
 
-                tmFilters.updateMarkerCount( elem, tmFilters.result_ids.length );
+                if (isChecked) {
+                    var index = $.inArray(flt_value, temp_filters[flt_name]);
+                    temp_filters[flt_name].splice(index, 1);
+                    if (temp_filters[flt_name].length === 0) {
+                        delete temp_filters[flt_name];
+                    }
+                } else {
+                    temp_filters[flt_name] = [flt_value];
+                }
 
+                tmFilters.search(temp_filters);
+                tmFilters.updateMarkerCount($elem, tmFilters.result_ids.length);
             }
-
         });
-
     },
 
 
@@ -577,42 +580,43 @@ var tmFilters = {
      * updateMarkerCount
      *
      */
-    updateMarkerCount: function(elem, count){
+    updateMarkerCount: function($elem, count){
 
-        var elem_parent = elem.parent();
+        var isSelect = $elem.is('option'),
+            $elem_parent = isSelect
+                ? $elem.parent().parent()
+                : $elem.parent();
 
-        if ( tmFilters.config['filters_type'] != 'only_block' ) {
-
-            if ( elem.is('input:checked') ) {
-
-                $('label',elem_parent).next('sup').remove();
-
-            }else{
-
-                if ( $('label',elem_parent).next('sup').length == 0 ) {
-                    $('label',elem_parent).after('<sup>'+count+'</sup>');
-                }else{
-                    $('label',elem_parent).next('sup').text(count);
+        if (!isSelect && tmFilters.config['filters_type'] !== 'only_block') {
+            if ($elem.is('input:checked')) {
+                $('label', $elem_parent).next('sup').remove();
+            } else {
+                if ($('label', $elem_parent).next('sup').length == 0) {
+                    $('label', $elem_parent).after('<sup>' + count + '</sup>');
+                } else {
+                    $('label', $elem_parent).next('sup').text(count);
                 }
-
             }
         }
 
-        if (count == 0) {
-
-            elem_parent.addClass('unactive');
-            if ( tmFilters.config['filters_type'] != 'only_block' ){
-                $('label',elem_parent).next('sup').remove();
+        if (count === 0) {
+            if (!isSelect) {
+                $elem_parent.addClass('unactive');
+                if (tmFilters.config['filters_type'] !== 'only_block') {
+                    $('label', $elem_parent).next('sup').remove();
+                }
+                $elem.prop('disabled', 'disabled');
+            } else {
+                $elem.hide();
             }
-            $('input:checkbox,select',elem_parent).prop('disabled','disabled');
-
-        }else{
-
-            elem_parent.removeClass('unactive');
-            $('input:checkbox,select',elem_parent).prop('disabled', false);
-
+        } else {
+            if (!isSelect) {
+                $elem_parent.removeClass('unactive');
+                $elem.prop('disabled', false);
+            } else {
+                $elem.show();
+            }
         }
-
     },
 
 

@@ -52,7 +52,12 @@
                 <form action="[[~[[*id]]]]" method="get">
                     
                     <div class="row">
-                    [[tmFilters@filters]]
+                    [[tmFilters@filters?
+                    &filterOuterTpl=`tm2_filterOuterTpl_select`
+                    &filterTpl=`tm2_filterTpl_select`
+                    &filterNumericOuterTpl=`tm2_filterOuterTpl`
+                    &filterNumericTpl=`tm2_filterNumericTpl`
+                    ]]
                     </div>
                     
                     <input type="hidden" name="page_id" value="[[*id]]" disabled="disabled" />
