@@ -603,13 +603,14 @@ var SHK = {
                 var parent = $(thisForm).parents( SHK.options.prodCont );
                 var image = $( 'img.shk-image:first', parent );
                 if( $(image).length > 0 ){
-                    var cart = SHK.getShopCartWrapper();
-                    var btPos = this.getPosition(image);
-                    var cartPos = this.getCenterPos( image, cart, SHK.options.tocartImage_width, SHK.options.tocartImage_height );
-                    $('img.shk-image:first',parent)
+                    var cart = SHK.getShopCartWrapper(),
+                        btPos = this.getPosition(image),
+                        cartPos = this.getCenterPos( image, cart, SHK.options.tocartImage_width, SHK.options.tocartImage_height ),
+                        $image = $('img.shk-image:first',parent);
+                    $image
                     .clone(false)
                     .appendTo('body')
-                    .css({'top':btPos.y+'px','position':'absolute','left':btPos.x+'px','opacity':0.75})
+                    .css({top: btPos.y+'px', position: 'absolute', left: btPos.x+'px', opacity: 0.75, width: $image.width(), height: $image.height()})
                     .animate({
                         top: cartPos.y+'px',
                         left: cartPos.x+'px',
