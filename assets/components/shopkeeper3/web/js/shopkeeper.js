@@ -669,7 +669,7 @@ var SHK = {
                     image
                     .clone(false)
                     .appendTo('body')
-                    .css( { top: btPos.y+'px', position: 'absolute', left: btPos.x+'px', opacity: 0.75, 'z-index': 500, width: $image.width(), height: $image.height() } )
+                    .css( { top: btPos.y+'px', position: 'absolute', left: btPos.x+'px', opacity: 0.75, 'z-index': 500, width: image.width(), height: image.height() } )
                     .animate({
                         top: cartPos.y+'px',
                         left: cartPos.x+'px',
