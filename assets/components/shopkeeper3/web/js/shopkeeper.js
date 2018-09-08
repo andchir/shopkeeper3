@@ -606,7 +606,7 @@ var SHK = {
                     var cart = SHK.getShopCartWrapper(),
                         btPos = this.getPosition(image),
                         cartPos = this.getCenterPos( image, cart, SHK.options.tocartImage_width, SHK.options.tocartImage_height ),
-                        $image = $('img.shk-image:first',parent);
+                        $image = $('img.shk-image:first', parent);
                     $image
                     .clone(false)
                     .appendTo('body')
@@ -669,7 +669,7 @@ var SHK = {
                     image
                     .clone(false)
                     .appendTo('body')
-                    .css( { top:btPos.y+'px', position:'absolute', left:btPos.x+'px', opacity:0.75, 'z-index':500 } )
+                    .css( { top: btPos.y+'px', position: 'absolute', left: btPos.x+'px', opacity: 0.75, 'z-index': 500, width: $image.width(), height: $image.height() } )
                     .animate({
                         top: cartPos.y+'px',
                         left: cartPos.x+'px',
