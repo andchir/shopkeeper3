@@ -7,7 +7,7 @@
  *
  * @author Andchir <andchir@gmail.com>
  * @package tag_manager2
- * @version 2.3.1
+ * @version 2.3.2
  */
 
 require_once dirname(__FILE__)."/tm_base.class.php";
