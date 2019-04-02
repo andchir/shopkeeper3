@@ -97,6 +97,8 @@ class tmFilters extends tagManagerBase {
                 
                 if(!in_array( $row['tvname'], $tags_names_arr )) array_push( $tags_names_arr, $row['tvname'] );
                 
+                $filterDataArr = [];
+                
                 if( $is_numeric ){
                     
                     $chunk_name_outer = $this->config['filterNumericOuterTpl'];
@@ -108,14 +110,13 @@ class tmFilters extends tagManagerBase {
                         'max' => ( $row['tags'][1]['active'] ? $row['tags'][1]['value'] : '0' ),
                         'idx' => $index
                     );
-                    
-                    $inner_out .= $this->modx->getChunk( $chunk_name, $chunkArr );
-                    $inner_out .= "\n";
+                    $filterDataArr[] = $chunkArr;
                     
                 }else{
                     
                     $chunk_name_outer = $this->config['filterOuterTpl'];
                     $chunk_name = $this->config['filterTpl'];
+                    
                     
                     foreach($row['tags'] as $key => $val){
                         
@@ -128,13 +129,22 @@ class tmFilters extends tagManagerBase {
                                 'idx' => $key,
                                 'num' => $key + 1
                             );
-                            
-                            $inner_out .= $this->modx->getChunk( $chunk_name, $chunkArr );
-                            $inner_out .= "\n";
+                            $filterDataArr[] = $chunkArr;
                         }
                         
                     }
                     
+                }
+                
+                if (count($filterDataArr) > 1) {
+                    usort($filterDataArr, function($a, $b) {
+                        return strcmp($a['value'], $b['value']);
+                    });
+                }
+                
+                foreach ($filterDataArr as $filterData) {
+                    $inner_out .= $this->modx->getChunk($chunk_name, $filterData);
+                    $inner_out .= "\n";
                 }
                 
                 $chunkArr = array(
@@ -332,5 +342,3 @@ class tmFilters extends tagManagerBase {
     
 
 }
-
-
