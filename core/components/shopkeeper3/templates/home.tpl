@@ -261,7 +261,7 @@
                             <td>{{item.p_id}}</td>
                             <td><a href="{{item.url}}" target="_blank">{{item.name}}</a></td>
                             <td>
-                                <div ng-repeat="opt in item.options">{{ opt[0] }}</div>
+                                <div ng-repeat="opt in item.options" style="max-width:200px; overflow:hidden; text-overflow:ellipsis;">{{ opt[0] }}</div>
                             </td>
                             <td>{{item.count}}</td>
                             <td>{{item.price | number: 2}}</td>
