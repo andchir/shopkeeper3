@@ -478,17 +478,17 @@ var tmFilters = {
 
                 switch (flt[1]) {
                     case 'between':
-                        
-                        if (parseFloat(flt_value[1] || 0) === 0) {
-                            remove = false;
-                            break;
-                        }
 
                         var p_value = parseFloat( window.flt_data.products[i][flt[0]].replace(',','.') );
 
                         //если включена мультивалютность, пересчитываем цену по курсу
                         if ( tmFilters.config.multi_currency ) {
                             p_value = tmFilters.currRate( flt[0], p_value );
+                        }
+                        
+                        if (parseFloat(flt_value[1] || 0) === 0 && p_value >= parseFloat(flt_value[0] || 0)) {
+                            remove = false;
+                            break;
                         }
 
                         if ( p_value >= flt_value[0] && p_value <= flt_value[1] ) {
