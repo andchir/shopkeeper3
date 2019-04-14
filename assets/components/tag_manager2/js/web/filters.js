@@ -327,7 +327,7 @@ var tmFilters = {
 
             if ( $(this).attr('name').substr(0,2) == 'f_' ) {
 
-                if ($(this).is(':text') || $(this).is(':hidden') || $(this).is(':checked') || ( $(this).is('select') && !!$(this).val() ) ) {
+                if ($(this).is('[type="text"]') || $(this).is('[type="hidden"]') || $(this).is(':checked') || ( $(this).is('select') && !!$(this).val() ) ) {
 
                     var flt_name = tmFilters.getFilterName( $(this).attr('name') );
                     var flt_value = $(this).val();
