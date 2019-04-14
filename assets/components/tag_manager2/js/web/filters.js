@@ -64,6 +64,9 @@ var tmFilters = {
 
         $( 'input,select', this.config.filters_cont )
             .on('change', function( event ){
+                if ($(this).attr('name') && $(this).attr('name').substr(0,2) !== 'f_') {
+                    return;
+                }
 
                 tmFilters.filtersPreSubmit( event );
 
@@ -320,11 +323,11 @@ var tmFilters = {
 
         var filters = {};
 
-        $( 'input:checkbox,select', tmFilters.config.filters_cont ).each(function(){
+        $( 'input,select', tmFilters.config.filters_cont ).each(function(){
 
             if ( $(this).attr('name').substr(0,2) == 'f_' ) {
 
-                if ( $(this).is(':checked') || ( $(this).is('select') && !!$(this).val() ) ) {
+                if ($(this).is(':text') || $(this).is(':hidden') || $(this).is(':checked') || ( $(this).is('select') && !!$(this).val() ) ) {
 
                     var flt_name = tmFilters.getFilterName( $(this).attr('name') );
                     var flt_value = $(this).val();
