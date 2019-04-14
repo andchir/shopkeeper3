@@ -852,7 +852,7 @@ var tmFilters = {
                     $(tmFilters.config.products_cont).html( response.prod_list );
 
                     $('html,body').animate({
-                        scrollTop: Math.round($(tmFilters.config.products_cont).position().top)
+                        scrollTop: Math.round($(tmFilters.config.products_cont).offset().top)
                     });
 
                 }
