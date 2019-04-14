@@ -710,7 +710,7 @@ var tmFilters = {
             //slider
             else if( $.inArray( f_name, tmFilters.config.numeric ) > -1 ){
 
-                if(f_state[i].from && f_state[i].to){
+                if(f_state[i].from && f_state[i].to && $('#'+'range_'+f_name).data('uiSlider')){
                     $('#'+f_name+'Min').val(f_state[i].from);
                     $('#'+'range_'+f_name).slider("values",0,f_state[i].from);
                     $('#'+f_name+'Max').val(f_state[i].to);
