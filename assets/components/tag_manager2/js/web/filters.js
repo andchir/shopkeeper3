@@ -491,7 +491,7 @@ var tmFilters = {
                             break;
                         }
 
-                        if ( p_value >= flt_value[0] && p_value <= flt_value[1] ) {
+                        if ( p_value >= parseFloat(flt_value[0] || 0) && p_value <= parseFloat(flt_value[1] || 0) ) {
                             remove = false;
                         }
 
