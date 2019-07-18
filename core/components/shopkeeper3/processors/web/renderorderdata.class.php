@@ -28,15 +28,24 @@ class shkRenderOrderDataProcessor extends modProcessor {
         if( !empty( $order_data['purchases'] ) ){
             
             foreach( $order_data['purchases'] as $purchase ){
+                
+                $additPrice = 0;
 
                 $p_options = $this->getPurchasesOptionsData($purchase['options']);
                 $purchase = array_merge( $purchase, $p_options );
                 unset( $purchase['options'] );
-
-                //if( empty( $purchase['addit_data'] ) ){ $purchase['addit_data'] = '&mdash;'; }
-                unset($purchase['options']);
-                $purchasesOutput .= $this->modx->getChunk( $orderPurchaseRowTpl, $purchase );
                 
+                foreach($purchase as $k => $v){
+                    if(strpos($k, 'shk_') !== false && isset($purchase[$k . '_price'])){
+                        $additPrice += $purchase[$k . '_price'];
+                    }
+                }
+                
+                $purchase['price_total'] = $purchase['price'] + $additPrice;
+                $purchase['price_count'] = $purchase['price'] * $purchase['count'];
+                $purchase['price_count_total'] = ($purchase['price'] + $additPrice) * $purchase['count'];
+                
+                $purchasesOutput .= $this->modx->getChunk( $orderPurchaseRowTpl, $purchase );
             }
             
         }
