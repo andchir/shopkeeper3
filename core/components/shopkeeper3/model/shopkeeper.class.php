@@ -7,7 +7,7 @@
  *
  * @author Andchir <andchir@gmail.com>
  * @package shopkeeper
- * @version 3.2.7
+ * @version 3.2.7+
  */
 
 class Shopkeeper {
@@ -575,7 +575,7 @@ class Shopkeeper {
                     ? $price_tv->renderOutput( $this->purchase->id )
                     : $price_tv->getValue( $this->purchase->id );
             }
-            if( !$price ){
+            if( !$price && $price_tv ){
                 $price = $price_tv->get('default_text');
             }
             
